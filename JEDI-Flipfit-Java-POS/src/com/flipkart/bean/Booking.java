@@ -9,8 +9,6 @@ public class Booking {
     private Integer bookingID;
     // The gym center where the booking is made.
     private LocalDateTime bookingDate;
-
-    private LocalDateTime bookingDate;
     public LocalDateTime getBookingDate() {
         return bookingDate;
     }
@@ -18,7 +16,6 @@ public class Booking {
     public void setBookingDate(LocalDateTime bookingDate) {
         this.bookingDate = bookingDate;
     }
-    private LocalDateTime bookingDate;
     /* Constructor to initialize a Booking object.
     Parameters:
        userID: ID of the user making the booking.
