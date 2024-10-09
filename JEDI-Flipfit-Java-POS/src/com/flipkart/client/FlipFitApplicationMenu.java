@@ -1,12 +1,15 @@
 package com.flipkart.client;
 
+import com.flipkart.business.FlipfitAdminService;
+import com.flipkart.business.FlipfitCustomerService;
+import com.flipkart.business.FlipfitGymOwnerService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
 
-public class FlipFitApplicationMenu {
+public class GymFlipFitApplication {
     public static void main(String[] args) {
         homePage();
     }
@@ -63,7 +66,7 @@ public class FlipFitApplicationMenu {
             String password = scanner.next();
             System.out.println("Enter your Role");
             String role = scanner.next();
-            adminClient.login(userID, password, role);
+            FlipfitAdminService.login(userID, password, role);
             adminMenu.adminMainPage();
         }
         else if (choice == 2) {
@@ -73,7 +76,7 @@ public class FlipFitApplicationMenu {
             String password = scanner.next();
             System.out.println("Enter your Role");
             String role = scanner.next();
-            customerClient.login(userID, password, role);
+            FlipfitCustomerService.login(userID, password, role);
             customerMenu.customerMainPage();
         }
         else if (choice == 3) {
@@ -83,7 +86,7 @@ public class FlipFitApplicationMenu {
             String password = scanner.next();
             System.out.println("Enter your Role");
             String role = scanner.next();
-            gymOwnerClient.login(userID, password, role);
+            FlipfitGymOwnerService.login(userID, password, role);
             gymOwnerMenu.gymOwnerMainPage();
         }
         else {
@@ -116,7 +119,7 @@ public class FlipFitApplicationMenu {
 
 
         // Call the registerCustomer method with the collected inputs
-        boolean registrationSuccess = customerClient.registerCustomer(userID, password, email, city, phoneNumber, pincode, "Customer");
+        boolean registrationSuccess = FlipfitCustomerService.registerCustomer(userID, password, email, city, phoneNumber, pincode, "Customer");
 
         if (registrationSuccess) {
             System.out.println("Customer registration successful!");
@@ -161,7 +164,7 @@ public class FlipFitApplicationMenu {
         Integer gymCenterId = scanner.nextInt();
         List<Integer> gymCenters = new ArrayList<>();
         gymCenters.add(gymCenterId);
-        boolean registrationSuccess = gymOwnerClient.register(userID, email, password, city, phoneNumber, pincode, aadharCardNumber, panCardNumber, gst, gymCenters,"Owner");
+        boolean registrationSuccess = FlipfitGymOwnerService.register(userID, email, password, city, phoneNumber, pincode, aadharCardNumber, panCardNumber, gst, gymCenters,"Owner");
 
         if (registrationSuccess) {
             System.out.println("Customer registration successful!");
@@ -190,19 +193,19 @@ public class FlipFitApplicationMenu {
             switch(roleChoice) {
                 case 1:
                     System.out.println("You selected Customer role.");
-                    if(customerClient.changePassword(username, oldPassword, newPassword)){
+                    if(FlipfitCustomerService.changePassword(username, oldPassword, newPassword)){
                         System.out.println("Password changed successfully!");
                     }
                     break;
                 case 2:
                     System.out.println("You selected GymOwner role.");
-                    if(gymOwnerClient.changePassword(username, oldPassword, newPassword)){
+                    if(FlipfitGymOwnerService.changePassword(username, oldPassword, newPassword)){
                         System.out.println("Password changed successfully!");
                     }
                     break;
                 case 3:
                     System.out.println("You selected Admin role.");
-                    if(adminClient.changePassword(username, oldPassword, newPassword)){
+                    if(FlipfitAdminService.changePassword(username, oldPassword, newPassword)){
                         System.out.println("Password changed successfully!");
                     }
                     break;
