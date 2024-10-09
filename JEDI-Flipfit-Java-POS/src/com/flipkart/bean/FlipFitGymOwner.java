@@ -1,68 +1,18 @@
 package com.flipkart.bean;
 
-import java.util.List;
-import java.util.ArrayList;
+/**
+ * Represents an admin user in the FlipFit system, extending FlipFitUser.
+ * This class provides a default constructor initializing admin details.
+ */
+public class FlipFitGymOwner extends FlipFitUser {
 
-public class FlipFitGymOwner {
-    public String panId;
-    private String gstNum;
-    private String aadharNumber;
-    public boolean isApproved;
-    ArrayList<String> gymLists = new ArrayList<>();
-
-    public ArrayList<String> getGymLists() {
-        return gymLists;
-    }
-
-    public void setGymLists(ArrayList<String> gymLists) {
-        this.gymLists = gymLists;
-    }
-
-    public String getPanId() {
-        return panId;
-    }
-
-    public void setPanId(String panId) {
-        this.panId = panId;
-    }
-
-    public String getGSTNum() {
-        return gstNum;
-    }
-
-    public void setGSTIN(String gstNum) {
-        this.gstNum = gstNum;
-    }
-
-    public String getAadharNumber() {
-        return aadharNumber;
-    }
-
-    public void setAadharNumber(String aadharNumber) {
-        this.aadharNumber = aadharNumber;
-    }
-
-    public boolean getIsApproved() {
-        return isApproved;
-    }
-
-    public void setIsApproved(boolean isApproved) {
-        this.isApproved = isApproved;
-    }
-
-    public boolean addUser() {
-        return true;
-    }
-
-    public boolean registerGyms() {
-        return true;
-    }
-
-    public boolean addSlots() {
-        return true;
-    }
-
-    public boolean viewCenters() {
-        return true;
+    /**
+     * Default constructor for creating an admin user.
+     * Initializes with default values for admin user ID, username, email, password,
+     * and assigns the role as ADMIN.
+     */
+    public FlipFitGymOwner() {
+        super(102, "owner", "owner@flipfit.com", "8812344234", "password2","Bengaluru",4798234,FlipFitRole.GYM_OWNER);
     }
 }
+

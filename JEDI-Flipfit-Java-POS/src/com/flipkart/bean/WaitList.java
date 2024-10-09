@@ -4,8 +4,6 @@ import java.util.List;
 
 public class WaitList {
     public int waitListId;
-    public int userId;
-    public int slotId;
     public int waitingNumber;
     public int maxCount;
     public List<FlipFitCustomer> waitListCustomer;
@@ -17,23 +15,7 @@ public class WaitList {
     public void setWaitListId(int waitListId) {
         this.waitListId = waitListId;
     }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getSlotId() {
-        return slotId;
-    }
-
-    public void setSlotId(int slotId) {
-        this.slotId = slotId;
-    }
-
+    
     public int getWaitingNumber() {
         return waitingNumber;
     }

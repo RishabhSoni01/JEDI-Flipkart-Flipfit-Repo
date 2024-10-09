@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class FlipFitGyms extends FlipFitGymOwner {
     private int gymId;
 
+    private String gymName;
+
     public String getGymName() {
         return gymName;
     }
@@ -20,7 +22,5 @@ public class FlipFitGyms extends FlipFitGymOwner {
     public void setGymId(int gymId) {
         this.gymId = gymId;
     }
-
-    private String gymName;
 
 }
