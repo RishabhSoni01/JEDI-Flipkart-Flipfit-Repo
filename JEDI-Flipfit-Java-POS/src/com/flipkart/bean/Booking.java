@@ -35,6 +35,6 @@ public class Booking {
         return bookingID;
     }
     // Getter for gymCenter.
-    
+
 
 }

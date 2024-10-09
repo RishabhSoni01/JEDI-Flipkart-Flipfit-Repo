@@ -3,9 +3,9 @@
  */
 package com.flipkart.client;
 
-import com.flipkart.bean.Booking;
 import com.flipkart.bean.FlipFitGyms;
 import com.flipkart.bean.FlipFitSlot;
+import com.flipkart.business.Booking;
 import com.flipkart.business.FlipfitCustomerServiceInterface;
 import com.flipkart.business.FlipfitCustomerService;
 
@@ -17,7 +17,7 @@ import java.util.Scanner;
 /**
  *
  */
-public class GymFlipFitCustomerMenu {
+public class FlipfitCustomerMenu {
     FlipfitCustomerServiceInterface customerService = new FlipfitCustomerService();
     public boolean login (String username, String password) {
         //validate cred from the DB
