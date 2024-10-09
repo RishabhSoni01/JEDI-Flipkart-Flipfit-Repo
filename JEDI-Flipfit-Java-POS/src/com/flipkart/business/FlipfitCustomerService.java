@@ -1,5 +1,6 @@
 package com.flipkart.business;
 
+import com.flipkart.bean.FlipFitCustomer;
 import com.flipkart.bean.FlipFitGyms;
 import com.flipkart.bean.FlipFitSlot;
 
@@ -8,6 +9,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class FlipfitCustomerService implements FlipfitCustomerServiceInterface {
+    @Override
     public List<FlipFitGyms> viewGyms(){
         return List.of();
     }
@@ -33,22 +35,22 @@ public class FlipfitCustomerService implements FlipfitCustomerServiceInterface {
     }
 
     @Override
-    public boolean checkValidCustomer(String userName, String password) {
+    public boolean viewProfile(FlipFitCustomer customer){
+        return false;
+    };
+
+    @Override
+    public boolean registerCustomer(Integer userId, String password, String email, String city, String phoneNumber, Integer pincode, String role) {
         return false;
     }
 
     @Override
-    public boolean registerCustomer(String userName, String password, String email, String city, String cardNumber) {
+    public boolean changePassword(Integer userId, String oldPassword, String newPassword) {
         return false;
     }
 
     @Override
-    public boolean changePassword(String username, String oldPassword, String newPassword) {
-        return false;
-    }
-
-    @Override
-    public void login(String userName, String password) {
+    public void login(Integer userId, String password, String role) {
 
     }
 }

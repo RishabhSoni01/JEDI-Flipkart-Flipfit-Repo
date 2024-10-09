@@ -1,30 +1,35 @@
 package com.flipkart.business;
 
+import com.flipkart.bean.FlipFitGymOwner;
+
 import java.util.List;
 
 public class FlipfitGymOwnerService implements FlipfitGymOwnerServiceInterface {
+
     @Override
-    public boolean login(String userName, String password) {
+    public boolean register(Integer userId, String email, String password, String city,String phoneNumber,Integer pincode, String aadhar,String panCardNumber,String GST, List<Integer> gymCenters,String role) {
         return false;
     }
 
     @Override
-    public boolean register(String userId, String userName, String email, String password, String adharCardNumber, List<String> gymCenterId) {
+    public boolean addCenter(Integer userId, Integer gymId, String city, int numberOfSlots) {
         return false;
     }
 
     @Override
-    public boolean addCenter(String ownerId, String gymId, String city, int capacity, int cost) {
+    public void editSlots(FlipFitGymOwner flipFitGymOwner){
+    }
+    @Override
+    public void editProfile(FlipFitGymOwner flipFitGymOwner){
+
+    };
+    @Override
+    public boolean changePassword(Integer userId, String oldPassword, String newPassword) {
         return false;
     }
 
     @Override
-    public boolean removeCenter(String ownerId, String gymId) {
-        return false;
-    }
+    public void login(Integer userId, String password, String role) {
 
-    @Override
-    public boolean changePassword(String username, String oldPassword, String newPassword) {
-        return false;
     }
 }

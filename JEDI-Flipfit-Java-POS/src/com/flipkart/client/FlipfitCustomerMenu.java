@@ -3,11 +3,8 @@
  */
 package com.flipkart.client;
 
-import com.flipkart.bean.FlipFitGyms;
-import com.flipkart.bean.FlipFitSlot;
-import com.flipkart.business.Booking;
-import com.flipkart.business.FlipfitCustomerServiceInterface;
-import com.flipkart.business.FlipfitCustomerService;
+import com.flipkart.bean.*;
+import com.flipkart.business.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -19,81 +16,54 @@ import java.util.Scanner;
  */
 public class FlipfitCustomerMenu {
     FlipfitCustomerServiceInterface customerService = new FlipfitCustomerService();
-    public boolean login (String username, String password) {
-        //validate cred from the DB
-        customerMainPage();
-        return false;
-    }
 
+    private Scanner scanner = new Scanner(System.in);
     public void customerMainPage () {
-        Scanner scanner = new Scanner(System.in);
+        int userChoice = -1;
+
+        // Loop until the customer chooses to exit
         while (true) {
-            System.out.println("Welcome to FlipFit Gym Booking System");
-            System.out.println("1. View all gym centers in a city");
-            System.out.println("2. View all free slots in a gym on a specific date");
-            System.out.println("3. View all bookings in a gym on a specific date");
-            System.out.println("4. Book a slot");
-            System.out.println("5. Cancel a slot");
-            System.out.println("7. Exit");
+            // Display customer menu options
+            System.out.println("Customer Menu:");
+            System.out.println("1. View Profile");
+            System.out.println("2. Edit Profile");
+            System.out.println("3. Book Slot");
+            System.out.println("4. View Bookings");
+            System.out.println("5. Cancel Booking");
+            System.out.println("6. Change Password");
+            System.out.println("7. Logout");
             System.out.print("Enter your choice: ");
+            userChoice = scanner.nextInt();
+            scanner.nextLine(); // consume the newline
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
-
-            switch (choice) {
-                case 1:
-                    System.out.print("Enter city: ");
-                    String city = scanner.nextLine();
-                    List<FlipFitGyms> gyms = customerService.viewGyms();
-                    System.out.println(gyms);  // Assuming FlipFitGym has a toString() method
-                    break;
-                case 2:
-                    System.out.print("Enter gym ID: ");
-                    String gymId = scanner.nextLine();
-                    System.out.print("Enter date (YYYY-MM-DD): ");
-                    LocalDate date = LocalDate.parse(scanner.nextLine());
-                    List<FlipFitSlot> freeSlots = customerService.viewSlots();
-                    System.out.println(freeSlots);
-                    break;
-                case 3:
-                    System.out.print("Enter gym ID: ");
-                    String gymIdForBookings = scanner.nextLine();
-                    System.out.print("Enter date (YYYY-MM-DD): ");
-                    LocalDate bookingDate = LocalDate.parse(scanner.nextLine());
-                    List<Booking> bookings = customerService.viewBookings();
-                    System.out.println(bookings);  // Assuming Booking has a toString() method
-                    break;
-                case 4:
-                    System.out.print("Enter user ID: ");
-                    String userId = scanner.nextLine();
-                    System.out.print("Enter gym ID: ");
-                    String gymIdForBooking = scanner.nextLine();
-                    System.out.print("Enter slot ID: ");
-                    String slotId = scanner.nextLine();
-                    System.out.print("Enter date (YYYY-MM-DD): ");
-                    LocalDate bookingDateForSlot = LocalDate.parse(scanner.nextLine());
-                    System.out.print("Enter time (HH:MM): ");
-                    LocalTime bookingTime = LocalTime.parse(scanner.nextLine());
-                    boolean bookingStatus = customerService.addBooking()
-                    System.out.println("Booking status: " + (bookingStatus ? "Success" : "Failed"));
-                    break;
-                case 5:
-                    System.out.print("Enter gym ID: ");
-                    String gymIdForCancellation = scanner.nextLine();
-                    System.out.print("Enter date (YYYY-MM-DD): ");
-                    LocalDate cancellationDate = LocalDate.parse(scanner.nextLine());
-                    System.out.print("Enter time (HH:MM): ");
-                    LocalTime cancellationTime = LocalTime.parse(scanner.nextLine());
-                    boolean cancellationStatus = customerService.removeBooking();
-                    System.out.println("Cancellation status: " + (cancellationStatus ? "Success" : "Failed"));
-                    break;
-                case 6:
-                    System.out.println("Exiting...");
-                    scanner.close();
-                    return;
-                default:
-                    System.out.println("Invalid choice, please try again.");
-            }
+            // Handle customer's choice
+//            switch (userChoice) {
+//                case 1:
+//                    customerService.viewProfile();
+//                    break;
+//                case 2:
+//                    editProfile(customer);
+//                    break;
+//                case 3:
+//                    addbookings(customer);
+//                    break;
+//                case 4:
+//                    viewBookings(customer.getUserid());
+//                    break;
+//                case 5:
+//                    cancelbookings(customer.getUserid());
+//                    break;
+//                case 6:
+//                    changePassword(customer);
+//                    break;
+//                case 7:
+//                    System.out.println("Logging Out!");
+//                    break;
+//                default:
+//                    System.out.println("Invalid choice. Please try again.");
+//            }
         }
     }
 }
+
+

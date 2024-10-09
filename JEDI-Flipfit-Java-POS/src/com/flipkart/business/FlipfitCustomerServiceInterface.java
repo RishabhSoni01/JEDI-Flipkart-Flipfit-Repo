@@ -14,8 +14,8 @@ public interface FlipfitCustomerServiceInterface {
     public List<Booking> viewBookings();
     public boolean addBooking(Integer userId, Integer gymId, Integer slotId, LocalDate bookingDate, LocalTime bookingTime);
     public boolean removeBooking(Integer userId, Integer gymId, Integer slotId, LocalDate bookingDate);
-    public boolean checkValidCustomer (String userName, String password);
-    public boolean registerCustomer(String userName, String password, String email, String city, String cardNumber);
-    public boolean changePassword(String username, String oldPassword, String newPassword);
-    public void login(String userName, String password);
+    public boolean viewProfile(FlipFitCustomer customer);
+    public boolean registerCustomer(Integer userId, String password, String email, String city, String phoneNumber,Integer pincode,String role);
+    public boolean changePassword(Integer userId, String oldPassword, String newPassword);
+    public void login(Integer userId, String password,String role);
 }

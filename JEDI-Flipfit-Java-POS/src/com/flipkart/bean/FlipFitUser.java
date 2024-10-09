@@ -7,8 +7,8 @@ public class FlipFitUser {
     private String password;
     private String city;
     private Integer pincode;
-    private Integer userID;
-    private FlipFitRole role;
+    public Integer userID;
+    public FlipFitRole role;
 
     public FlipFitUser(Integer userID, String name, String email, String phoneNumber, String password, String city, Integer pincode, FlipFitRole role) {
         this.userID = userID;

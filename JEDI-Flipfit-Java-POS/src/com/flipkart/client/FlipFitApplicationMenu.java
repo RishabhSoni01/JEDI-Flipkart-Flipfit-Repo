@@ -1,19 +1,19 @@
 package com.flipkart.client;
 
-import com.flipkart.business.FlipfitAdminService;
-import com.flipkart.business.FlipfitCustomerService;
-import com.flipkart.business.FlipfitGymOwnerService;
+import com.flipkart.business.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
 
-public class GymFlipFitApplication {
+public class FlipFitApplicationMenu{
     public static void main(String[] args) {
         homePage();
     }
-
+    private static FlipfitAdminServiceInterface FlipfitAdminService = new FlipfitAdminService();
+    private static FlipfitCustomerServiceInterface FlipfitCustomerService = new FlipfitCustomerService();
+    private static FlipfitGymOwnerServiceInterface FlipfitGymOwnerService = new FlipfitGymOwnerService();
 
     private static FlipfitCustomerMenu customerMenu = new FlipfitCustomerMenu();
     private static FlipfitAdminMenu adminMenu = new FlipfitAdminMenu();
@@ -64,7 +64,7 @@ public class GymFlipFitApplication {
 
             System.out.println("Enter your Passkey");
             String password = scanner.next();
-            System.out.println("Enter your Role");
+            System.out.println("Enter your Role: Admin, Customer, GYM Owner");
             String role = scanner.next();
             FlipfitAdminService.login(userID, password, role);
             adminMenu.adminMainPage();
@@ -74,7 +74,7 @@ public class GymFlipFitApplication {
             Integer userID = scanner.nextInt();
             System.out.println("Enter your Passkey");
             String password = scanner.next();
-            System.out.println("Enter your Role");
+            System.out.println("Enter your Role: Admin, Customer, GYM Owner");
             String role = scanner.next();
             FlipfitCustomerService.login(userID, password, role);
             customerMenu.customerMainPage();
@@ -84,7 +84,7 @@ public class GymFlipFitApplication {
             Integer userID = scanner.nextInt();
             System.out.println("Enter your Passkey");
             String password = scanner.next();
-            System.out.println("Enter your Role");
+            System.out.println("Enter your Role: Admin, Customer, GYM Owner");
             String role = scanner.next();
             FlipfitGymOwnerService.login(userID, password, role);
             gymOwnerMenu.gymOwnerMainPage();
@@ -114,7 +114,7 @@ public class GymFlipFitApplication {
         String phoneNumber = scanner.nextLine();
 
         System.out.print("Enter pincode: ");
-        String pincode = scanner.nextLine();
+        Integer pincode = scanner.nextInt();
 
 
 
@@ -149,7 +149,7 @@ public class GymFlipFitApplication {
         String phoneNumber = scanner.nextLine();
 
         System.out.print("Enter pincode: ");
-        String pincode = scanner.nextLine();
+        Integer pincode = scanner.nextInt();
 
         System.out.print("Enter aadhar card number: ");
         String aadharCardNumber = scanner.nextLine();
@@ -175,8 +175,8 @@ public class GymFlipFitApplication {
 
     private static void changePassword() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter username: ");
-        String username = scanner.nextLine();
+        System.out.print("Enter userID: ");
+        Integer userId = scanner.nextInt();
         System.out.print("Enter old password: ");
         String oldPassword = scanner.nextLine();
         System.out.print("Enter new password: ");
@@ -193,19 +193,19 @@ public class GymFlipFitApplication {
             switch(roleChoice) {
                 case 1:
                     System.out.println("You selected Customer role.");
-                    if(FlipfitCustomerService.changePassword(username, oldPassword, newPassword)){
+                    if(FlipfitCustomerService.changePassword(userId, oldPassword, newPassword)){
                         System.out.println("Password changed successfully!");
                     }
                     break;
                 case 2:
                     System.out.println("You selected GymOwner role.");
-                    if(FlipfitGymOwnerService.changePassword(username, oldPassword, newPassword)){
+                    if(FlipfitGymOwnerService.changePassword(userId, oldPassword, newPassword)){
                         System.out.println("Password changed successfully!");
                     }
                     break;
                 case 3:
                     System.out.println("You selected Admin role.");
-                    if(FlipfitAdminService.changePassword(username, oldPassword, newPassword)){
+                    if(FlipfitAdminService.changePassword(userId, oldPassword, newPassword)){
                         System.out.println("Password changed successfully!");
                     }
                     break;
