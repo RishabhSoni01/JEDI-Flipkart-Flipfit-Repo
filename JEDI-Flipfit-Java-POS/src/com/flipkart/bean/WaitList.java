@@ -15,7 +15,7 @@ public class WaitList {
     public void setWaitListId(int waitListId) {
         this.waitListId = waitListId;
     }
-    
+
     public int getWaitingNumber() {
         return waitingNumber;
     }
