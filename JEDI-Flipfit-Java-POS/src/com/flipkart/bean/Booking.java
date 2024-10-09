@@ -7,7 +7,7 @@ public class Booking {
 
     // Unique identifier for this booking.
     private Integer bookingID;
-<<<<<<< HEAD
+
 
     // The gym center where the booking is made.
     private Integer gymID;
@@ -16,9 +16,6 @@ public class Booking {
     private Integer slotID;
     private LocalDateTime bookingDate;
 
-=======
-    private LocalDateTime bookingDate;
->>>>>>> refs/remotes/origin/main
     public LocalDateTime getBookingDate() {
         return bookingDate;
     }
@@ -26,12 +23,11 @@ public class Booking {
     public void setBookingDate(LocalDateTime bookingDate) {
         this.bookingDate = bookingDate;
     }
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> refs/remotes/origin/main
+
+
     /* Constructor to initialize a Booking object.
     Parameters:
 
