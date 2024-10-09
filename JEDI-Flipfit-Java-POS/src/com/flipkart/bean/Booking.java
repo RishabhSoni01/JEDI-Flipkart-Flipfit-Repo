@@ -4,18 +4,9 @@ import java.time.LocalDateTime;
 // Represents a booking made by a user at a gym center.
 
 public class Booking {
-    // Unique identifier of the user making the booking.
-    private Integer customerId;
 
     // Unique identifier for this booking.
     private Integer bookingID;
-
-    // The gym center where the booking is made.
-    private Integer gymID;
-
-    // The start time of the booking.
-    private Integer slotID;
-
     public LocalDateTime getBookingDate() {
         return bookingDate;
     }
