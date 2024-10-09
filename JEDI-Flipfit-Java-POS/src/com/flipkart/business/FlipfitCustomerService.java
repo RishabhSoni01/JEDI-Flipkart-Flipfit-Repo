@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FlipfitCustomerService implements FlipfitCustomerServiceInterface {
     public List<FlipFitGyms> viewGyms(){
-
+        return List.of();
     }
 
     @Override
