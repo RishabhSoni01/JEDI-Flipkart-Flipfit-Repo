@@ -7,14 +7,24 @@ public class FlipFitUser {
     private String password;
     private String city;
     private Integer pincode;
+    private Integer userID;
+    private FlipFitRole role;
 
-    public FlipFitUser(String name, String email, String phoneNumber, String password, String city, Integer pincode) {
+    public FlipFitUser(Integer userID, String name, String email, String phoneNumber, String password, String city, Integer pincode, FlipFitRole role) {
+        this.userID = userID;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.city = city;
         this.pincode = pincode;
+        this.role = role;
+    }
+    public Integer getUserID() {
+        return userID;
+    }
+    public FlipFitRole getRole() {
+        return role;
     }
     public String getName() {
         return name;
