@@ -61,8 +61,8 @@ public class FlipFitGymOwner extends FlipFitUser {
     public Boolean isApproved;
 
 
-    public FlipFitGymOwner(Integer userID,String name, String email, String phoneNumber, String password, String city, Integer pincode) {
-        super(userID, name, email, phoneNumber, password, city, pincode, FlipFitRole.GYM_OWNER);
+    public FlipFitGymOwner(String userID, String name, String email, String phoneNumber, String password, String city, String pincode, int role,String username) {
+        super(userID, name, email, phoneNumber, password, city, pincode, role,username);
     }
 }
 

@@ -13,8 +13,8 @@ public class FlipFitCustomer extends FlipFitUser {
      * and assigns the role as ADMIN.
      */
     private List<pair<Booking, Boolean>> bookings;
-    public FlipFitCustomer(Integer userID,String name, String email, String phoneNumber, String password, String city, Integer pincode) {
-        super(userID, name, email, phoneNumber, password, city, pincode, FlipFitRole.CUSTOMER);
+    public FlipFitCustomer(String userID, String name, String email, String phoneNumber, String password, String city, String pincode, int role,String username) {
+        super(userID, name, email, phoneNumber, password, city, pincode, role,username);
 
     }
     public List<pair<Booking, Boolean>> getBookings() {

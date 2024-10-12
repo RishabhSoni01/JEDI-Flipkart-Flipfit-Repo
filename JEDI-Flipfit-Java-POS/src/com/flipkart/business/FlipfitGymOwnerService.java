@@ -7,12 +7,12 @@ import java.util.List;
 public class FlipfitGymOwnerService implements FlipfitGymOwnerServiceInterface {
 
     @Override
-    public boolean register(Integer userId, String email, String password, String city,String phoneNumber,Integer pincode, String aadhar,String panCardNumber,String GST, List<Integer> gymCenters,String role) {
+    public boolean register(String username, String email, String password, String city,String phoneNumber,String pincode, String aadhar,String panCardNumber,String GST, List<Integer> gymCenters,String role) {
         return false;
     }
 
     @Override
-    public boolean addCenter(Integer userId, Integer gymId, String city, int numberOfSlots) {
+    public boolean addCenter(String userId, String gymId, String city, int numberOfSlots) {
         return false;
     }
 
@@ -24,12 +24,12 @@ public class FlipfitGymOwnerService implements FlipfitGymOwnerServiceInterface {
 
     };
     @Override
-    public boolean changePassword(Integer userId, String oldPassword, String newPassword) {
+    public boolean changePassword(String username, String oldPassword, String newPassword) {
         return false;
     }
 
     @Override
-    public void login(Integer userId, String password, String role) {
-
+    public boolean login(String username, String password) {
+        return false;
     }
 }

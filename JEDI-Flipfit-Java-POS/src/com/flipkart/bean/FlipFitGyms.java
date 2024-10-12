@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class FlipFitGyms {
 
-    private int gymId;
+    private String gymId;
     private String gymName;
     private int numberOfSlots;
     private Boolean gymStatus;
     private FlipFitGymOwner owner;
-    public int getGymId() {
+    public String getGymId() {
         return gymId;
     }
 
-    public void setGymId(int gymId) {
+    public void setGymId(String gymId) {
         this.gymId = gymId;
     }
 

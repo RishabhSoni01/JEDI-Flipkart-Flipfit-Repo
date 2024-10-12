@@ -7,7 +7,7 @@ import java.util.List;
 
 public class FlipfitAdminService implements FlipfitAdminServiceInterface{
     @Override
-    public boolean approveGymOwner (int gymOwnerId, boolean status){
+    public boolean approveGymOwner (String gymOwnerId, boolean status){
         return false;
     };
     public List<FlipFitGymOwner> viewPendingGymOwners(){
@@ -16,26 +16,26 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface{
     public List<FlipFitGyms> viewPendingGyms(){
         return null;
     };
-    public boolean deleteGyms(int gymId){
+    public boolean deleteGyms(String gymId){
         return false;
     };
-    public boolean approveGym(int gymId, boolean status)
+    public boolean approveGym(String gymId, boolean status)
     {
         return false;
     };
-    public boolean deleteGymOwners(int gymOwnerId){
+    public boolean deleteGymOwners(String gymOwnerId){
         return false;
     };
     public List<FlipFitGyms> viewGyms(){
         return null;
     };
-    public List<FlipFitGyms> viewGymsOwner(int gymOwnerId){
+    public List<FlipFitGyms> viewGymsOwner(String gymOwnerId){
         return null;
     };
-    public boolean changePassword(Integer userID, String oldPassword, String newPassword){
+    public boolean changePassword(String username, String oldPassword, String newPassword){
         return true;
     };
-    public void login(Integer userId, String password,String role){
-
+    public boolean login(String username, String password){
+        return false;
     };
 }

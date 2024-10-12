@@ -22,7 +22,7 @@ public class FlipfitCustomerMenu {
         int userChoice = -1;
 
         // Loop until the customer chooses to exit
-        while (true) {
+        while (userChoice!=7) {
             // Display customer menu options
             System.out.println("Customer Menu:");
             System.out.println("1. View Profile");

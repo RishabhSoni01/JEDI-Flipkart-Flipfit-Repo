@@ -10,12 +10,12 @@ import java.util.List;
 
 public class FlipfitCustomerService implements FlipfitCustomerServiceInterface {
     @Override
-    public List<FlipFitGyms> viewGyms(){
+    public List<FlipFitGyms> viewGyms(String city){
         return List.of();
     }
 
     @Override
-    public List<FlipFitSlot> viewSlots() {
+    public List<FlipFitSlot> viewSlots(String gymID) {
         return List.of();
     }
 
@@ -25,12 +25,12 @@ public class FlipfitCustomerService implements FlipfitCustomerServiceInterface {
     }
 
     @Override
-    public boolean addBooking(Integer userId, Integer gymId, Integer slotId, LocalDate bookingDate, LocalTime bookingTime) {
+    public boolean addBooking(String userId, String gymId, String slotId, LocalDate bookingDate, LocalTime bookingTime) {
         return false;
     }
 
     @Override
-    public boolean removeBooking(Integer userId, Integer gymId, Integer slotId, LocalDate bookingDate) {
+    public boolean removeBooking(String userId, String gymId, String slotId, LocalDate bookingDate) {
         return false;
     }
 
@@ -40,17 +40,17 @@ public class FlipfitCustomerService implements FlipfitCustomerServiceInterface {
     };
 
     @Override
-    public boolean registerCustomer(Integer userId, String password, String email, String city, String phoneNumber, Integer pincode, String role) {
+    public boolean registerCustomer(String username, String password, String email, String city, String phoneNumber, String pincode, String role) {
         return false;
     }
 
     @Override
-    public boolean changePassword(Integer userId, String oldPassword, String newPassword) {
+    public boolean changePassword(String username, String oldPassword, String newPassword) {
         return false;
     }
 
     @Override
-    public void login(Integer userId, String password, String role) {
-
+    public boolean login(String username, String password) {
+        return false;
     }
 }
