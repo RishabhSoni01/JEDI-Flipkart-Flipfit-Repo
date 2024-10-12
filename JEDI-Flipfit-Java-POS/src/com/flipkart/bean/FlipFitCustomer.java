@@ -12,17 +12,17 @@ public class FlipFitCustomer extends FlipFitUser {
      * Initializes with default values for admin user ID, username, email, password,
      * and assigns the role as ADMIN.
      */
-    private List<pair<Booking, Boolean>> bookings;
+    private List<Booking> bookings;
     public FlipFitCustomer(String userID, String name, String email, String phoneNumber, String password, String city, String pincode, int role,String username) {
         super(userID, name, email, phoneNumber, password, city, pincode, role,username);
 
     }
-    public List<pair<Booking, Boolean>> getBookings() {
+    public List<Booking> getBookings() {
         return bookings;
     }
 
     // Setter for bookings.
-    public void setBookings(List<pair<Booking, Boolean>> bookings) {
+    public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
 }
