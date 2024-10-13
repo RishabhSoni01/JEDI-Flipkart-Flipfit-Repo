@@ -13,12 +13,22 @@ public class Booking {
     // The gym center where the booking is made.
     private String gymID;
 
+    public Booking(String userID, String bookingID, String gymID, String slotID, String gymName, FlipFitSlot slot, LocalDateTime bookingDate) {
+        this.userID = userID;
+        this.bookingID = bookingID;
+        this.gymID = gymID;
+        this.slotID = slotID;
+        this.gymName = gymName;
+        this.slot = slot;
+        this.bookingDate = bookingDate;
+    }
+
     // The start time of the booking.
     private String slotID;
 
     private String gymName;
     private FlipFitSlot slot;
-
+    private LocalDateTime bookingDate;
     public LocalDateTime getBookingDate() {
         return bookingDate;
     }
@@ -43,7 +53,6 @@ public class Booking {
         this.gymName = gymName;
     }
 
-    private LocalDateTime bookingDate;
     /* Constructor to initialize a Booking object.
     Parameters:
        userID: ID of the user making the booking.

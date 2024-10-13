@@ -49,20 +49,23 @@ public class FlipFitGymOwner extends FlipFitUser {
         this.gymCenters = gymCenters;
     }
 
-    public Boolean getApproved() {
+    public int getApproved() {
         return isApproved;
     }
 
-    public void setApproved(Boolean approved) {
+    public void setApproved(int approved) {
         isApproved = approved;
     }
 
     private List<FlipFitGyms> gymCenters;
-    public Boolean isApproved;
+    public int isApproved;
 
 
-    public FlipFitGymOwner(String userID, String name, String email, String phoneNumber, String password, String city, String pincode, int role,String username) {
+    public FlipFitGymOwner(String userID, String name, String email, String phoneNumber, String password, String city, String pincode, int role,String username,String panCard,String aadhar, String GST) {
         super(userID, name, email, phoneNumber, password, city, pincode, role,username);
+        this.panCard = panCard;
+        this.aadhar = aadhar;
+        this.GST = GST;
     }
 }
 

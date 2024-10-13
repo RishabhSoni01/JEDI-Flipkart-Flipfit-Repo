@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
-
+import com.flipkart.dao.*;
 
 public class FlipFitApplicationMenu{
     public static void main(String[] args) {
@@ -18,6 +18,8 @@ public class FlipFitApplicationMenu{
     private static FlipfitCustomerMenu customerMenu = new FlipfitCustomerMenu();
     private static FlipfitAdminMenu adminMenu = new FlipfitAdminMenu();
     private static FlipfitGymOwnerMenu gymOwnerMenu = new FlipfitGymOwnerMenu();
+    static FlipFitGymOwnerDAOImplement gymOwnerDAOImpl= new FlipFitGymOwnerDAOImplement();
+    static FlipFitCustomerDAOImplement customerDAOImpl= new FlipFitCustomerDAOImplement();
 
     private static void homePage() {
         System.out.println("Welcome to FlipFit App!!\n");
@@ -32,13 +34,36 @@ public class FlipFitApplicationMenu{
                     login();
                     break;
                 case 2:
-                    registerAsCustomer();
+                    customerMenu.registerCustomer(scanner);
+                    System.out.println("Customer Registered");
                     break;
                 case 3:
-                    registerGymOwner();
+                    gymOwnerMenu.registerGymOwner(scanner);
+                    System.out.println("Gym Owner Registered");
                     break;
                 case 4:
-                    changePassword();
+                    System.out.println("Change Password");
+                    System.out.println("Enter your Username");
+                    String username = scanner.next();
+
+                    System.out.println("Enter your Passkey");
+                    String password = scanner.next();
+                    FlipFitUser user=FlipFitUserService.login(username,password);
+                    System.out.println("Enter your role: 1- Admin \n2. Gym Owner \n3.Customer");
+                    int choice2 = scanner.nextInt();
+                    switch(choice2) {
+                        case 1:
+                            adminMenu.changePassword(user);
+                            break;
+                            case 2:
+                                gymOwnerMenu.changePassword(user);
+                                break;
+                                case 3:
+                                    customerMenu.changePassword(user);
+                                    break;
+                                    default:
+                                        System.out.println("Invalid choice");
+                    }
                     break;
                 case 5:
                     System.out.println("Exiting FlipFit App. Goodbye!");
@@ -63,21 +88,24 @@ public class FlipFitApplicationMenu{
         System.out.println("Please Choose : \n1: Enter 1 to login as Admin\n2: Enter 2 to login as Customer\n3: " +
                 "Enter 3 to login as GymOwner");
         int role = scanner.nextInt();
-//        FlipFitUser user=FlipFitUserService.login(username,password);
-//        if(user!=null)
+        FlipFitUser user=FlipFitUserService.login(username,password);
+        if(user!=null)
         {
             switch(role){
                 case 1:
                     System.out.println("Welcome Admin\n");
-                    adminMenu.adminMainPage();
+                    adminMenu.adminMainPage(user);
                     break;
                 case 2:
                     System.out.println("Welcome Customer\n");
-                    customerMenu.customerMainPage();
+                    FlipFitCustomer customer=customerDAOImpl.getCustomer(user);
+                    customerMenu.customerMainPage(customer);
                     break;
                 case 3:
                     System.out.println("Welcome Gym Owner\n");
-                    gymOwnerMenu.gymOwnerMainPage();
+                    FlipFitGymOwner gymOwner = gymOwnerDAOImpl.getGymOwner(user);
+                    gymOwnerMenu.gymOwnerMainPage(gymOwner);
+
                     break;
                 default:
                     System.out.println("Invalid role. Please try again.");
@@ -86,128 +114,7 @@ public class FlipFitApplicationMenu{
 //
     }
 
-    private static void registerAsCustomer() {
-        Scanner scanner = new Scanner(System.in);
-
-        // Input for registration details
-        System.out.print("Enter username: ");
-        String username = scanner.next();
-
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
-
-        System.out.print("Enter email: ");
-        String email = scanner.nextLine();
-
-        System.out.print("Enter city: ");
-        String city = scanner.nextLine();
-
-        System.out.print("Enter phone number: ");
-        String phoneNumber = scanner.nextLine();
-
-        System.out.print("Enter pincode: ");
-        String pincode = scanner.nextLine();
 
 
-
-        // Call the registerCustomer method with the collected inputs
-        boolean registrationSuccess = FlipfitCustomerService.registerCustomer(username, password, email, city, phoneNumber, pincode, "Customer");
-
-        if (registrationSuccess) {
-            System.out.println("Customer registration successful!");
-        } else {
-            System.out.println("Customer registration failed. Please try again.");
-        }
-
-    }
-
-    private static void registerGymOwner() {
-        Scanner scanner = new Scanner(System.in);
-
-        // Input for registration details
-        System.out.print("Enter username: ");
-        String username = scanner.next();
-
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
-
-        System.out.print("Enter email: ");
-        String email = scanner.nextLine();
-
-        System.out.print("Enter city: ");
-        String city = scanner.nextLine();
-
-        System.out.print("Enter phone number: ");
-        String phoneNumber = scanner.nextLine();
-
-        System.out.print("Enter pincode: ");
-        String pincode = scanner.next();
-
-        System.out.print("Enter aadhar card number: ");
-        String aadharCardNumber = scanner.nextLine();
-
-        System.out.print("Enter pan card number: ");
-        String panCardNumber = scanner.nextLine();
-
-        System.out.print("Enter GST number: ");
-        String gst = scanner.nextLine();
-
-        System.out.print("Enter gym center id: ");
-        Integer gymCenterId = scanner.nextInt();
-        List<Integer> gymCenters = new ArrayList<>();
-        gymCenters.add(gymCenterId);
-        boolean registrationSuccess = FlipfitGymOwnerService.register(username, email, password, city, phoneNumber, pincode, aadharCardNumber, panCardNumber, gst, gymCenters,"Owner");
-
-        if (registrationSuccess) {
-            System.out.println("Customer registration successful!");
-        } else {
-            System.out.println("Customer registration failed. Please try again.");
-        }
-    }
-
-    private static void changePassword() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter username: ");
-        String username = scanner.next();
-        System.out.print("Enter old password: ");
-        String oldPassword = scanner.nextLine();
-        System.out.print("Enter new password: ");
-        String newPassword = scanner.nextLine();
-
-        System.out.println("\nEnter your role:");
-        System.out.println("1: Customer");
-        System.out.println("2: GymOwner");
-        System.out.println("3: Admin");
-
-        try {
-            int roleChoice = scanner.nextInt();
-
-            switch(roleChoice) {
-                case 1:
-                    System.out.println("You selected Customer role.");
-                    if(FlipfitCustomerService.changePassword(username, oldPassword, newPassword)){
-                        System.out.println("Password changed successfully!");
-                    }
-                    break;
-                case 2:
-                    System.out.println("You selected GymOwner role.");
-                    if(FlipfitGymOwnerService.changePassword(username, oldPassword, newPassword)){
-                        System.out.println("Password changed successfully!");
-                    }
-                    break;
-                case 3:
-                    System.out.println("You selected Admin role.");
-                    if(FlipfitAdminService.changePassword(username, oldPassword, newPassword)){
-                        System.out.println("Password changed successfully!");
-                    }
-                    break;
-                default:
-                    System.out.println("Invalid role choice. Please choose 1, 2, or 3.");
-            }
-        }
-        catch (Exception e) {
-            System.out.println("Please chosen a valid option");
-        }
-    }
 }
 

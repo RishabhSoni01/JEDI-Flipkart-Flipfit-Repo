@@ -13,8 +13,20 @@ public class FlipFitCustomer extends FlipFitUser {
      * and assigns the role as ADMIN.
      */
     private List<pair<Booking, Boolean>> bookings;
-    public FlipFitCustomer(String userID, String name, String email, String phoneNumber, String password, String city, String pincode, int role,String username) {
+
+    public int getApproval() {
+        return approval;
+    }
+
+    public void setApproval(int approval) {
+        this.approval = approval;
+    }
+
+    private int approval;
+
+    public FlipFitCustomer(String userID, String name, String email, String phoneNumber, String password, String city, String pincode, int role,String username,List<Booking> bookings) {
         super(userID, name, email, phoneNumber, password, city, pincode, role,username);
+        this.bookings = new ArrayList<>();
 
     }
     public List<pair<Booking, Boolean>> getBookings() {
@@ -25,5 +37,6 @@ public class FlipFitCustomer extends FlipFitUser {
     public void setBookings(List<pair<Booking, Boolean>> bookings) {
         this.bookings = bookings;
     }
+
 }
 

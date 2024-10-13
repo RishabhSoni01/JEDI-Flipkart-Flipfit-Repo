@@ -1,6 +1,7 @@
 package com.flipkart.bean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FlipFitGyms {
 
@@ -8,7 +9,37 @@ public class FlipFitGyms {
     private String gymName;
     private int numberOfSlots;
     private Boolean gymStatus;
-    private FlipFitGymOwner owner;
+
+    public List<FlipFitSlot> getSlot() {
+        return slot;
+    }
+
+    public void setSlot(List<FlipFitSlot> slot) {
+        this.slot = slot;
+    }
+
+    private List<FlipFitSlot> slot;
+    public FlipFitGyms(String gymId, String gymName, int numberOfSlots, Boolean gymStatus, String owner, String city, String pincode, List<FlipFitSlot> slot) {
+        this.gymId = gymId;
+        this.gymName = gymName;
+        this.numberOfSlots = numberOfSlots;
+        this.gymStatus = gymStatus;
+        this.ownerID = owner;
+        this.city = city;
+        this.pincode = pincode;
+        this.slot=slot;
+    }
+
+    private String ownerID;
+    private String city;
+    private String pincode;
+    public String getPincode() {
+        return pincode;
+    }
+
+    public String getCity() {
+        return city;
+    }
     public String getGymId() {
         return gymId;
     }
@@ -41,12 +72,12 @@ public class FlipFitGyms {
         this.gymStatus = gymStatus;
     }
 
-    public FlipFitGymOwner getOwner() {
-        return owner;
+    public String getOwner() {
+        return ownerID;
     }
 
-    public void setOwner(FlipFitGymOwner owner) {
-        this.owner = owner;
+    public void setOwner(String owner) {
+        this.ownerID = owner;
     }
 
 

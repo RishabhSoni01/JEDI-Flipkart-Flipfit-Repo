@@ -3,6 +3,43 @@ package com.flipkart.bean;
 public class FlipFitUser {
     private String name;
     private String email;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public void setRoleID(int roleID) {
+        this.roleID = roleID;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     private String phoneNumber;
     private String password;
     private String city;

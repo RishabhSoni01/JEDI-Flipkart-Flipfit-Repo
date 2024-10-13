@@ -2,6 +2,15 @@ package com.flipkart.bean;
 import java.time.LocalDateTime;
 public class FlipFitSlot {
     private String slotId;
+
+    public FlipFitSlot(String slotId, String gymId, LocalDateTime startTime, LocalDateTime endTime, int seatsAvailable) {
+        this.slotId = slotId;
+        this.gymId = gymId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.seatsAvailable = seatsAvailable;
+    }
+
     private String gymId;
     private LocalDateTime startTime;
     private LocalDateTime endTime;

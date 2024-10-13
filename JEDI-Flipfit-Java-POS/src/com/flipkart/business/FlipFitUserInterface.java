@@ -26,9 +26,7 @@ public interface FlipFitUserInterface {
 
     void confirmPassword(FlipFitUser user, String newPassword, String confirmPassword);
 
-    boolean registerGymOwner(FlipFitGymOwner gymOwner);
 
-    boolean registerCustomer(FlipFitCustomer customer);
 
 
 /**
