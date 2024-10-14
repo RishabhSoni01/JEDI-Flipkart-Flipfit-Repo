@@ -10,22 +10,29 @@ import java.util.Map;
 
 public class FlipfitAdminService implements FlipfitAdminServiceInterface {
 
+    // DAO implementations for admin and user data access
     private FlipFitAdminDAOImplement adminDAO;
     private FlipFitUserDAOImplement userDAO;
 
-    public FlipfitAdminService() {
-        this.adminDAO = new FlipFitAdminDAOImplement();
-        this.userDAO = new FlipFitUserDAOImplement();
-//        initializeAdmin();
-    }
+    // Static maps to store gym centers and pending centers
     public static Map<String, FlipFitGyms> gymCenters = new HashMap<>();
     public static Map<String, FlipFitGyms> pendingCenters = new HashMap<>();
 
+    // Constructor initializes DAOs and sets up the admin account
+    public FlipfitAdminService() {
+        this.adminDAO = new FlipFitAdminDAOImplement();
+        this.userDAO = new FlipFitUserDAOImplement();
+        initializeAdmin(); // Set up the admin user
+    }
+
+    /**
+     * Initializes the admin user if it doesn't already exist.
+     */
     private void initializeAdmin() {
         // Create a role object for Admin
         FlipFitRole role = new FlipFitRole(1, "ADMIN");
 
-        // Create an admin user with the correct parameters
+        // Create an admin user with the appropriate details
         FlipFitAdmin admin = new FlipFitAdmin(
                 "bean",          // userID
                 "BeanAdmin",     // name
@@ -38,7 +45,7 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
                 "bean@1234"     // username
         );
 
-        // Create a FlipFitUser object
+        // Create a FlipFitUser object from the admin details
         FlipFitUser user = new FlipFitUser(
                 admin.getUserID(),     // userID
                 admin.getName(),       // name
@@ -51,7 +58,7 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
                 admin.getUsername()    // username
         );
 
-        // Check if the user already exists and add the user
+        // Check if the user already exists and add the user if not
         FlipFitUser existingUser = userDAO.validateUser(user.getUsername(), user.getPassword());
         if (existingUser == null) {
             if (userDAO.addUser(user)) {
@@ -66,52 +73,56 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
 
     @Override
     public Object approveGymOwner(String gymOwnerId) {
-        boolean flag= adminDAO.approveGymOwner(gymOwnerId);
-        if(flag){
+        // Approve a gym owner based on their ID
+        boolean flag = adminDAO.approveGymOwner(gymOwnerId);
+        if (flag) {
             return "Gym Owner approved successfully";
+        } else {
+            return "Gym Owner not approved";
         }
-        else
-            return ("Gym Owner not approved");
     }
 
     @Override
     public List<FlipFitGymOwner> viewPendingGymOwners() {
+        // Retrieve and display a list of pending gym owners
         List<FlipFitGymOwner> pendingGO = adminDAO.getPendingGymOwners();
         System.out.println("Listing all pending gym owners");
         for (FlipFitGymOwner gymOwner : pendingGO) {
-            System.out.println("Owner ID: " + gymOwner.userID+" Owner Name: "+gymOwner.getName());
+            System.out.println("Owner ID: " + gymOwner.userID + " Owner Name: " + gymOwner.getName());
         }
         return pendingGO;
     }
 
     @Override
     public List<FlipFitGyms> viewPendingGyms() {
+        // Retrieve and display a list of pending gyms
         List<FlipFitGyms> pendingGC = adminDAO.getPendingGymCenters();
         System.out.println("Listing all pending gyms");
         for (FlipFitGyms gymCenter : pendingGC) {
-            System.out.println("Gym ID: " + gymCenter.getGymId()+" Gym Name: "+ gymCenter.getGymName());
+            System.out.println("Gym ID: " + gymCenter.getGymId() + " Gym Name: " + gymCenter.getGymName());
         }
-
         return pendingGC;
     }
 
     @Override
     public Object approveGym(String gymId) {
-       boolean flag=adminDAO.approveGymCenter(gymId);
-       if(flag){
-           return "Gym Approved successfully";
-       }
-       else {
-           return ("Gym Approved not approved");
-       }
+        // Approve a gym based on its ID
+        boolean flag = adminDAO.approveGymCenter(gymId);
+        if (flag) {
+            return "Gym Approved successfully";
+        } else {
+            return "Gym not approved";
+        }
     }
 
     @Override
     public List<FlipFitGyms> viewGyms() {
+        // Retrieve and display all gyms
         List<FlipFitGyms> allGyms = adminDAO.getAllGymCenters(); // Assuming this method exists in your DAO
         System.out.println("Listing all gyms:");
         for (FlipFitGyms gym : allGyms) {
-            System.out.println("Gym ID: " + gym.getGymId() + "Gym Name: " + gym.getGymName() +
+            System.out.println("Gym ID: " + gym.getGymId() +
+                    " Gym Name: " + gym.getGymName() +
                     " Slots: " + gym.getNumberOfSlots() +
                     " Status: " + (gym.getGymStatus() ? "Active" : "Inactive") +
                     " City: " + gym.getCity() +
@@ -122,20 +133,19 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
 
     @Override
     public List<FlipFitGymOwner> viewGymsOwner() {
+        // Retrieve and display all gym owners
         List<FlipFitGymOwner> allGymOwners = adminDAO.getAllGymOwners(); // Assuming this method exists in your DAO
         System.out.println("Listing all gym owners:");
         for (FlipFitGymOwner gymOwner : allGymOwners) {
-            System.out.println("Owner ID: " + gymOwner.getUserID() + "Owner Name: " + gymOwner.getName() +
+            System.out.println("Owner ID: " + gymOwner.getUserID() +
+                    " Owner Name: " + gymOwner.getName() +
                     " Email: " + gymOwner.getEmail() +
                     " Phone Number: " + gymOwner.getPhoneNumber() +
                     " City: " + gymOwner.getCity() +
                     " Pincode: " + gymOwner.getPincode());
         }
-
         return allGymOwners;
     }
-
-
 
     @Override
     public Boolean login(String username, String password) {
@@ -145,10 +155,12 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
 
     @Override
     public List<FlipFitCustomer> getAllCustomers() {
+        // Retrieve and display all customers
         List<FlipFitCustomer> allCustomers = adminDAO.getAllCustomers();
         System.out.println("Listing all customers:");
         for (FlipFitCustomer customer : allCustomers) {
-            System.out.println("Owner ID: " + customer.getUserID() + "Owner Name: " + customer.getName() +
+            System.out.println("Owner ID: " + customer.getUserID() +
+                    " Owner Name: " + customer.getName() +
                     " Email: " + customer.getEmail() +
                     " Phone Number: " + customer.getPhoneNumber() +
                     " City: " + customer.getCity() +
@@ -159,11 +171,12 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
 
     @Override
     public List<FlipFitCustomer> getPendingCustomers() {
-        // Logic to get pending customers
+        // Retrieve and display pending customers
         List<FlipFitCustomer> pendingCustomers = adminDAO.getPendingCustomers();
-        System.out.println("Listing all customers:");
+        System.out.println("Listing all pending customers:");
         for (FlipFitCustomer customer : pendingCustomers) {
-            System.out.println("Owner ID: " + customer.getUserID() + "Owner Name: " + customer.getName() +
+            System.out.println("Owner ID: " + customer.getUserID() +
+                    " Owner Name: " + customer.getName() +
                     " Email: " + customer.getEmail() +
                     " Phone Number: " + customer.getPhoneNumber() +
                     " City: " + customer.getCity() +
@@ -174,12 +187,12 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
 
     @Override
     public Object approveCustomers(String customerId) {
-        // Logic to approve customers
-        boolean flag= adminDAO.approveCustomer(customerId);
-        if(flag){
+        // Approve a customer based on their ID
+        boolean flag = adminDAO.approveCustomer(customerId);
+        if (flag) {
             return "Customer approved successfully";
+        } else {
+            return "Customer not approved";
         }
-        else
-            return ("Customer not approved");
     }
 }

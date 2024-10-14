@@ -99,13 +99,13 @@ public class FlipFitApplicationMenu{
                 case 2:
                     System.out.println("Welcome Customer\n");
                     FlipFitCustomer customer=customerDAOImpl.getCustomer(user);
+
                     customerMenu.customerMainPage(customer);
                     break;
                 case 3:
                     System.out.println("Welcome Gym Owner\n");
                     FlipFitGymOwner gymOwner = gymOwnerDAOImpl.getGymOwner(user);
                     gymOwnerMenu.gymOwnerMainPage(gymOwner);
-
                     break;
                 default:
                     System.out.println("Invalid role. Please try again.");

@@ -1,8 +1,104 @@
 package com.flipkart.bean;
 
+/**
+ * Represents a user in the FlipFit application.
+ * This class holds details about a user, including personal information,
+ * contact details, authentication credentials, and role within the system.
+ */
 public class FlipFitUser {
+
+    // User's name
     private String name;
+
+    // User's email address
     private String email;
+
+    // User's phone number
+    private String phoneNumber;
+
+    // User's password (should be handled securely)
+    private String password;
+
+    // User's city of residence
+    private String city;
+
+    // User's postal code
+    private String pincode;
+
+    // Unique identifier for the user
+    public String userID;
+
+    // Role identifier to distinguish between different user types (e.g., customer, gym owner)
+    public int roleID;
+
+    // Username for login purposes
+    private String username;
+
+    /**
+     * Constructor to initialize a FlipFitUser object with necessary details.
+     *
+     * @param userID      Unique identifier for the user.
+     * @param name        User's name.
+     * @param email       User's email address.
+     * @param phoneNumber User's phone number.
+     * @param password    User's password.
+     * @param city        User's city.
+     * @param pincode     User's postal code.
+     * @param roleID      User's role identifier.
+     * @param username    User's username for login.
+     */
+    public FlipFitUser(String userID, String name, String email, String phoneNumber,
+                       String password, String city, String pincode, int roleID, String username) {
+        this.userID = userID;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.city = city;
+        this.pincode = pincode;
+        this.roleID = roleID;
+        this.username = username;
+    }
+
+    // Getter methods for each attribute
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public int getRole() {
+        return roleID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getPassword() {
+        return password; // Consider securing this method
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getPincode() {
+        return pincode;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    // Setter methods for each attribute
 
     public void setName(String name) {
         this.name = name;
@@ -17,7 +113,7 @@ public class FlipFitUser {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password; // Consider validating or securing this method
     }
 
     public void setCity(String city) {
@@ -39,58 +135,4 @@ public class FlipFitUser {
     public void setUsername(String username) {
         this.username = username;
     }
-
-    private String phoneNumber;
-    private String password;
-    private String city;
-    private String pincode;
-    public String userID;
-    public int roleID;
-    private String username;
-
-    public FlipFitUser(String userID, String name, String email, String phoneNumber, String password, String city, String pincode, int roleID,String username) {
-        this.userID = userID;
-        this.name = name;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-        this.city = city;
-        this.pincode = pincode;
-        this.roleID = roleID;
-        this.username = username;
-    }
-    public String getUserID() {
-        return userID;
-    }
-    public int getRole() {
-        return roleID;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getPincode() {
-        return pincode;
-    }
-    public String getUsername() {
-        return username;
-    }
-
-
 }

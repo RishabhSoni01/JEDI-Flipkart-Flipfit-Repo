@@ -13,46 +13,37 @@ import com.flipkart.bean.FlipFitUser;
 public interface FlipFitUserInterface {
 
     /**
-     * Adds a new user.
-     * @param user The FlipFitUser object to be added.
+     * Adds a new user to the system.
+     *
+     * @param user The user object containing user details.
      */
     public void addUser(FlipFitUser user);
 
     /**
      * Authenticates a user with the given username and password.
-     * @param username The username of the user.
-     * @param password The password of the user.
-     * @return The authenticated FlipFitUser object or null if authentication fails.
+     *
+     * @param username The username of the user trying to log in.
+     * @param password The password provided by the user.
+     * @return The authenticated user object, or null if authentication fails.
      */
     public FlipFitUser login(String username, String password);
 
     /**
-     * Validates the user's old password.
-     * @param user The FlipFitUser object whose password is being validated.
-     * @param oldPassword The old password to validate.
-     * @return true if the old password matches, false otherwise.
+     * Validates the user's old password against the stored password.
+     *
+     * @param user The user whose password is being validated.
+     * @param oldPassword The old password provided for validation.
+     * @return True if the old password is correct; false otherwise.
      */
     boolean validatePassword(FlipFitUser user, String oldPassword);
 
     /**
-     * Confirms the new password by checking it against the confirmed password.
-     * @param user The FlipFitUser object whose password is being changed.
+     * Confirms the new password by checking if it matches the confirmation password,
+     * and updates the user's password if they match.
+     *
+     * @param user The user whose password is being changed.
      * @param newPassword The new password to set.
-     * @param confirmPassword The password for confirmation.
+     * @param confirmPassword The confirmation password to validate.
      */
     void confirmPassword(FlipFitUser user, String newPassword, String confirmPassword);
-
-    /**
-     * Registers a new gym owner.
-     * @param gymOwner The FlipFitGymOwner object to be registered.
-     * @return true if registration is successful, false otherwise.
-     */
-    boolean registerGymOwner(FlipFitGymOwner gymOwner);
-
-    /**
-     * Registers a new customer.
-     * @param customer The FlipFitCustomer object to be registered.
-     * @return true if registration is successful, false otherwise.
-     */
-    boolean registerCustomer(FlipFitCustomer customer);
 }
