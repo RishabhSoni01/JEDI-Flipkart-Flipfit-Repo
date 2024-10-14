@@ -105,12 +105,13 @@ public class FlipFitApplicationMenu{
                 case 2:
                     System.out.println("Welcome Customer\n");
                     FlipFitCustomer customer = customerDAOImpl.getCustomer(user);
-
+                    if(user.roleID==3)
                     customerMenu.customerMainPage(customer);
                     break;
                 case 3:
                     System.out.println("Welcome Gym Owner\n");
                     FlipFitGymOwner gymOwner = gymOwnerDAOImpl.getGymOwner(user);
+                    if(user.roleID==2)
                     gymOwnerMenu.gymOwnerMainPage(gymOwner);
                     break;
                 default:
