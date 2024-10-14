@@ -75,7 +75,8 @@ public class FlipFitApplicationMenu{
                     throw new InvalidChoiceException("Invalid choice Exception generated");
             }
         }catch (InvalidLogin e) {
-            throw new InvalidLogin("Invalid Login. Recheck your Username and Password");
+            System.out.println(e.getMessage());
+
         }
         catch(Exception e){
             System.out.println("You have entered an invalid option or there is some internal server error!");
@@ -93,17 +94,17 @@ public class FlipFitApplicationMenu{
         System.out.println("Please Choose : \n1: Enter 1 to login as Admin\n2: Enter 2 to login as Customer\n3: " +
                 "Enter 3 to login as GymOwner");
         int role = scanner.nextInt();
-        FlipFitUser user=FlipFitUserService.login(username,password);
-        if(user!=null)
-        {
-            switch(role){
+        FlipFitUser user = FlipFitUserService.login(username, password);
+
+        if (user != null) {
+            switch (role) {
                 case 1:
                     System.out.println("Welcome Admin\n");
                     adminMenu.adminMainPage(user);
                     break;
                 case 2:
                     System.out.println("Welcome Customer\n");
-                    FlipFitCustomer customer=customerDAOImpl.getCustomer(user);
+                    FlipFitCustomer customer = customerDAOImpl.getCustomer(user);
 
                     customerMenu.customerMainPage(customer);
                     break;
@@ -116,10 +117,6 @@ public class FlipFitApplicationMenu{
                     System.out.println("Invalid role. Please try again.");
             }
         }
-        else {
-            throw new InvalidLogin("Invalid Login. Please try again.");
-        }
-//
     }
 
 

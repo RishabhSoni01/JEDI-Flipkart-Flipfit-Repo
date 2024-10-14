@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.flipkart.exception.InvalidLogin;
+import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.utils.dbutils;
 import com.flipkart.dao.FlipFitUserDAO;
 public class FlipFitUserDAOImplement implements FlipFitUserDAO {
@@ -69,40 +70,88 @@ public class FlipFitUserDAOImplement implements FlipFitUserDAO {
         }
         return false;
     }
-    @Override
-    public FlipFitUser validateUser(String username, String password) {
-        String sql = "SELECT * FROM FlipFitUser WHERE username = ? AND password = ?";
+//    @Override
+//    public FlipFitUser validateUser(String username, String password) {
+//        String sql = "SELECT * FROM FlipFitUser WHERE username = ? AND password = ?";
+//
+//        try (Connection connection = dbutils.getConnection();
+//             PreparedStatement statement = connection.prepareStatement(sql)) {
+//            statement.setString(1, username);
+//            statement.setString(2, password);
+//            ResultSet rs = statement.executeQuery();
+//            if (rs.next()) {
+//                if (rs.getString("username").equals(username) && rs.getString("password").equals(password)) {
+//                    FlipFitUser user = new FlipFitUser(
+//                            rs.getString("userid"),        // userID
+//                            rs.getString("name"),          // name
+//                            rs.getString("email"),         // email
+//                            rs.getString("phoneNumber"),   // phoneNumber
+//                            rs.getString("password"),      // password
+//                            rs.getString("city"),          // city
+//                            rs.getString("pincode"),       // pincode
+//                            rs.getInt("roleId"),           // roleID
+//                            rs.getString("username")       // username
+//                    );
+//
+//                    return user;
+//                }
+//                else {
+//                    throw new InvalidLogin("Invalid login. Recheck you username and password");
+//                }
+//            }
+//            else {
+//                throw new UserNotFoundException(username);
+//            }
+//        }
+//        catch (SQLException | UserNotFoundException e) {
+//            e.getMessage();
+//        } catch (InvalidLogin e) {
+//            e.getMessage();
+//        }
+//        return null;
+//    }
+@Override
+public FlipFitUser validateUser(String username, String password) throws InvalidLogin, UserNotFoundException {
+    String sql = "SELECT * FROM FlipFitUser WHERE username = ?";
 
-        try (Connection connection = dbutils.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, username);
-            statement.setString(2, password);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                if (rs.getString("username").equals(username) && rs.getString("password").equals(password)) {
-                    FlipFitUser user = new FlipFitUser(
-                            rs.getString("userid"),        // userID
-                            rs.getString("name"),          // name
-                            rs.getString("email"),         // email
-                            rs.getString("phoneNumber"),   // phoneNumber
-                            rs.getString("password"),      // password
-                            rs.getString("city"),          // city
-                            rs.getString("pincode"),       // pincode
-                            rs.getInt("roleId"),           // roleID
-                            rs.getString("username")       // username
-                    );
+    try (Connection connection = dbutils.getConnection();
+         PreparedStatement statement = connection.prepareStatement(sql)) {
+        statement.setString(1, username);
+        ResultSet rs = statement.executeQuery();
 
-                    return user;
-                }
-                else {
-                    return null;
-                }
+        // Check if the user exists
+        if (rs.next()) {
+            // If the user exists, check the password
+            String storedPassword = rs.getString("password");
+            if (!storedPassword.equals(password)) {
+                // Password is incorrect
+                throw new InvalidLogin("Invalid login. Recheck your username and password.");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+            // If both username and password are correct, create and return the user
+            FlipFitUser user = new FlipFitUser(
+                    rs.getString("userid"),        // userID
+                    rs.getString("name"),          // name
+                    rs.getString("email"),         // email
+                    rs.getString("phoneNumber"),   // phoneNumber
+                    storedPassword,                // password
+                    rs.getString("city"),          // city
+                    rs.getString("pincode"),       // pincode
+                    rs.getInt("roleId"),           // roleID
+                    rs.getString("username")       // username
+            );
+
+            return user;
+        } else {
+            // Username does not exist
+            throw new UserNotFoundException("User not found with username: " + username);
         }
-        return null;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        throw new RuntimeException("Database error occurred during user validation.");
     }
+}
+
     public boolean addUser(FlipFitUser user) {
         String sql = "INSERT INTO FlipFitUser (userid, name, email, phoneNumber, password, city, pincode, roleId, username) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 

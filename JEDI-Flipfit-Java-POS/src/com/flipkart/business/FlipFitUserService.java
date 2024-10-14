@@ -6,6 +6,7 @@ import com.flipkart.bean.FlipFitUser;
 import com.flipkart.dao.FlipFitUserDAO;
 import com.flipkart.dao.FlipFitUserDAOImplement;
 import com.flipkart.exception.InvalidLogin;
+import com.flipkart.exception.UserNotFoundException;
 
 import java.util.HashMap;
 
@@ -32,10 +33,25 @@ public class FlipFitUserService implements FlipFitUserInterface{
      * @param username The username of the user.
      * @param password The password of the user.
      * @return The authenticated FlipFitUser object, or null if authentication fails.
-     */
-    public FlipFitUser login(String username, String password) throws InvalidLogin{
-        return flipFitUserDAOImplement.validateUser(username, password);
+//     */
+//    public FlipFitUser login(String username, String password) throws InvalidLogin{
+//        return flipFitUserDAOImplement.validateUser(username, password);
+//    }
+    public FlipFitUser login(String username, String password) {
+        try {
+            return flipFitUserDAOImplement.validateUser(username, password);
+        } catch (InvalidLogin e) {
+            System.out.println("Login failed: " + e.getMessage());
+            return null; // Return null or handle it based on your application's needs
+        } catch (UserNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+            return null; // Similarly, handle it as needed
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+            return null; // Handle other exceptions if needed
+        }
     }
+
 
     /**
      * Validates the user's old password.

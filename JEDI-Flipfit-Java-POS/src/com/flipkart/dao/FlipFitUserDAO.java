@@ -3,6 +3,8 @@ package com.flipkart.dao;
 import com.flipkart.bean.FlipFitCustomer;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitUser;
+import com.flipkart.exception.InvalidLogin;
+import com.flipkart.exception.UserNotFoundException;
 
 /**
  * Interface representing the Data Access Object (DAO) for FlipFit users.
@@ -19,7 +21,7 @@ public interface FlipFitUserDAO {
      * @param password The password of the user.
      * @return A FlipFitUser object if the credentials are valid; otherwise, returns null.
      */
-    public FlipFitUser validateUser(String username, String password);
+    public FlipFitUser validateUser(String username, String password) throws InvalidLogin, UserNotFoundException;
 
     /**
      * Registers a new gym owner.

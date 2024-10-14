@@ -57,17 +57,21 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
                 admin.getRole(),       // roleID
                 admin.getUsername()    // username
         );
-
-        // Check if the user already exists and add the user if not
-        FlipFitUser existingUser = userDAO.validateUser(user.getUsername(), user.getPassword());
-        if (existingUser == null) {
-            if (userDAO.addUser(user)) {
-                System.out.println("User added successfully");
+        try {
+            // Check if the user already exists and add the user if not
+            FlipFitUser existingUser = userDAO.validateUser(user.getUsername(), user.getPassword());
+            if (existingUser == null) {
+                if (userDAO.addUser(user)) {
+                    System.out.println("User added successfully");
+                } else {
+                    System.out.println("Failed to add user");
+                }
             } else {
-                System.out.println("Failed to add user");
+                System.out.println("User already exists");
             }
-        } else {
-            System.out.println("User already exists");
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
