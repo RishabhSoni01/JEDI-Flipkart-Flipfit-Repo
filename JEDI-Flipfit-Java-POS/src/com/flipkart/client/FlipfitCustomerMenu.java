@@ -6,13 +6,9 @@ package com.flipkart.client;
 import com.flipkart.bean.*;
 import com.flipkart.business.*;
 import com.flipkart.dao.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import com.flipkart.exception.GymNotFoundException;
+
 import java.util.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -66,7 +62,7 @@ public class FlipfitCustomerMenu {
         }
     }
 
-    public void customerMainPage (FlipFitCustomer customer) {
+    public void customerMainPage (FlipFitCustomer customer) throws GymNotFoundException {
         int userChoice = -1;
 
         // Loop until the customer chooses to exit
@@ -92,7 +88,11 @@ public class FlipfitCustomerMenu {
                     editProfile(customer);
                     break;
                 case 3:
-                    addbookings(customer);
+                    try {
+                        addbookings(customer);
+                    } catch (GymNotFoundException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
                     break;
                 case 4:
                     viewBookings(customer.getUserID());
@@ -111,6 +111,8 @@ public class FlipfitCustomerMenu {
             }
         }
     }
+
+
     public void viewBookings(String userId) {
         List<Booking> bookings = customerService.viewBookings(userId);
 
@@ -197,7 +199,7 @@ public class FlipfitCustomerMenu {
             System.out.println("Customer not found.");
         }
     }
-    public void addbookings(FlipFitCustomer customer) {
+    public void addbookings(FlipFitCustomer customer) throws GymNotFoundException {
         List<City> cities = cityDAO.getAllCities();
         AtomicInteger itr = new AtomicInteger(1);
         cities.forEach(city -> {
@@ -243,7 +245,8 @@ public class FlipfitCustomerMenu {
             }
         }
         else{
-            System.out.println("Invalid Gym Name.");
+//            System.out.println("Invalid Gym Name.");
+            throw new GymNotFoundException(gn);
         }
     }
     public void changePassword(FlipFitUser user) {
