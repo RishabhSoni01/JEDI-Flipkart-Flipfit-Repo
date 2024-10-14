@@ -13,7 +13,7 @@ import com.flipkart.exception.InvalidLogin;
 public class FlipFitApplicationMenu{
     public static void main(String[] args) throws InvalidLogin {
         homePage();
-        
+
     }
     private static FlipfitAdminServiceInterface FlipfitAdminService = new FlipfitAdminService();
     private static FlipfitCustomerServiceInterface FlipfitCustomerService = new FlipfitCustomerService();
