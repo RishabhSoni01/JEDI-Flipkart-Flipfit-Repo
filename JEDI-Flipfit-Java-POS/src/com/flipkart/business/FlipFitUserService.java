@@ -5,6 +5,7 @@ import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitUser;
 import com.flipkart.dao.FlipFitUserDAO;
 import com.flipkart.dao.FlipFitUserDAOImplement;
+import com.flipkart.exception.InvalidLogin;
 
 import java.util.HashMap;
 
@@ -32,7 +33,7 @@ public class FlipFitUserService implements FlipFitUserInterface{
      * @param password The password of the user.
      * @return The authenticated FlipFitUser object, or null if authentication fails.
      */
-    public FlipFitUser login(String username, String password) {
+    public FlipFitUser login(String username, String password) throws InvalidLogin{
         return flipFitUserDAOImplement.validateUser(username, password);
     }
 

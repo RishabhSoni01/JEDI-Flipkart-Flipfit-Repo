@@ -4,6 +4,7 @@ package com.flipkart.business;
 import com.flipkart.bean.FlipFitCustomer;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitUser;
+import com.flipkart.exception.InvalidLogin;
 
 /**
  * This interface defines the operations related to user management.
@@ -26,7 +27,7 @@ public interface FlipFitUserInterface {
      * @param password The password provided by the user.
      * @return The authenticated user object, or null if authentication fails.
      */
-    public FlipFitUser login(String username, String password);
+    public FlipFitUser login(String username, String password) throws InvalidLogin;
 
     /**
      * Validates the user's old password against the stored password.

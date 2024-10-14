@@ -1,4 +1,7 @@
 package com.flipkart.exception;
 
-public class LoginFailedException {
+public class LoginFailedException extends Exception {
+    public LoginFailedException(String message) {
+        super(message);
+    }
 }
