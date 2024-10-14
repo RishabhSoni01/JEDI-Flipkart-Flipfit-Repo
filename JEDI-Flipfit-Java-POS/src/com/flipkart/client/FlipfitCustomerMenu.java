@@ -7,6 +7,7 @@ import com.flipkart.bean.*;
 import com.flipkart.business.*;
 import com.flipkart.dao.*;
 import com.flipkart.exception.GymNotFoundException;
+import com.flipkart.exception.InvalidChoiceException;
 
 import java.util.*;
 import java.util.List;
@@ -85,7 +86,11 @@ public class FlipfitCustomerMenu {
                     customerService.viewProfile(customer);
                     break;
                 case 2:
-                    editProfile(customer);
+                    try {
+                        editProfile(customer);
+                    } catch (InvalidChoiceException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 3:
                     try {
@@ -149,7 +154,7 @@ public class FlipfitCustomerMenu {
             }
         }
     }
-    public void editProfile(FlipFitCustomer customer) {
+    public void editProfile(FlipFitCustomer customer) throws InvalidChoiceException {
         if (customer != null) {
             boolean updating = true;
             while (updating) {
@@ -188,7 +193,8 @@ public class FlipfitCustomerMenu {
                         updating = false;
                         break;
                     default:
-                        System.out.println("Invalid choice. Please try again.");
+//                        System.out.println("Invalid choice. Please try again.");
+                        throw new InvalidChoiceException("Invalid choice. Recheck");
                 }
             }
 //            Make an update function in DAO for customer table entry

@@ -3,6 +3,8 @@ package com.flipkart.client;
 import com.flipkart.bean.*;
 import com.flipkart.business.*;
 import com.flipkart.dao.*;
+import com.flipkart.exception.InvalidChoiceException;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -62,7 +64,7 @@ public class FlipfitGymOwnerMenu {
         }
     }
 
-    public void gymOwnerMainPage(FlipFitGymOwner gymOwner) {
+    public void gymOwnerMainPage(FlipFitGymOwner gymOwner) throws InvalidChoiceException {
 
         int choice = -1;
         while (choice != 6) {
@@ -97,8 +99,9 @@ public class FlipfitGymOwnerMenu {
                                         System.out.println("Logging Out!");
                                         break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+//                    System.out.println("Invalid choice. Please try again.");
 
+                    throw new InvalidChoiceException("Invalid choice.Please try again");
             }
 
         }

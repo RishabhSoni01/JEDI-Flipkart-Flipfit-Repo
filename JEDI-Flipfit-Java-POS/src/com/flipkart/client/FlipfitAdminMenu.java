@@ -2,6 +2,7 @@ package com.flipkart.client;
 
 import com.flipkart.business.*;
 import com.flipkart.bean.*;
+import com.flipkart.exception.InvalidChoiceException;
 
 import java.util.*;
 
@@ -9,7 +10,7 @@ public class FlipfitAdminMenu {
     Scanner scanner = new Scanner(System.in);
     FlipfitAdminService adminService = new FlipfitAdminService();
 
-    public void adminMainPage(FlipFitUser user) {
+    public void adminMainPage(FlipFitUser user) throws InvalidChoiceException {
         int userChoice = -1;
 
         // Loop until the customer chooses to exit
@@ -43,7 +44,7 @@ public class FlipfitAdminMenu {
                 case 10:changePassword(user);break;
                 case 11: System.out.println("Logging out.");
                     return;
-                    default: System.out.println("Invalid choice.");
+                    default: throw new InvalidChoiceException("Invalid choice. Please try again");
             }
         }
 

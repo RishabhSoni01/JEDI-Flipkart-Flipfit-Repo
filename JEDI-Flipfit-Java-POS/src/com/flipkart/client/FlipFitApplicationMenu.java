@@ -79,6 +79,9 @@ public class FlipFitApplicationMenu{
             System.out.println(e.getMessage());
 
         }
+        catch (InvalidChoiceException e){
+            System.out.println(e.getMessage());
+        }
         catch(Exception e){
             System.out.println("You have entered an invalid option or there is some internal server error!");
         }
@@ -101,7 +104,12 @@ public class FlipFitApplicationMenu{
             switch (role) {
                 case 1:
                     System.out.println("Welcome Admin\n");
-                    adminMenu.adminMainPage(user);
+                    try
+                    {
+                        adminMenu.adminMainPage(user);
+                    }catch (InvalidChoiceException e){
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 2:
                     if(user.roleID==3){
@@ -117,7 +125,11 @@ public class FlipFitApplicationMenu{
                     if(user.roleID==2) {
                         System.out.println("Welcome Gym Owner\n");
                         FlipFitGymOwner gymOwner = gymOwnerDAOImpl.getGymOwner(user);
-                        gymOwnerMenu.gymOwnerMainPage(gymOwner);
+                        try {
+                            gymOwnerMenu.gymOwnerMainPage(gymOwner);
+                        } catch (InvalidChoiceException e) {
+                            System.out.println(e.getMessage());
+                        }
                     }
                     else{
                         throw new InvalidLogin("Invalid Login, recheck your role");
