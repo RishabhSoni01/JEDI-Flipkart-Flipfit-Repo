@@ -5,7 +5,9 @@ import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitGyms;
 
 import java.util.List;
-
+/*
+* @author Mukul Goyal
+* */
 public interface FlipfitAdminServiceInterface {
 
     /**

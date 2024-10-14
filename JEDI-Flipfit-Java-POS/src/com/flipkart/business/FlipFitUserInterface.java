@@ -5,7 +5,10 @@ import com.flipkart.bean.FlipFitCustomer;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitUser;
 import com.flipkart.exception.InvalidLogin;
-
+/*
+* @author Sreelakshmi A
+* @exception InvalidLogin
+* */
 /**
  * This interface defines the operations related to user management.
  * This includes adding users, user login, password validation, password confirmation,

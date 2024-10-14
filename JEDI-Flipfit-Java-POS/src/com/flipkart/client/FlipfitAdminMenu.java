@@ -5,7 +5,10 @@ import com.flipkart.bean.*;
 import com.flipkart.exception.InvalidChoiceException;
 
 import java.util.*;
-
+/*
+* @author Kushi Srivastava
+* @exceptions InvalidChoice
+* */
 public class FlipfitAdminMenu {
     Scanner scanner = new Scanner(System.in);
     FlipfitAdminService adminService = new FlipfitAdminService();

@@ -3,6 +3,11 @@ package com.flipkart.business;
 import com.flipkart.bean.FlipFitGyms;
 import com.flipkart.bean.FlipFitSlot;
 
+/*
+ * @author Mukul Goyal
+ * @params This interface does not have any parameters.
+ * @throws This interface does not throw any exceptions.
+ */
 public interface BookingInterface {
 
     /**

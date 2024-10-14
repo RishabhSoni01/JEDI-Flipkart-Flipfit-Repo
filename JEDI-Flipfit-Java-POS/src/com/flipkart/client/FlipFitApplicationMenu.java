@@ -13,6 +13,10 @@ import com.flipkart.exception.GymNotFoundException;
 import com.flipkart.exception.InvalidChoiceException;
 import com.flipkart.exception.InvalidLogin;
 
+/*
+* @author Manali Mahajan
+* @exceptions InvalidLoging, GymNotFound
+* */
 public class FlipFitApplicationMenu{
     public static void main(String[] args) throws InvalidLogin {
         homePage();

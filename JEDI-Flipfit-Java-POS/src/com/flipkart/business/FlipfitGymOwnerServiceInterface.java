@@ -1,7 +1,9 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.FlipFitGymOwner;
-
+/*
+* @author Rishabh Soni
+* */
 public interface FlipfitGymOwnerServiceInterface {
 
     /**
