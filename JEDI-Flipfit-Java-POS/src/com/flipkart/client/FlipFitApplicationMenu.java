@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 import com.flipkart.dao.*;
+import com.flipkart.exception.InvalidChoiceException;
 import com.flipkart.exception.InvalidLogin;
 
 public class FlipFitApplicationMenu{
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws InvalidLogin {
         homePage();
     }
     private static FlipfitAdminServiceInterface FlipfitAdminService = new FlipfitAdminService();
@@ -22,7 +23,7 @@ public class FlipFitApplicationMenu{
     static FlipFitGymOwnerDAOImplement gymOwnerDAOImpl= new FlipFitGymOwnerDAOImplement();
     static FlipFitCustomerDAOImplement customerDAOImpl= new FlipFitCustomerDAOImplement();
 
-    private static void homePage() {
+    private static void homePage() throws InvalidLogin {
         System.out.println("Welcome to FlipFit App!!\n");
         System.out.println("Choose a option : \n1: Enter to login\n2:Enter to register as Customer\n3:Enter to register as Gym " +
                 "Owner\n4: Change Password\n5: Exit");
@@ -71,9 +72,12 @@ public class FlipFitApplicationMenu{
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Please choose a valid option");
+                    throw new InvalidChoiceException("Invalid choice Exception generated");
             }
-        } catch(Exception e){
+        }catch (InvalidLogin e) {
+            throw new InvalidLogin("Invalid Login. Recheck your Username and Password");
+        }
+        catch(Exception e){
             System.out.println("You have entered an invalid option or there is some internal server error!");
         }
     }
@@ -113,7 +117,7 @@ public class FlipFitApplicationMenu{
             }
         }
         else {
-            System.out.println("Invalid username or password");
+            throw new InvalidLogin("Invalid Login. Please try again.");
         }
 //
     }
