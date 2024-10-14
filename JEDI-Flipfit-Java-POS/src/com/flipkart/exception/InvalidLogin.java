@@ -1,4 +1,4 @@
 package com.flipkart.exception;
 
-public class exception {
+public class InvalidLogin {
 }
