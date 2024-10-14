@@ -1,6 +1,9 @@
 package com.flipkart.client;
 import com.flipkart.bean.*;
 import com.flipkart.business.*;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -102,9 +105,17 @@ public class FlipFitApplicationMenu{
         FlipFitUser user = FlipFitUserService.login(username, password);
 
         if (user != null) {
+            // Get the current date and time
+            LocalDateTime now = LocalDateTime.now();
+
+            // Define the desired format
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+            // Format the date and time
+            String formattedDateTime = now.format(formatter);
             switch (role) {
                 case 1:
-                    System.out.println("Welcome Admin\n");
+                    System.out.println("Welcome Admin " +user.getName()+" "+formattedDateTime+"\n");
                     try
                     {
                         adminMenu.adminMainPage(user);
@@ -114,8 +125,8 @@ public class FlipFitApplicationMenu{
                     break;
                 case 2:
                     if(user.roleID==3){
-                        System.out.println("Welcome Customer\n");
                         FlipFitCustomer customer = customerDAOImpl.getCustomer(user);
+                        System.out.println("Welcome Customer " +user.getName()+" "+formattedDateTime+"\n");
                         customerMenu.customerMainPage(customer);
                     }
                     else {
@@ -124,7 +135,7 @@ public class FlipFitApplicationMenu{
                     break;
                 case 3:
                     if(user.roleID==2) {
-                        System.out.println("Welcome Gym Owner\n");
+                        System.out.println("Welcome gym owner " +user.getName()+" "+formattedDateTime+"\n");
                         FlipFitGymOwner gymOwner = gymOwnerDAOImpl.getGymOwner(user);
                         try {
                             gymOwnerMenu.gymOwnerMainPage(gymOwner);
