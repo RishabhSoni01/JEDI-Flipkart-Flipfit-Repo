@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.flipkart.exception.InvalidLogin;
 import com.flipkart.utils.dbutils;
 import com.flipkart.dao.FlipFitUserDAO;
 public class FlipFitUserDAOImplement implements FlipFitUserDAO {

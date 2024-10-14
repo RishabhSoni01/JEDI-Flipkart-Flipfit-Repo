@@ -5,6 +5,7 @@ import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitUser;
 import com.flipkart.dao.FlipFitUserDAO;
 import com.flipkart.dao.FlipFitUserDAOImplement;
+import com.flipkart.exception.InvalidLogin;
 
 import java.util.HashMap;
 
@@ -32,7 +33,7 @@ public class FlipFitUserService implements FlipFitUserInterface{
      * @param password The password of the user.
      * @return The authenticated FlipFitUser object, or null if authentication fails.
      */
-    public FlipFitUser login(String username, String password) {
+    public FlipFitUser login(String username, String password) throws InvalidLogin{
         return flipFitUserDAOImplement.validateUser(username, password);
     }
 
@@ -71,11 +72,10 @@ public class FlipFitUserService implements FlipFitUserInterface{
      * @param gymOwner The FlipFitGymOwner object to be registered.
      * @return True if registration is successful, false otherwise.
      */
-    @Override
+
     public boolean registerGymOwner(FlipFitGymOwner gymOwner) {
         return userDAO.registerGymOwner(gymOwner);
     }
-
 
     /**
      * Registers a customer in the system.
@@ -83,9 +83,8 @@ public class FlipFitUserService implements FlipFitUserInterface{
      * @param customer The FlipFitCustomer object to be registered.
      * @return True if registration is successful, false otherwise.
      */
-    @Override
+
     public boolean registerCustomer(FlipFitCustomer customer) {
         return userDAO.registerCustomer(customer);
     }
-
 }
