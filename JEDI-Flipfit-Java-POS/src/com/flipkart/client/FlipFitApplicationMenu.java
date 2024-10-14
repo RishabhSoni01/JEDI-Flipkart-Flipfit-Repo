@@ -104,16 +104,24 @@ public class FlipFitApplicationMenu{
                     adminMenu.adminMainPage(user);
                     break;
                 case 2:
-                    System.out.println("Welcome Customer\n");
-                    FlipFitCustomer customer = customerDAOImpl.getCustomer(user);
-                    if(user.roleID==3)
-                    customerMenu.customerMainPage(customer);
+                    if(user.roleID==3){
+                        System.out.println("Welcome Customer\n");
+                        FlipFitCustomer customer = customerDAOImpl.getCustomer(user);
+                        customerMenu.customerMainPage(customer);
+                    }
+                    else {
+                        throw new InvalidLogin("Invalid Login, recheck your role");
+                    }
                     break;
                 case 3:
-                    System.out.println("Welcome Gym Owner\n");
-                    FlipFitGymOwner gymOwner = gymOwnerDAOImpl.getGymOwner(user);
-                    if(user.roleID==2)
-                    gymOwnerMenu.gymOwnerMainPage(gymOwner);
+                    if(user.roleID==2) {
+                        System.out.println("Welcome Gym Owner\n");
+                        FlipFitGymOwner gymOwner = gymOwnerDAOImpl.getGymOwner(user);
+                        gymOwnerMenu.gymOwnerMainPage(gymOwner);
+                    }
+                    else{
+                        throw new InvalidLogin("Invalid Login, recheck your role");
+                    }
                     break;
                 default:
                     System.out.println("Invalid role. Please try again.");
