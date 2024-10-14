@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 import com.flipkart.dao.*;
+import com.flipkart.exception.InvalidLogin;
 
 public class FlipFitApplicationMenu{
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         homePage();
     }
     private static FlipfitAdminServiceInterface FlipfitAdminService = new FlipfitAdminService();
@@ -77,7 +78,7 @@ public class FlipFitApplicationMenu{
         }
     }
 
-    private static void login() {
+    private static void login() throws InvalidLogin {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your Username");
@@ -110,6 +111,9 @@ public class FlipFitApplicationMenu{
                 default:
                     System.out.println("Invalid role. Please try again.");
             }
+        }
+        else {
+            System.out.println("Invalid username or password");
         }
 //
     }
