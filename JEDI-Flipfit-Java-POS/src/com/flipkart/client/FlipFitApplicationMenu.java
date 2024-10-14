@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 import com.flipkart.dao.*;
+import com.flipkart.exception.GymNotFoundException;
 import com.flipkart.exception.InvalidChoiceException;
 import com.flipkart.exception.InvalidLogin;
 
@@ -83,7 +84,7 @@ public class FlipFitApplicationMenu{
         }
     }
 
-    private static void login() throws InvalidLogin {
+    private static void login() throws InvalidLogin, GymNotFoundException {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your Username");
