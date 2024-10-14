@@ -8,7 +8,7 @@ import com.flipkart.dao.FlipFitUserDAOImplement;
 
 import java.util.HashMap;
 
-public class FlipFitUserService {
+public class FlipFitUserService implements FlipFitUserInterface{
     // HashMap to store users by their username
     static HashMap<String, FlipFitUser> UsersMap = new HashMap<>();
 
@@ -71,7 +71,8 @@ public class FlipFitUserService {
      * @param gymOwner The FlipFitGymOwner object to be registered.
      * @return True if registration is successful, false otherwise.
      */
-    boolean registerGymOwner(FlipFitGymOwner gymOwner) {
+
+    public boolean registerGymOwner(FlipFitGymOwner gymOwner) {
         return userDAO.registerGymOwner(gymOwner);
     }
 
@@ -81,7 +82,8 @@ public class FlipFitUserService {
      * @param customer The FlipFitCustomer object to be registered.
      * @return True if registration is successful, false otherwise.
      */
-    boolean registerCustomer(FlipFitCustomer customer) {
+
+    public boolean registerCustomer(FlipFitCustomer customer) {
         return userDAO.registerCustomer(customer);
     }
 }
