@@ -46,4 +46,6 @@ public interface FlipFitUserInterface {
      * @param confirmPassword The confirmation password to validate.
      */
     void confirmPassword(FlipFitUser user, String newPassword, String confirmPassword);
+    boolean registerGymOwner(FlipFitGymOwner gymOwner);
+    boolean registerCustomer(FlipFitCustomer customer);
 }

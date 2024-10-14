@@ -5,7 +5,7 @@ import com.flipkart.dao.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class BookingService {
+public class BookingService implements BookingInterface{
     // Service for customer-related operations
     private FlipfitCustomerService customerService = new FlipfitCustomerService();
 

@@ -27,8 +27,8 @@ public interface BookingInterface {
     /**
      * Cancels an existing booking based on its ID.
      *
-     * @param bookingId The ID of the booking to be canceled.
+     * @param userID The ID of the user booking to be canceled.
      * @return true if the cancellation is successful, false otherwise.
      */
-    public boolean cancelBooking(String bookingId);
+    public boolean cancelBooking(String userID, String slotID);
 }
