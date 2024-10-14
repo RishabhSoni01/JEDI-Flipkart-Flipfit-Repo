@@ -30,14 +30,14 @@ public interface FlipFitAdminDAO {
      *
      * @return a list of FlipFitGymOwner objects representing gym owners awaiting approval.
      */
-    public List<FlipFitGymOwner> viewPendingGymOwners();
+    public List<FlipFitGymOwner> getPendingGymOwners();
 
     /**
      * Retrieves a list of all pending gym requests.
      *
      * @return a list of FlipFitGyms objects representing gyms awaiting approval.
      */
-    public List<FlipFitGyms> viewPendingGyms();
+    public List<FlipFitGyms> getPendingGymCenters();
 
     /**
      * Approves a gym request by updating its status in the database.
@@ -45,22 +45,21 @@ public interface FlipFitAdminDAO {
      * @param gymId the ID of the gym to be approved.
      * @return true if the approval was successful, false otherwise.
      */
-    public boolean approveGym(String gymId);
+    public boolean approveGymCenter(String gymId);
 
     /**
      * Retrieves a list of all gyms in the system.
      *
      * @return a list of FlipFitGyms objects representing all gyms.
      */
-    public List<FlipFitGyms> viewGyms();
+    public List<FlipFitGyms> getAllGymCenters();
 
     /**
      * Retrieves a list of all gym owners.
      *
-     * @param gymOwnerId the ID of the gym owner (not used in this method; consider removing).
      * @return a list of FlipFitGyms objects associated with the gym owners.
      */
-    public List<FlipFitGyms> viewGymsOwner(int gymOwnerId);
+    public List<FlipFitGymOwner> getAllGymOwners();
 
     /**
      * Retrieves a list of all customers in the system.
@@ -74,6 +73,6 @@ public interface FlipFitAdminDAO {
      *
      * @return a list of FlipFitGyms objects representing pending customer requests.
      */
-    public List<FlipFitGyms> getPendingCustomers();
+    public List<FlipFitCustomer> getPendingCustomers();
 }
 

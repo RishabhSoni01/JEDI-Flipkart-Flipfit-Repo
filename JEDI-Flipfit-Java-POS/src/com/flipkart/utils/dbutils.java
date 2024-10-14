@@ -8,7 +8,7 @@ public class dbutils {
     private static Connection connection = null;
     private static final String url = "jdbc:mysql://127.0.0.1:3306/FlipFit";
     private static final String user = "root";
-    private static final String password = "password";
+    private static final String password = "rshbh226";
     public static Connection getConnection() throws SQLException {
         return connection = DriverManager.getConnection(url, user, password);
     }

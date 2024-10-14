@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.flipkart.utils.dbutils;
-public class FlipFitAdminDAOImplement {
+public class FlipFitAdminDAOImplement implements FlipFitAdminDAO {
     Connection connection;
     public boolean approveGymOwner(String userID){
         String sql = "UPDATE FlipFitGymOwner SET approval = ? WHERE userid = ?";
