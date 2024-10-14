@@ -3,19 +3,53 @@ package com.flipkart.bean;
 import java.util.List;
 
 /**
- * Represents an admin user in the FlipFit system, extending FlipFitUser.
- * This class provides a default constructor initializing admin details.
+ * Represents a gym owner in the FlipFit system, extending the FlipFitUser class.
+ * This class includes additional attributes specific to gym owners, such as
+ * identification and approval status.
  */
 public class FlipFitGymOwner extends FlipFitUser {
 
-    /**
-     * Default constructor for creating an admin user.
-     * Initializes with default values for admin user ID, username, email, password,
-     * and assigns the role as ADMIN.
-     */
+    // PAN card number of the gym owner
     private String panCard;
+
+    // Aadhar card number of the gym owner
     private String aadhar;
+
+    // GST registration number of the gym owner
     private String GST;
+
+    // List of gyms owned by the gym owner
+    private List<FlipFitGyms> gymCenters;
+
+    // Approval status of the gym owner (1 for approved, 0 for not approved)
+    public int isApproved;
+
+    /**
+     * Constructor to create a FlipFitGymOwner object with required details.
+     *
+     * @param userID      Unique identifier for the gym owner.
+     * @param name        Name of the gym owner.
+     * @param email       Email address of the gym owner.
+     * @param phoneNumber Phone number of the gym owner.
+     * @param password    Password for the gym owner's account.
+     * @param city        City where the gym owner is located.
+     * @param pincode     Postal code for the gym owner's location.
+     * @param role        Role identifier (specifically for gym owners).
+     * @param username    Username for login purposes.
+     * @param panCard     PAN card number of the gym owner.
+     * @param aadhar      Aadhar card number of the gym owner.
+     * @param GST         GST registration number of the gym owner.
+     */
+    public FlipFitGymOwner(String userID, String name, String email, String phoneNumber,
+                           String password, String city, String pincode, int role,
+                           String username, String panCard, String aadhar, String GST) {
+        super(userID, name, email, phoneNumber, password, city, pincode, role, username);
+        this.panCard = panCard;
+        this.aadhar = aadhar;
+        this.GST = GST;
+    }
+
+    // Getter and setter methods for the attributes
 
     public String getPanCard() {
         return panCard;
@@ -56,16 +90,4 @@ public class FlipFitGymOwner extends FlipFitUser {
     public void setApproved(int approved) {
         isApproved = approved;
     }
-
-    private List<FlipFitGyms> gymCenters;
-    public int isApproved;
-
-
-    public FlipFitGymOwner(String userID, String name, String email, String phoneNumber, String password, String city, String pincode, int role,String username,String panCard,String aadhar, String GST) {
-        super(userID, name, email, phoneNumber, password, city, pincode, role,username);
-        this.panCard = panCard;
-        this.aadhar = aadhar;
-        this.GST = GST;
-    }
 }
-

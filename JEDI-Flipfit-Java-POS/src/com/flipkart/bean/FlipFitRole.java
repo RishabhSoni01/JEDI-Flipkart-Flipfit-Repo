@@ -5,7 +5,7 @@ public class FlipFitRole {
     private String roleType;
 
     /* Constructor to initialize a Role object.
-     Parameters:
+     @Parameters:
      roleID: ID of the role.
      roleType: Type of the role.
      */
