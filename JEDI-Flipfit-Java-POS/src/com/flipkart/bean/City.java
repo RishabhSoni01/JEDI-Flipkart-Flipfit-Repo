@@ -1,5 +1,10 @@
 package com.flipkart.bean;
 
+/*
+ * @author Mukul
+ * @params This class does not have any parameters.
+ * @throws This class does not throw any exceptions.
+* */
 // Represents a city entity.
 public class City {
     public String getCityID() {

@@ -1,7 +1,12 @@
 package com.flipkart.bean;
 
 import java.time.LocalDateTime;
+/*
 
+ * @author Manali Mahajan
+ * @params This class does not have any parameters.
+ * @throws This class does not throw any exceptions.
+ */
 /**
  * Represents a slot in a gym for booking.
  * This class holds details about a specific time slot,

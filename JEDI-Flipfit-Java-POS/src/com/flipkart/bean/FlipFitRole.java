@@ -1,5 +1,9 @@
 package com.flipkart.bean;
-
+/*
+ * @author Khushi Srivastava
+ * @params This class does not have any parameters.
+ * @throws This class does not throw any exceptions
+ */
 public class FlipFitRole {
     private Integer roleID;
     private String roleType;

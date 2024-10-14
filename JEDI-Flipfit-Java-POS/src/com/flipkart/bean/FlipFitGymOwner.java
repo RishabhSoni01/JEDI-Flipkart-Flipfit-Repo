@@ -1,7 +1,10 @@
 package com.flipkart.bean;
 
 import java.util.List;
-
+/*
+ * @author Khushi Srivastava
+ * @params This class does not have any parameters.
+ * @throws This class does not throw any exceptions.
 /**
  * Represents a gym owner in the FlipFit system, extending the FlipFitUser class.
  * This class includes additional attributes specific to gym owners, such as

@@ -1,7 +1,12 @@
 package com.flipkart.bean;
 
 import java.util.List;
+/*
 
+ * @author Rishabh Soni
+ * @params This class does not have any parameters.
+ * @throws This class does not throw any exceptions.
+ */
 public class WaitList {
     public int waitListId;
     public int waitingNumber;

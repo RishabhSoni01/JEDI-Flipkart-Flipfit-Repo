@@ -1,5 +1,11 @@
 package com.flipkart.bean;
-
+/*
+ * Represents a [brief description of the class's purpose or functionality].
+ *
+ * @author Mukul
+ * @params This class does not have any parameters.
+ * @throws This class does not throw any exceptions.
+ */
 // Represents a generic pair of values.
 public class pair<T, T1> {
     private T first;

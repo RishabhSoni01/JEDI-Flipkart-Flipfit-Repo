@@ -1,5 +1,8 @@
 package com.flipkart.bean;
-
+/*
+ * @author Rishabh Soni
+ * @params This class does not have any parameters.
+ * @throws This class does not throw any exceptions.
 /**
  * Represents an admin user in the FlipFit system, extending FlipFitUser.
  * This class provides a default constructor initializing admin details.
