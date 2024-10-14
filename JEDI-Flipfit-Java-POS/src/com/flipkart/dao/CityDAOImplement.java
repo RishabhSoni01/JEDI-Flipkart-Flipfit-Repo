@@ -110,8 +110,10 @@ public class CityDAOImplement implements CityDAO{
                     List<FlipFitSlot> slots = fetchSlotsByGymID(gymID);
 
                     // Assuming GymCenter has a constructor matching these parameters
-                    FlipFitGyms gymCenter = new FlipFitGyms(gymID,gymName,availability,status,gymOwnerId,city,pincode,slots);
-                    gymCenters.add(gymCenter);
+                    if(status) {
+                        FlipFitGyms gymCenter = new FlipFitGyms(gymID, gymName, availability, status, gymOwnerId, city, pincode, slots);
+                        gymCenters.add(gymCenter);
+                    }
                 }
             }
         } catch (SQLException e) {
