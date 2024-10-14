@@ -144,7 +144,7 @@ public FlipFitUser validateUser(String username, String password) throws Invalid
             return user;
         } else {
             // Username does not exist
-            throw new UserNotFoundException("User not found with username: " + username);
+            throw new UserNotFoundException(username);
         }
     } catch (SQLException e) {
         e.printStackTrace();
