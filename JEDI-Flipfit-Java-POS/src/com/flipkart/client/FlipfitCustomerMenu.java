@@ -6,6 +6,7 @@ package com.flipkart.client;
 import com.flipkart.bean.*;
 import com.flipkart.business.*;
 import com.flipkart.dao.*;
+import com.flipkart.exception.BookingFailedException;
 import com.flipkart.exception.GymNotFoundException;
 import com.flipkart.exception.InvalidChoiceException;
 
@@ -97,6 +98,8 @@ public class FlipfitCustomerMenu {
                         addbookings(customer);
                     } catch (GymNotFoundException e) {
                         System.out.println("Error: " + e.getMessage());
+                    } catch (BookingFailedException e) {
+                       System.out.println("Error: " + e.getMessage());
                     }
                     break;
                 case 4:
@@ -205,7 +208,7 @@ public class FlipfitCustomerMenu {
             System.out.println("Customer not found.");
         }
     }
-    public void addbookings(FlipFitCustomer customer) throws GymNotFoundException {
+    public void addbookings(FlipFitCustomer customer) throws GymNotFoundException, BookingFailedException {
         List<City> cities = cityDAO.getAllCities();
         AtomicInteger itr = new AtomicInteger(1);
         cities.forEach(city -> {
@@ -246,7 +249,8 @@ public class FlipfitCustomerMenu {
                     System.out.println("Booking successful!");
                 }
                 else {
-                    System.out.println("Booking failed!");
+                    throw new BookingFailedException("Booking failed!!");
+//                    System.out.println("Booking failed!");
                 }
             }
         }

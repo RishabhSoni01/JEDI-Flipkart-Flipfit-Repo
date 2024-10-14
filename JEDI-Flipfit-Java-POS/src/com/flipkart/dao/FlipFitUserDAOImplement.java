@@ -171,7 +171,7 @@ public FlipFitUser validateUser(String username, String password) throws Invalid
             int rowsInserted = statement.executeUpdate();
             return rowsInserted > 0; // Return true if at least one row was inserted
         } catch (SQLException e) {
-            e.printStackTrace(); // Handle exceptions appropriately
+            System.out.println(e.getMessage()); // Handle exceptions appropriately
         }
         return false; // Return false if insertion failed or an exception occurred
     }
@@ -198,7 +198,8 @@ public FlipFitUser validateUser(String username, String password) throws Invalid
             int rowsInserted = statement.executeUpdate();
             return rowsInserted > 0; // Return true if at least one row was inserted
         } catch (SQLException e) {
-            e.printStackTrace(); // Handle exceptions appropriately
+            System.out.println(e.getMessage());
+            // Handle exceptions appropriately
         }
         return false; // Return false if insertion failed or an exception occurred
     }

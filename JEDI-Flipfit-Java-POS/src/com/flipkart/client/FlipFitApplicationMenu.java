@@ -126,7 +126,7 @@ public class FlipFitApplicationMenu{
                 case 2:
                     if(user.roleID==3){
                         FlipFitCustomer customer = customerDAOImpl.getCustomer(user);
-                        System.out.println("Welcome Customer " +user.getName()+" "+formattedDateTime+"\n");
+                        System.out.println("Welcome Customer +" +user.getName()+" "+formattedDateTime+"\n");
                         customerMenu.customerMainPage(customer);
                     }
                     else {
@@ -135,7 +135,7 @@ public class FlipFitApplicationMenu{
                     break;
                 case 3:
                     if(user.roleID==2) {
-                        System.out.println("Welcome gym owner " +user.getName()+" "+formattedDateTime+"\n");
+                        System.out.println("Welcome gym owner +" +user.getName()+" "+formattedDateTime+"\n");
                         FlipFitGymOwner gymOwner = gymOwnerDAOImpl.getGymOwner(user);
                         try {
                             gymOwnerMenu.gymOwnerMainPage(gymOwner);

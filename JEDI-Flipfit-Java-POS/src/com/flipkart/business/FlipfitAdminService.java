@@ -109,13 +109,13 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
     }
 
     @Override
-    public Object approveGym(String gymId) {
+    public void approveGym(String gymId) {
         // Approve a gym based on its ID
         boolean flag = adminDAO.approveGymCenter(gymId);
         if (flag) {
-            return "Gym Approved successfully";
+             System.out.println("Gym Approved successfully");
         } else {
-            return "Gym not approved";
+            System.out.println("Gym not approved");
         }
     }
 

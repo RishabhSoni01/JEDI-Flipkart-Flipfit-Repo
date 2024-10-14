@@ -34,9 +34,8 @@ public interface FlipfitAdminServiceInterface {
      * Approves a gym by its ID.
      *
      * @param gymId The ID of the gym to be approved.
-     * @return A message indicating the approval status.
      */
-    public Object approveGym(String gymId);
+    public void approveGym(String gymId);
 
     /**
      * Retrieves a list of all gyms.
