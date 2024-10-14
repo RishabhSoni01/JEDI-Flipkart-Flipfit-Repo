@@ -1,4 +1,5 @@
 package com.flipkart.dao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +13,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.flipkart.utils.dbutils;
+
 public class FlipFitCustomerDAOImplement {
+
+    // Retrieves a list of bookings for a specified user.
+    // Executes a SQL query to fetch booking details from the database.
     public List<Booking> viewBookings(String userId) {
         List<Booking> bookings = new ArrayList<>();
         String sql = "SELECT b.bookingID, b.gymID, b.slotID, b.date, gc.gym_name, s.starttime, s.endtime, s.capacity " +
@@ -53,6 +58,9 @@ public class FlipFitCustomerDAOImplement {
 
         return bookings;
     }
+
+    // Removes a specific booking for a user from the database.
+    // Decreases the slot capacity after successfully deleting the booking.
     public boolean removeBooking(String userID, String slotID) {
         String deleteBookingSql = "DELETE FROM booking WHERE userID = ? AND slotID = ?";
 
@@ -73,6 +81,9 @@ public class FlipFitCustomerDAOImplement {
         }
         return false;
     }
+
+    // Adds a new booking to the database for a user.
+    // Records the current date and time as the booking date.
     public boolean addBooking(Booking booking) {
         String sql = "INSERT INTO booking (userID, bookingID, gymID, slotID, date) VALUES (?, ?, ?, ?, ?)";
 
@@ -91,14 +102,17 @@ public class FlipFitCustomerDAOImplement {
             // Execute the insert operation
             int rowsInserted = ps.executeUpdate();
             return rowsInserted > 0;
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             dbutils.closeConnection();
         }
         return false;
     }
-    public boolean updateProfile(FlipFitCustomer customer){
+
+    // Updates the profile details of a FlipFitCustomer.
+    // Executes a SQL update statement based on the provided customer information.
+    public boolean updateProfile(FlipFitCustomer customer) {
         String sql = "UPDATE FlipFitCustomer SET username = ?, name = ?, email = ?, phoneNumber = ?, city = ?, pincode=? WHERE userid = ?";
 
         try (Connection connection = dbutils.getConnection();
@@ -107,9 +121,9 @@ public class FlipFitCustomerDAOImplement {
             statement.setString(2, customer.getName());
             statement.setString(3, customer.getEmail());
             statement.setString(4, customer.getPhoneNumber());
-            statement.setString(5,customer.getCity());
-            statement.setString(6,customer.getPincode());
-            statement.setString(7,customer.getUserID());
+            statement.setString(5, customer.getCity());
+            statement.setString(6, customer.getPincode());
+            statement.setString(7, customer.getUserID());
             int rowsUpdated = statement.executeUpdate();
             return rowsUpdated > 0;
         } catch (SQLException e) {
@@ -117,6 +131,9 @@ public class FlipFitCustomerDAOImplement {
         }
         return false;
     }
+
+    // Retrieves a FlipFitCustomer object based on the provided username.
+    // Executes a SQL query to fetch customer details from the database.
     public FlipFitCustomer getCustomer(FlipFitUser user) {
         FlipFitCustomer customer = null;
         String sql = "SELECT * FROM FlipFitCustomer WHERE username = ?";
@@ -132,7 +149,7 @@ public class FlipFitCustomerDAOImplement {
                     String name = resultSet.getString("name");
                     String email = resultSet.getString("email");
                     String contactNo = resultSet.getString("phoneNumber");
-                    customer = new FlipFitCustomer(userid, name, email, contactNo, user.getPassword(), user.getCity(),user.getPincode(), user.getRole(),username,bookings);
+                    customer = new FlipFitCustomer(userid, name, email, contactNo, user.getPassword(), user.getCity(), user.getPincode(), user.getRole(), username, bookings);
                 }
             }
         } catch (SQLException e) {
@@ -140,6 +157,9 @@ public class FlipFitCustomerDAOImplement {
         }
         return customer;
     }
+
+    // Checks if a booking already exists for a specific user and slot.
+    // Executes a SQL query to count existing bookings for the given criteria.
     public boolean bookingExists(Booking booking) {
         String sql = "SELECT COUNT(*) FROM booking WHERE slotID = ? AND userID = ?";
 
@@ -165,6 +185,9 @@ public class FlipFitCustomerDAOImplement {
         }
         return false;
     }
+
+    // Updates the capacity of a specified slot in the database.
+    // Increments or decrements the capacity based on the provided delta value.
     public boolean updateCapacity(String slotID, int delta) {
         String sql = "UPDATE slot SET capacity = capacity + ? WHERE slotID = ?";
 

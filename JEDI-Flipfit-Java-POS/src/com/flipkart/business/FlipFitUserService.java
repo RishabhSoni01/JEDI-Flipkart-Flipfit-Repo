@@ -6,7 +6,7 @@ import com.flipkart.bean.FlipFitUser;
 import com.flipkart.dao.FlipFitUserDAO;
 import com.flipkart.dao.FlipFitUserDAOImplement;
 import java.util.HashMap;
-public class FlipFitUserService {
+public class FlipFitUserService implements FlipFitUserInterface{
     static HashMap<String, FlipFitUser> UsersMap = new HashMap<>();
     private FlipFitUserDAOImplement flipFitUserDAOImplement = new FlipFitUserDAOImplement();
     private FlipFitUserDAO userDAO = new FlipFitUserDAOImplement();
@@ -36,11 +36,13 @@ public class FlipFitUserService {
         }
     };
 
-    boolean registerGymOwner(FlipFitGymOwner gymOwner){
+    @Override
+    public boolean registerGymOwner(FlipFitGymOwner gymOwner) {
         return userDAO.registerGymOwner(gymOwner);
-    };
+    }
 
-    boolean registerCustomer(FlipFitCustomer customer){
+    @Override
+    public boolean registerCustomer(FlipFitCustomer customer) {
         return userDAO.registerCustomer(customer);
-    };
+    }
 }
