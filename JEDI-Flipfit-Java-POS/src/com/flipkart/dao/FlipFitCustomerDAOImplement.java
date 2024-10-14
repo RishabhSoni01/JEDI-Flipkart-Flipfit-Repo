@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import com.flipkart.utils.dbutils;
 
-public class FlipFitCustomerDAOImplement {
+public class FlipFitCustomerDAOImplement implements FlipFitCustomerDAO {
 
     // Retrieves a list of bookings for a specified user.
     // Executes a SQL query to fetch booking details from the database.

@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-public class FlipFitGymOwnerDAOImplement {
+public class FlipFitGymOwnerDAOImplement implements FlipFitGymOwnerDAO {
     public boolean addGymCenter(FlipFitGyms gymCenter) {
         String sql = "INSERT INTO FlipFitGyms (gym_id,gym_name,no_of_slots,gym_status,owner_id,city,pincode) VALUES (?,?,?,?,?,?,?)";
 
@@ -95,7 +95,7 @@ public class FlipFitGymOwnerDAOImplement {
         }
     }
 
-    private boolean isSlotExists(String gymID, FlipFitSlot slot) {
+    public boolean isSlotExists(String gymID, FlipFitSlot slot) {
         String sql = "SELECT COUNT(*) AS count FROM slot WHERE gym_id = ? AND starttime = ? AND endtime = ?";
         try (Connection connection = dbutils.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
