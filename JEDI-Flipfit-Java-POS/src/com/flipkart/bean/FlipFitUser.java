@@ -1,14 +1,13 @@
 package com.flipkart.bean;
-/*
-
- * @author Sreelakshmi A
- * @params This class does not have any parameters.
- * @throws This class does not throw any exceptions.
- */
 /**
  * Represents a user in the FlipFit application.
  * This class holds details about a user, including personal information,
  * contact details, authentication credentials, and role within the system.
+
+ * @author JEDI-GroupD
+ * @params This class does not have any parameters.
+ * @throws this class does not throw any exceptions.
+
  */
 public class FlipFitUser {
 

@@ -2,14 +2,15 @@ package com.flipkart.bean;
 
 import java.util.ArrayList;
 import java.util.List;
-/*
- * @author Sreelakshmi A
- * @params This class does not have any parameters.
- * @throws This class does not throw any exceptions.
 /**
  * Represents a gym in the FlipFit application.
  * This class contains details about the gym, including its
  * identifier, name, status, owner, location, and available slots.
+ *
+ * @author JEDI-GroupD
+ * @params This class does not have any parameters.
+ * @throws this class does not throw any exceptions.
+
  */
 public class FlipFitGyms {
 

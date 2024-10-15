@@ -2,17 +2,17 @@ package com.flipkart.bean;
 
 import java.time.LocalDateTime;
 /**
-
- * @author Manali Mahajan
- * @params This class does not have any parameters.
- * @throws This class does not throw any exceptions.
- */
-/**
  * Represents a slot in a gym for booking.
  * This class holds details about a specific time slot,
  * including its unique identifier, associated gym, time range,
  * and availability of seats.
+
+ * @author JEDI-GroupD
+ * @params This class does not have any parameters.
+ * @throws this class does not throw any exceptions.
  */
+
+
 public class FlipFitSlot {
 
     // Unique identifier for the slot

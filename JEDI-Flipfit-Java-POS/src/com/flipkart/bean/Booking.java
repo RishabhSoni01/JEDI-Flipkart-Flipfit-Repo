@@ -1,13 +1,15 @@
 package com.flipkart.bean;
 
 import java.time.LocalDateTime;
-// Represents a booking made by a user at a gym center.
 
 /**
-* @Author : Khushi Srivastava
-* @Params : This class does not have any parameters
-* @Exceptions : Raises no exceptions
-* */
+ * Represents a booking made by a user at a gym center.
+ * This class contains information about the user, the booking, and the gym associated with the booking.
+ *
+ * @Author : JEDI-GroupD
+ * @Params : This class does not have any parameters.
+ * @Exceptions : Raises no exceptions.
+ */
 public class Booking {
     // Unique identifier of the user making the booking.
     private String userID;
@@ -18,6 +20,29 @@ public class Booking {
     // The gym center where the booking is made.
     private String gymID;
 
+    // The start time of the booking slot.
+    private String slotID;
+
+    // The name of the gym center.
+    private String gymName;
+
+    // The slot information for the booking.
+    private FlipFitSlot slot;
+
+    // The date and time when the booking was made.
+    private LocalDateTime bookingDate;
+
+    /**
+     * Constructs a Booking object with specified details.
+     *
+     * @param userID     the unique identifier of the user making the booking.
+     * @param bookingID  the unique identifier for this booking.
+     * @param gymID      the unique identifier for the gym center.
+     * @param slotID     the unique identifier for the booking slot.
+     * @param gymName    the name of the gym center.
+     * @param slot       the slot details for the booking.
+     * @param bookingDate the date and time of the booking.
+     */
     public Booking(String userID, String bookingID, String gymID, String slotID, String gymName, FlipFitSlot slot, LocalDateTime bookingDate) {
         this.userID = userID;
         this.bookingID = bookingID;
@@ -28,42 +53,14 @@ public class Booking {
         this.bookingDate = bookingDate;
     }
 
-    // The start time of the booking.
-    private String slotID;
-
-    private String gymName;
-    private FlipFitSlot slot;
-    private LocalDateTime bookingDate;
-    public LocalDateTime getBookingDate() {
-        return bookingDate;
-    }
-
-    public void setBookingDate(LocalDateTime bookingDate) {
-        this.bookingDate = bookingDate;
-    }
-
-    public FlipFitSlot getSlot() {
-        return slot;
-    }
-
-    public void setSlot(FlipFitSlot slot) {
-        this.slot = slot;
-    }
-
-    public String getGymName() {
-        return gymName;
-    }
-
-    public void setGymName(String gymName) {
-        this.gymName = gymName;
-    }
-
-    /* Constructor to initialize a Booking object.
-    Parameters:
-       userID: ID of the user making the booking.
-       bookingID: Unique ID for this booking.
-       gymCenter: GymCenter object representing the gym where booking is made.
-       starttime: LocalDateTime object representing the start time of the booking.
+    /**
+     * Constructs a Booking object with specified user and booking details.
+     *
+     * @param userID      the unique identifier of the user making the booking.
+     * @param bookingID   the unique identifier for this booking.
+     * @param gymID       the unique identifier for the gym center.
+     * @param slotID      the unique identifier for the booking slot.
+     * @param bookingDate  the date and time of the booking.
      */
     public Booking(String userID, String bookingID, String gymID, String slotID, LocalDateTime bookingDate) {
         this.userID = userID;
@@ -73,37 +70,129 @@ public class Booking {
         this.bookingDate = bookingDate;
     }
 
-
-    // Getter for userID.
+    /**
+     * Gets the unique identifier of the user making the booking.
+     *
+     * @return the userID of the user.
+     */
     public String getUserID() {
         return userID;
     }
 
-    // Setter for userID.
+    /**
+     * Sets the unique identifier of the user making the booking.
+     *
+     * @param userID the unique identifier of the user.
+     */
     public void setUserID(String userID) {
         this.userID = userID;
     }
 
-    // Getter for BookingID.
+    /**
+     * Gets the unique identifier for this booking.
+     *
+     * @return the bookingID for this booking.
+     */
     public String getBookingID() {
         return bookingID;
     }
 
-    // Setter for BookingID.
+    /**
+     * Sets the unique identifier for this booking.
+     *
+     * @param bookingID the unique identifier to set for this booking.
+     */
     public void setBookingID(String bookingID) {
         this.bookingID = bookingID;
     }
 
-    // Getter for gymCenter.
-    public String getGymID() { return gymID; }
+    /**
+     * Gets the unique identifier for the gym center associated with this booking.
+     *
+     * @return the gymID for the gym center.
+     */
+    public String getGymID() {
+        return gymID;
+    }
 
-    // Setter for gymCenter.
+    /**
+     * Sets the unique identifier for the gym center associated with this booking.
+     *
+     * @param gymID the unique identifier to set for the gym center.
+     */
     public void setGymID(String gymID) {
         this.gymID = gymID;
     }
 
-    public String getSlotID() { return slotID; }
+    /**
+     * Gets the unique identifier for the booking slot.
+     *
+     * @return the slotID for the booking slot.
+     */
+    public String getSlotID() {
+        return slotID;
+    }
 
-    public void setSlotID(String slotID) { this.slotID = slotID; }
+    /**
+     * Sets the unique identifier for the booking slot.
+     *
+     * @param slotID the unique identifier to set for the booking slot.
+     */
+    public void setSlotID(String slotID) {
+        this.slotID = slotID;
+    }
 
+    /**
+     * Gets the name of the gym center associated with this booking.
+     *
+     * @return the gymName of the gym center.
+     */
+    public String getGymName() {
+        return gymName;
+    }
+
+    /**
+     * Sets the name of the gym center associated with this booking.
+     *
+     * @param gymName the name to set for the gym center.
+     */
+    public void setGymName(String gymName) {
+        this.gymName = gymName;
+    }
+
+    /**
+     * Gets the slot details for this booking.
+     *
+     * @return the slot information associated with this booking.
+     */
+    public FlipFitSlot getSlot() {
+        return slot;
+    }
+
+    /**
+     * Sets the slot details for this booking.
+     *
+     * @param slot the slot information to set for this booking.
+     */
+    public void setSlot(FlipFitSlot slot) {
+        this.slot = slot;
+    }
+
+    /**
+     * Gets the date and time of the booking.
+     *
+     * @return the bookingDate when this booking was made.
+     */
+    public LocalDateTime getBookingDate() {
+        return bookingDate;
+    }
+
+    /**
+     * Sets the date and time of the booking.
+     *
+     * @param bookingDate the date and time to set for this booking.
+     */
+    public void setBookingDate(LocalDateTime bookingDate) {
+        this.bookingDate = bookingDate;
+    }
 }
