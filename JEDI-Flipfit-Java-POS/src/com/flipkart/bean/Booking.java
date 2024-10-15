@@ -3,7 +3,7 @@ package com.flipkart.bean;
 import java.time.LocalDateTime;
 // Represents a booking made by a user at a gym center.
 
-/*
+/**
 * @Author : Khushi Srivastava
 * @Params : This class does not have any parameters
 * @Exceptions : Raises no exceptions

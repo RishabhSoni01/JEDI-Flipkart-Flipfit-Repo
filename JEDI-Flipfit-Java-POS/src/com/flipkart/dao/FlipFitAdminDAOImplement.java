@@ -2,7 +2,7 @@ package com.flipkart.dao;
 import com.flipkart.bean.*;
 import com.flipkart.utils.dbutils;
 import com.sun.jdi.connect.spi.Connection;
-
+import com.flipkart.exception.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,44 +11,67 @@ import java.util.List;
 import com.flipkart.utils.dbutils;
 public class FlipFitAdminDAOImplement implements FlipFitAdminDAO {
     Connection connection;
-    public boolean approveGymOwner(String userID){
-        String sql = "UPDATE FlipFitGymOwner SET approval = ? WHERE userid = ?";
+    public boolean approveGymOwner(String userID) throws GymOwnerNotFoundException {
+        String checkSql = "SELECT COUNT(*) FROM FlipFitGymOwner WHERE userid = ?";
+        String updateSql = "UPDATE FlipFitGymOwner SET approval = ? WHERE userid = ?";
+
         try (java.sql.Connection connection = dbutils.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql))
-        {
-            statement.setInt(1,1);
-            statement.setString(2,userID);
-            int rowsAffected = statement.executeUpdate();
-            if(rowsAffected>0){
-                return true;
+             PreparedStatement checkStatement = connection.prepareStatement(checkSql);
+             PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
+
+            // Check if the gym owner exists
+            checkStatement.setString(1, userID);
+            ResultSet rs = checkStatement.executeQuery();
+            if (rs.next() && rs.getInt(1) == 0) {
+                throw new GymOwnerNotFoundException("Gym owner with ID " + userID + " not found.");
             }
+
+            // Proceed to approve if the gym owner exists
+            updateStatement.setInt(1, 1);
+            updateStatement.setString(2, userID);
+            int rowsAffected = updateStatement.executeUpdate();
+            return rowsAffected > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+            throw new RuntimeException("Database error occurred while approving gym owner."); // Handle SQL exceptions
+        } finally {
             dbutils.closeConnection();
         }
-        return false;
     }
-    public boolean approveCustomer(String userID){
-        String sql = "UPDATE FlipFitCustomer SET approval = ? WHERE userid = ?";
-        try(java.sql.Connection conn = dbutils.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql))
-        {
-            ps.setInt(1,1);
-            ps.setString(2,userID);
-            int rowsAffected = ps.executeUpdate();
-            if(rowsAffected>0){
-                return true;
+
+
+    public boolean approveCustomer(String userID) throws CustomerNotFoundException {
+        String checkSql = "SELECT COUNT(*) FROM FlipFitCustomer WHERE userid = ?";
+        String updateSql = "UPDATE FlipFitCustomer SET approval = ? WHERE userid = ?";
+
+        try (java.sql.Connection connection = dbutils.getConnection();
+             PreparedStatement checkStatement = connection.prepareStatement(checkSql);
+             PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
+
+            // Check if the customer exists
+            checkStatement.setString(1, userID);
+            ResultSet rs = checkStatement.executeQuery();
+            if (rs.next() && rs.getInt(1) == 0) {
+                throw new CustomerNotFoundException("Customer with ID " + userID + " not found.");
             }
+
+            // Proceed to approve if the customer exists
+            updateStatement.setInt(1, 1);
+            updateStatement.setString(2, userID);
+            int rowsAffected = updateStatement.executeUpdate();
+            return rowsAffected > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+            throw new RuntimeException("Database error occurred while approving customer."); // Handle SQL exceptions
+        } finally {
             dbutils.closeConnection();
         }
-        return false;
     }
+
+
+
     public List<FlipFitGymOwner> getPendingGymOwners() {
         List<FlipFitGymOwner> pendingGymOwners = new ArrayList<>();
         String sql = "SELECT * FROM FlipFitGymOwner WHERE approval = ?"; // Ensure correct table name
@@ -157,25 +180,39 @@ public class FlipFitAdminDAOImplement implements FlipFitAdminDAO {
 
         return allGymCenters;
     }
-    public boolean approveGymCenter(String gymID){
-        String sql = "UPDATE FlipFitGyms SET gym_status = ? WHERE gym_id = ?";
-        try(java.sql.Connection conn = dbutils.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql))
-        {
-            ps.setInt(1,1);
-            ps.setString(2,gymID);
-            int rowsAffected = ps.executeUpdate();
-            if(rowsAffected>0){
-                return true;
+    public boolean approveGymCenter(String gymID) {
+        String checkSql = "SELECT COUNT(*) FROM FlipFitGyms WHERE gym_id = ?";
+        String updateSql = "UPDATE FlipFitGyms SET gym_status = ? WHERE gym_id = ?";
+
+        try (java.sql.Connection conn = dbutils.getConnection();
+             PreparedStatement checkPs = conn.prepareStatement(checkSql);
+             PreparedStatement updatePs = conn.prepareStatement(updateSql)) {
+
+            // Check if the gym exists
+            checkPs.setString(1, gymID);
+            ResultSet rs = checkPs.executeQuery();
+            if (rs.next() && rs.getInt(1) == 0) {
+                // Gym not found, return false
+                System.out.println("Gym with ID " + gymID + " not found.");
+                return false;
             }
+
+            // Proceed to approve if the gym exists
+            updatePs.setInt(1, 1);
+            updatePs.setString(2, gymID);
+            int rowsAffected = updatePs.executeUpdate();
+            return rowsAffected > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+            // Optionally, handle the exception as needed
+        } finally {
             dbutils.closeConnection();
         }
         return false;
     }
+
+
     public List<FlipFitGymOwner> getAllGymOwners() {
         List<FlipFitGymOwner> allGymOwners = new ArrayList<>();
         String sql = "SELECT * FROM FlipFitGymOwner"; // Adjusted to select all gym owners

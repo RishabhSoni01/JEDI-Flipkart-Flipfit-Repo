@@ -1,6 +1,6 @@
 package com.flipkart.dao;
 import com.flipkart.bean.*;
-import com.flipkart.business.*;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ import java.util.List;
 import com.flipkart.exception.InvalidLogin;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.utils.dbutils;
-import com.flipkart.dao.FlipFitUserDAO;
+import com.flipkart.exception.RegistrationFailedException;
 public class FlipFitUserDAOImplement implements FlipFitUserDAO {
     public static void main(String[] args) {
         // Create a new instance of FlipFitUser
@@ -176,8 +176,8 @@ public FlipFitUser validateUser(String username, String password) throws Invalid
         return false; // Return false if insertion failed or an exception occurred
     }
     @Override
-    public boolean registerGymOwner(FlipFitGymOwner gymOwner) {
-        String sql = "INSERT INTO FlipFitGymOwner (username, userid, name, email, phoneNumber, pan, aadhar, gst_no, approval,city,pincode) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+    public boolean registerGymOwner(FlipFitGymOwner gymOwner) throws RegistrationFailedException {
+        String sql = "INSERT INTO FlipFitGymOwner (username, userid, name, email, phoneNumber, pan, aadhar, gst_no, approval, city, pincode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = dbutils.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -191,20 +191,24 @@ public FlipFitUser validateUser(String username, String password) throws Invalid
             statement.setString(6, gymOwner.getPanCard());    // panCard
             statement.setString(7, gymOwner.getAadhar());     // aadhar
             statement.setString(8, gymOwner.getGST());        // GST
-            statement.setInt(9, 0);
-            statement.setString(10,gymOwner.getCity());
-            statement.setString(11, gymOwner.getPincode());// approval
+            statement.setInt(9, 0); // approval
+            statement.setString(10, gymOwner.getCity());
+            statement.setString(11, gymOwner.getPincode());
 
             int rowsInserted = statement.executeUpdate();
-            return rowsInserted > 0; // Return true if at least one row was inserted
+            if (rowsInserted > 0) {
+                return true; // Return true if at least one row was inserted
+            } else {
+                throw new RegistrationFailedException("Registration failed: No rows inserted.");
+            }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            // Handle exceptions appropriately
+            System.out.println("SQL Error: " + e.getMessage());
+            throw new RegistrationFailedException("Registration failed due to a database error: ");
         }
-        return false; // Return false if insertion failed or an exception occurred
     }
+
     @Override
-    public boolean registerCustomer(FlipFitCustomer customer) {
+    public boolean registerCustomer(FlipFitCustomer customer) throws RegistrationFailedException {
         String sql = "INSERT INTO FlipFitCustomer (username, userid, name, email, phoneNumber, city, pincode, approval) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = dbutils.getConnection();
@@ -217,18 +221,21 @@ public FlipFitUser validateUser(String username, String password) throws Invalid
             statement.setString(5, customer.getPhoneNumber());
             statement.setString(6, customer.getCity());
             statement.setString(7, customer.getPincode());
-            statement.setInt(8, 0);
+            statement.setInt(8, 0); // approval
 
             int rowsInserted = statement.executeUpdate();
-            return rowsInserted > 0;
+            if (rowsInserted > 0) {
+                return true; // Return true if at least one row was inserted
+            } else {
+                throw new RegistrationFailedException("Registration failed: No rows inserted.");
+            }
 
         } catch (SQLException e) {
-            System.err.println("SQL Error Code: " + e.getErrorCode());
-            System.err.println("SQL State: " + e.getSQLState());
-            System.err.println("Error Message: " + e.getMessage());
+            System.err.println("SQL Error: " + e.getMessage());
+            throw new RegistrationFailedException("Registration failed due to a database error: " );
         }
-        return false;
     }
+
 
 
 }

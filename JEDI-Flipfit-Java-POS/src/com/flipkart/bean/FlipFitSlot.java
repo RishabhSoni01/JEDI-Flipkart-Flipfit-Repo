@@ -1,7 +1,7 @@
 package com.flipkart.bean;
 
 import java.time.LocalDateTime;
-/*
+/**
 
  * @author Manali Mahajan
  * @params This class does not have any parameters.

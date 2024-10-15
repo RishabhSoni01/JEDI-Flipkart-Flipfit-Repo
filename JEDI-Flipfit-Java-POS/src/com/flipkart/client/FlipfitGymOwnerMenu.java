@@ -53,7 +53,7 @@ public class FlipfitGymOwnerMenu {
         boolean gymOwnerRegistered = false;
         if (userAdded) {
             gymOwnerRegistered = userDAO.registerGymOwner(gymOwner);
-            System.out.println("GymOwner registered: " + gymOwnerRegistered);
+//            System.out.println("GymOwner registered: " + gymOwnerRegistered);
         }
 
         // Log the outcome of the creation process

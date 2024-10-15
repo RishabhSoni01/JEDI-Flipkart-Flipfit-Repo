@@ -3,6 +3,7 @@ package com.flipkart.business;
 import com.flipkart.bean.*;
 import com.flipkart.dao.FlipFitUserDAOImplement;
 import com.flipkart.dao.FlipFitAdminDAOImplement;
+import com.flipkart.exception.GymNotFoundException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -91,9 +92,10 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
         // Retrieve and display a list of pending gym owners
         List<FlipFitGymOwner> pendingGO = adminDAO.getPendingGymOwners();
         System.out.println("Listing all pending gym owners");
-        for (FlipFitGymOwner gymOwner : pendingGO) {
-            System.out.println("Owner ID: " + gymOwner.userID + " Owner Name: " + gymOwner.getName());
-        }
+        pendingGO.forEach(gymOwner ->
+                System.out.println("Owner ID: " + gymOwner.getUserID() + " Owner Name: " + gymOwner.getName())
+        );
+
         return pendingGO;
     }
 
@@ -102,14 +104,15 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
         // Retrieve and display a list of pending gyms
         List<FlipFitGyms> pendingGC = adminDAO.getPendingGymCenters();
         System.out.println("Listing all pending gyms");
-        for (FlipFitGyms gymCenter : pendingGC) {
-            System.out.println("Gym ID: " + gymCenter.getGymId() + " Gym Name: " + gymCenter.getGymName());
-        }
+        pendingGC.forEach(gymCenter ->
+                System.out.println("Gym ID: " + gymCenter.getGymId() + " Gym Name: " + gymCenter.getGymName())
+        );
+
         return pendingGC;
     }
 
     @Override
-    public void approveGym(String gymId) {
+    public void approveGym(String gymId)  {
         // Approve a gym based on its ID
         boolean flag = adminDAO.approveGymCenter(gymId);
         if (flag) {
@@ -124,14 +127,15 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
         // Retrieve and display all gyms
         List<FlipFitGyms> allGyms = adminDAO.getAllGymCenters(); // Assuming this method exists in your DAO
         System.out.println("Listing all gyms:");
-        for (FlipFitGyms gym : allGyms) {
-            System.out.println("Gym ID: " + gym.getGymId() +
-                    " Gym Name: " + gym.getGymName() +
-                    " Slots: " + gym.getNumberOfSlots() +
-                    " Status: " + (gym.getGymStatus() ? "Active" : "Inactive") +
-                    " City: " + gym.getCity() +
-                    " Pincode: " + gym.getPincode());
-        }
+        allGyms.forEach(gym ->
+                System.out.println("Gym ID: " + gym.getGymId() +
+                        " Gym Name: " + gym.getGymName() +
+                        " Slots: " + gym.getNumberOfSlots() +
+                        " Status: " + (gym.getGymStatus() ? "Active" : "Inactive") +
+                        " City: " + gym.getCity() +
+                        " Pincode: " + gym.getPincode())
+        );
+
         return allGyms;
     }
 
@@ -140,14 +144,15 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
         // Retrieve and display all gym owners
         List<FlipFitGymOwner> allGymOwners = adminDAO.getAllGymOwners(); // Assuming this method exists in your DAO
         System.out.println("Listing all gym owners:");
-        for (FlipFitGymOwner gymOwner : allGymOwners) {
-            System.out.println("Owner ID: " + gymOwner.getUserID() +
-                    " Owner Name: " + gymOwner.getName() +
-                    " Email: " + gymOwner.getEmail() +
-                    " Phone Number: " + gymOwner.getPhoneNumber() +
-                    " City: " + gymOwner.getCity() +
-                    " Pincode: " + gymOwner.getPincode());
-        }
+        allGymOwners.forEach(gymOwner ->
+                System.out.println("Owner ID: " + gymOwner.getUserID() +
+                        " Owner Name: " + gymOwner.getName() +
+                        " Email: " + gymOwner.getEmail() +
+                        " Phone Number: " + gymOwner.getPhoneNumber() +
+                        " City: " + gymOwner.getCity() +
+                        " Pincode: " + gymOwner.getPincode())
+        );
+
         return allGymOwners;
     }
 
@@ -162,14 +167,15 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
         // Retrieve and display all customers
         List<FlipFitCustomer> allCustomers = adminDAO.getAllCustomers();
         System.out.println("Listing all customers:");
-        for (FlipFitCustomer customer : allCustomers) {
-            System.out.println("Owner ID: " + customer.getUserID() +
-                    " Owner Name: " + customer.getName() +
-                    " Email: " + customer.getEmail() +
-                    " Phone Number: " + customer.getPhoneNumber() +
-                    " City: " + customer.getCity() +
-                    " Pincode: " + customer.getPincode());
-        }
+        allCustomers.forEach(customer ->
+                System.out.println("Owner ID: " + customer.getUserID() +
+                        " Owner Name: " + customer.getName() +
+                        " Email: " + customer.getEmail() +
+                        " Phone Number: " + customer.getPhoneNumber() +
+                        " City: " + customer.getCity() +
+                        " Pincode: " + customer.getPincode())
+        );
+
         return allCustomers;
     }
 
@@ -178,14 +184,15 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
         // Retrieve and display pending customers
         List<FlipFitCustomer> pendingCustomers = adminDAO.getPendingCustomers();
         System.out.println("Listing all pending customers:");
-        for (FlipFitCustomer customer : pendingCustomers) {
-            System.out.println("Owner ID: " + customer.getUserID() +
-                    " Owner Name: " + customer.getName() +
-                    " Email: " + customer.getEmail() +
-                    " Phone Number: " + customer.getPhoneNumber() +
-                    " City: " + customer.getCity() +
-                    " Pincode: " + customer.getPincode());
-        }
+        pendingCustomers.forEach(customer ->
+                System.out.println("Owner ID: " + customer.getUserID() +
+                        " Owner Name: " + customer.getName() +
+                        " Email: " + customer.getEmail() +
+                        " Phone Number: " + customer.getPhoneNumber() +
+                        " City: " + customer.getCity() +
+                        " Pincode: " + customer.getPincode())
+        );
+
         return pendingCustomers; // Replace with actual implementation
     }
 

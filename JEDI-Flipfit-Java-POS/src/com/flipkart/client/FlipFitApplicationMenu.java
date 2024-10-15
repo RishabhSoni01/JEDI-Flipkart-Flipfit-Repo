@@ -13,9 +13,9 @@ import com.flipkart.exception.GymNotFoundException;
 import com.flipkart.exception.InvalidChoiceException;
 import com.flipkart.exception.InvalidLogin;
 
-/*
+/**
 * @author Manali Mahajan
-* @exceptions InvalidLoging, GymNotFound
+* @exceptions InvalidLogin, GymNotFound
 * */
 public class FlipFitApplicationMenu{
     public static void main(String[] args) throws InvalidLogin {
@@ -46,11 +46,11 @@ public class FlipFitApplicationMenu{
                     break;
                 case 2:
                     customerMenu.registerCustomer(scanner);
-                    System.out.println("Customer Registered");
+//                    System.out.println("Customer Registered");
                     break;
                 case 3:
                     gymOwnerMenu.registerGymOwner(scanner);
-                    System.out.println("Gym Owner Registered");
+//                    System.out.println("Gym Owner Registered");
                     break;
                 case 4:
                     System.out.println("Change Password");

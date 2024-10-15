@@ -5,7 +5,7 @@ import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitUser;
 import com.flipkart.exception.InvalidLogin;
 import com.flipkart.exception.UserNotFoundException;
-
+import com.flipkart.exception.RegistrationFailedException;
 /**
  * Interface representing the Data Access Object (DAO) for FlipFit users.
  * This interface defines methods for user-related operations such as validation,
@@ -29,7 +29,7 @@ public interface FlipFitUserDAO {
      * @param gymOwner The FlipFitGymOwner object containing details of the gym owner.
      * @return True if the registration is successful; false otherwise.
      */
-    public boolean registerGymOwner(FlipFitGymOwner gymOwner);
+    public boolean registerGymOwner(FlipFitGymOwner gymOwner) throws RegistrationFailedException;
 
     /**
      * Registers a new customer.
@@ -37,7 +37,7 @@ public interface FlipFitUserDAO {
      * @param customer The FlipFitCustomer object containing details of the customer.
      * @return True if the registration is successful; false otherwise.
      */
-    public boolean registerCustomer(FlipFitCustomer customer);
+    public boolean registerCustomer(FlipFitCustomer customer) throws RegistrationFailedException;
 
     /**
      * Updates an existing user's information.

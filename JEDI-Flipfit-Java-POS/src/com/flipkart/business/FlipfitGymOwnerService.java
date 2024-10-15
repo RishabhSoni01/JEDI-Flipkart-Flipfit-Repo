@@ -119,12 +119,14 @@ public class FlipfitGymOwnerService implements FlipfitGymOwnerServiceInterface {
         List<FlipFitGyms> gymCenters = cityGymcenters.get(city.toLowerCase());
 
         if (gymCenters != null) {
-            for (FlipFitGyms gymCenter : gymCenters) {
-                if (gymCenter.getGymName().equalsIgnoreCase(name)) {
-                    return gymCenter;
-                }
-            }
-        }
+            return gymCenters.stream()
+                    .filter(gymCenter -> gymCenter.getGymName().equalsIgnoreCase(name))
+                    .findFirst()
+                    .orElse(null);
+        }// Return null if gymCenters is null
+
+
+
 
         return null; // Gym center not found
     }
@@ -138,9 +140,10 @@ public class FlipfitGymOwnerService implements FlipfitGymOwnerServiceInterface {
         List<FlipFitGyms> gymCenters = gymOwnerDAO.getGymCenters(gymOwner.getUserID());
 
         // Print all gym centers
-        for (FlipFitGyms gymCenter : gymCenters) {
-            System.out.println("Gym Name: " + gymCenter.getGymName());
-        }
+        gymCenters.forEach(gymCenter ->
+                System.out.println("Gym Name: " + gymCenter.getGymName())
+        );
+
     }
 
     /**

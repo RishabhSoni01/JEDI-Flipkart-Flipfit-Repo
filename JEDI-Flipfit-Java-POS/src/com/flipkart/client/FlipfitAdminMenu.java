@@ -2,6 +2,9 @@ package com.flipkart.client;
 
 import com.flipkart.business.*;
 import com.flipkart.bean.*;
+import com.flipkart.exception.CustomerNotFoundException;
+import com.flipkart.exception.GymNotFoundException;
+import com.flipkart.exception.GymOwnerNotFoundException;
 import com.flipkart.exception.InvalidChoiceException;
 
 import java.util.*;
@@ -52,7 +55,7 @@ public class FlipfitAdminMenu {
         }
 
     }
-    private void showGymMenu() {
+    private void showGymMenu()  {
         int approveChoice = -1;
 
         // Loop until the admin chooses to go back to the main admin menu
@@ -82,51 +85,80 @@ public class FlipfitAdminMenu {
     }
     private void showGymOwnerMenu() {
         int approveChoice = -1;
+
         while (approveChoice != 2) {
             System.out.println("Approve Gym Owner:");
             System.out.println("1. Approve Gym Owner by ID");
             System.out.println("2. Back to Admin Menu");
             System.out.print("Enter your choice: ");
-            approveChoice = scanner.nextInt();
-            scanner.nextLine();
+
+            try {
+                approveChoice = scanner.nextInt();
+                scanner.nextLine(); // Clear the buffer
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid number.");
+                scanner.next(); // Clear the invalid input
+                continue; // Restart the loop
+            }
+
             switch (approveChoice) {
                 case 1:
                     System.out.print("Enter Gym Owner ID: ");
                     String ownerId = scanner.nextLine();
-                    adminService.approveGymOwner(ownerId);
+                    try {
+                        adminService.approveGymOwner(ownerId);
+                        System.out.println("Gym Owner approved successfully.");
+                    } catch (GymOwnerNotFoundException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
-                    case 2:
-                        System.out.println("Returning to Admin Menu.");
-                        break;
-                        default:
-                            System.out.println("Invalid choice. Please try again.");
-
+                case 2:
+                    System.out.println("Returning to Admin Menu.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
             }
         }
     }
-    private void showCustomerMenu(){
+
+    private void showCustomerMenu() {
         int approveChoice = -1;
+
         while (approveChoice != 2) {
-            System.out.println("Approve Customer Center:");
-            System.out.println("1. Approve Customer Center by ID");
+            System.out.println("Approve Customer:");
+            System.out.println("1. Approve Customer by ID");
             System.out.println("2. Back to Admin Menu");
             System.out.print("Enter your choice: ");
-            approveChoice = scanner.nextInt();
-            scanner.nextLine();
+
+            try {
+                approveChoice = scanner.nextInt();
+                scanner.nextLine(); // Clear the buffer
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid number.");
+                scanner.next(); // Clear the invalid input
+                continue; // Restart the loop
+            }
+
             switch (approveChoice) {
                 case 1:
                     System.out.print("Enter Customer ID: ");
                     String customerId = scanner.nextLine();
-                    adminService.approveCustomers(customerId);
+                    try {
+                        adminService.approveCustomers(customerId);
+                        System.out.println("Customer approved successfully.");
+                    } catch (CustomerNotFoundException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
-                    case 2:
-                        System.out.println("Returning to Admin Menu.");
-                        break;
-                        default:
-                            System.out.println("Invalid choice. Please try again.");
+                case 2:
+                    System.out.println("Returning to Admin Menu.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
             }
         }
     }
+
     public void changePassword(FlipFitUser user) {
         System.out.println("Enter your Old Password");
         String password = scanner.nextLine();

@@ -53,7 +53,7 @@ public class FlipfitCustomerMenu {
         boolean customerRegistered = false;
         if (userAdded) {
             customerRegistered = userDAO.registerCustomer(customer);
-            System.out.println("Customer registered: " + customerRegistered);
+//            System.out.println("Customer registered: " + customerRegistered);
         }
 
         // Log the outcome of the creation process
@@ -211,30 +211,45 @@ public class FlipfitCustomerMenu {
     public void addbookings(FlipFitCustomer customer) throws GymNotFoundException, BookingFailedException {
         List<City> cities = cityDAO.getAllCities();
         AtomicInteger itr = new AtomicInteger(1);
+
+        // Print available cities
         cities.forEach(city -> {
             System.out.println(itr.getAndIncrement() + ". " + city.getCityName());
         });
+
         System.out.println("Enter City: ");
-        String city=scanner.nextLine();
-        int c=1;
+        String city = scanner.nextLine();
+
         List<FlipFitGyms> gymCenters = customerService.viewGyms(city.toLowerCase());
-        for(FlipFitGyms gymCenter :gymCenters){
+
+        // Check if there are any gym centers available
+        if (gymCenters.isEmpty()) {
+            System.out.println("No gyms found for the city: " + city);
+            return; // Exit the method if no gyms are found
+        }
+
+        // Print available gyms
+        int c = 1;
+        for (FlipFitGyms gymCenter : gymCenters) {
             System.out.println(c + ". " + gymCenter.getGymName());
             c++;
         }
 
         System.out.println("Enter Gym Name: ");
-        String gn=scanner.nextLine();
+        String gn = scanner.nextLine();
         FlipFitGyms gymCenter_sel = gymCenters.stream()
                 .filter(gc -> gc.getGymName().equalsIgnoreCase(gn))
                 .findFirst()
                 .orElse(null);
-        if(gymCenter_sel != null){
+
+        if (gymCenter_sel != null) {
             List<FlipFitSlot> slots = gymCenter_sel.getSlot();
+
+            // Check if the selected gym has any slots available
             if (slots.isEmpty()) {
                 System.out.println("No slots available for this gym center.");
-            }
-            else{
+                return; // Exit the method if no slots are available
+            } else {
                 System.out.println("Available slots:");
                 for (int i = 0; i < slots.size(); i++) {
                     FlipFitSlot slot = slots.get(i);
@@ -244,21 +259,19 @@ public class FlipfitCustomerMenu {
 
                 System.out.print("Choose a slot (enter the number): ");
                 int choice = scanner.nextInt();
-                FlipFitSlot slot = slots.get(choice-1);
-                if(bookingService.addBooking(customer.getUserID(), gymCenter_sel, slot)){
+                FlipFitSlot slot = slots.get(choice - 1);
+
+                if (bookingService.addBooking(customer.getUserID(), gymCenter_sel, slot)) {
                     System.out.println("Booking successful!");
-                }
-                else {
+                } else {
                     throw new BookingFailedException("Booking failed!!");
-//                    System.out.println("Booking failed!");
                 }
             }
-        }
-        else{
-//            System.out.println("Invalid Gym Name.");
+        } else {
             throw new GymNotFoundException(gn);
         }
     }
+
     public void changePassword(FlipFitUser user) {
         System.out.println("Enter your Old Password");
         String password = scanner.nextLine();
