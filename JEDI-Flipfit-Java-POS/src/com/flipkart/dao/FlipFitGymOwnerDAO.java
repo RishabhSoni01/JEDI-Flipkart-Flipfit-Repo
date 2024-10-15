@@ -8,6 +8,12 @@ import com.flipkart.bean.FlipFitUser;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Interface for operations related to gym owners in the FlipFit application.
+ * Provides methods to manage gym owner profiles, gym centers, and time slots.
+ *
+ * @author JEDI GroupD
+ */
 public interface FlipFitGymOwnerDAO {
 
     /**
@@ -15,6 +21,7 @@ public interface FlipFitGymOwnerDAO {
      *
      * @param gymOwner the FlipFitGymOwner object containing updated information
      * @return true if the profile was updated successfully, false otherwise
+     * @author JEDI GroupD
      */
     public boolean updateProfile(FlipFitGymOwner gymOwner);
 
@@ -23,6 +30,7 @@ public interface FlipFitGymOwnerDAO {
      *
      * @param user the FlipFitUser object representing the user
      * @return the corresponding FlipFitGymOwner object
+     * @author JEDI GroupD
      */
     public FlipFitGymOwner getGymOwner(FlipFitUser user);
 
@@ -31,6 +39,7 @@ public interface FlipFitGymOwnerDAO {
      *
      * @param gymID the ID of the gym from which the slot will be removed
      * @param starttime the start time of the slot to be removed
+     * @author JEDI GroupD
      */
     public void removeSlot(String gymID, LocalDateTime starttime);
 
@@ -40,6 +49,7 @@ public interface FlipFitGymOwnerDAO {
      * @param gymID the ID of the gym to check
      * @param slot the FlipFitSlot object representing the slot to check
      * @return true if the slot exists, false otherwise
+     * @author JEDI GroupD
      */
     public boolean isSlotExists(String gymID, FlipFitSlot slot);
 
@@ -48,6 +58,7 @@ public interface FlipFitGymOwnerDAO {
      *
      * @param gymID the ID of the gym to which the slot will be added
      * @param slot the FlipFitSlot object representing the new slot
+     * @author JEDI GroupD
      */
     public void addSlots(String gymID, FlipFitSlot slot);
 
@@ -56,6 +67,7 @@ public interface FlipFitGymOwnerDAO {
      *
      * @param userid the ID of the user whose gym centers are to be retrieved
      * @return a List of FlipFitGyms objects associated with the user
+     * @author JEDI GroupD
      */
     public List<FlipFitGyms> getGymCenters(String userid);
 
@@ -64,6 +76,7 @@ public interface FlipFitGymOwnerDAO {
      *
      * @param gymCenter the FlipFitGyms object representing the new gym center
      * @return true if the gym center was added successfully, false otherwise
+     * @author JEDI GroupD
      */
     public boolean addGymCenter(FlipFitGyms gymCenter);
 }

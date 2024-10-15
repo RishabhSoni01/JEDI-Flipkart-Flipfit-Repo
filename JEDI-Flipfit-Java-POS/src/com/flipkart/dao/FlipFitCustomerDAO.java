@@ -9,6 +9,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+/**
+ * Interface for operations related to customer bookings in the FlipFit application.
+ * Provides methods to view, add, and remove bookings for customers.
+ *
+ * @author JEDI GroupD
+ */
 public interface FlipFitCustomerDAO {
 
     /**
@@ -16,6 +22,7 @@ public interface FlipFitCustomerDAO {
      *
      * @param userId the ID of the user whose bookings are to be retrieved
      * @return a List of Booking objects associated with the user
+     * @author JEDI GroupD
      */
     public List<Booking> viewBookings(String userId);
 
@@ -24,6 +31,7 @@ public interface FlipFitCustomerDAO {
      *
      * @param booking the Booking object to be added
      * @return true if the booking was added successfully, false otherwise
+     * @author JEDI GroupD
      */
     public boolean addBooking(Booking booking);
 
@@ -33,8 +41,7 @@ public interface FlipFitCustomerDAO {
      * @param userID the ID of the user whose booking is to be removed
      * @param slotID the ID of the slot associated with the booking
      * @return true if the booking was removed successfully, false otherwise
+     * @author JEDI GroupD
      */
     public boolean removeBooking(String userID, String slotID);
-
 }
-
