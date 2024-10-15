@@ -3,7 +3,6 @@ package com.flipkart.business;
 import com.flipkart.bean.*;
 import com.flipkart.dao.FlipFitUserDAOImplement;
 import com.flipkart.dao.FlipFitAdminDAOImplement;
-import com.flipkart.exception.GymNotFoundException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -77,14 +76,15 @@ public class FlipfitAdminService implements FlipfitAdminServiceInterface {
     }
 
     @Override
-    public Object approveGymOwner(String gymOwnerId) {
+    public void approveGymOwner(String gymOwnerId) {
         // Approve a gym owner based on their ID
         boolean flag = adminDAO.approveGymOwner(gymOwnerId);
         if (flag) {
-            return "Gym Owner approved successfully";
+            System.out.println("Gym Owner approved successfully");
         } else {
-            return "Gym Owner not approved";
+            System.out.println("Gym Owner not approved");
         }
+
     }
 
     @Override
