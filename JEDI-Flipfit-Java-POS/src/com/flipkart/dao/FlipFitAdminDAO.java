@@ -7,7 +7,7 @@ import com.flipkart.bean.*;
  * Interface for administrative operations related to gym owners, gyms, and customers.
  * Provides methods to approve requests and retrieve information about pending and approved entities.
  *
- * @author JEDI GroupD
+ * @author Mukul
  */
 public interface FlipFitAdminDAO {
 
@@ -16,7 +16,6 @@ public interface FlipFitAdminDAO {
      *
      * @param gymOwnerId the ID of the gym owner to be approved.
      * @return true if the approval was successful, false otherwise.
-     * @author JEDI GroupD
      */
     public boolean approveGymOwner(String gymOwnerId);
 
@@ -25,7 +24,6 @@ public interface FlipFitAdminDAO {
      *
      * @param customerId the ID of the customer to be approved.
      * @return true if the approval was successful, false otherwise.
-     * @author JEDI GroupD
      */
     public boolean approveCustomer(String customerId);
 
@@ -33,7 +31,6 @@ public interface FlipFitAdminDAO {
      * Retrieves a list of all pending gym owner requests.
      *
      * @return a list of FlipFitGymOwner objects representing gym owners awaiting approval.
-     * @author JEDI GroupD
      */
     public List<FlipFitGymOwner> getPendingGymOwners();
 
@@ -41,7 +38,6 @@ public interface FlipFitAdminDAO {
      * Retrieves a list of all pending gym requests.
      *
      * @return a list of FlipFitGyms objects representing gyms awaiting approval.
-     * @author JEDI GroupD
      */
     public List<FlipFitGyms> getPendingGymCenters();
 
@@ -50,7 +46,6 @@ public interface FlipFitAdminDAO {
      *
      * @param gymId the ID of the gym to be approved.
      * @return true if the approval was successful, false otherwise.
-     * @author JEDI GroupD
      */
     public boolean approveGymCenter(String gymId);
 
@@ -58,7 +53,6 @@ public interface FlipFitAdminDAO {
      * Retrieves a list of all gyms in the system.
      *
      * @return a list of FlipFitGyms objects representing all gyms.
-     * @author JEDI GroupD
      */
     public List<FlipFitGyms> getAllGymCenters();
 
@@ -66,7 +60,6 @@ public interface FlipFitAdminDAO {
      * Retrieves a list of all gym owners.
      *
      * @return a list of FlipFitGymOwner objects associated with the gym owners.
-     * @author JEDI GroupD
      */
     public List<FlipFitGymOwner> getAllGymOwners();
 
@@ -74,7 +67,6 @@ public interface FlipFitAdminDAO {
      * Retrieves a list of all customers in the system.
      *
      * @return a list of FlipFitCustomer objects representing all customers.
-     * @author JEDI GroupD
      */
     public List<FlipFitCustomer> getAllCustomers();
 
@@ -82,7 +74,6 @@ public interface FlipFitAdminDAO {
      * Retrieves a list of all pending customer requests.
      *
      * @return a list of FlipFitCustomer objects representing pending customer requests.
-     * @author JEDI GroupD
      */
     public List<FlipFitCustomer> getPendingCustomers();
 }

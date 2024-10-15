@@ -4,7 +4,7 @@ package com.flipkart.bean;
  * Represents a city entity within the Flipkart application.
  * This class holds the information regarding a city including its ID and name.
  *
- * @author JEDI-GroupD
+ * @author Khushi
  * @params this class does not have any parameters.
  * @throws this class does not throw any exceptions.
  */
@@ -18,8 +18,7 @@ public class City {
     /**
      * Constructs a City object with the specified city ID and name.
      *
-     * @param cityID   the unique identifier for the city.
-     * @param cityName the name of the city.
+     * @param cityID,cityName
      */
     public City(String cityID, String cityName) {
         this.cityID = cityID;
@@ -38,7 +37,7 @@ public class City {
     /**
      * Sets the unique identifier for the city.
      *
-     * @param cityID the unique identifier to set for the city.
+     * @param cityID
      */
     public void setCityID(String cityID) {
         this.cityID = cityID;
@@ -56,7 +55,7 @@ public class City {
     /**
      * Sets the name of the city.
      *
-     * @param cityName the name to set for the city.
+     * @param cityName
      */
     public void setCityName(String cityName) {
         this.cityName = cityName;

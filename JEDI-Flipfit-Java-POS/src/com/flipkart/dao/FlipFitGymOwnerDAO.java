@@ -12,7 +12,7 @@ import java.util.List;
  * Interface for operations related to gym owners in the FlipFit application.
  * Provides methods to manage gym owner profiles, gym centers, and time slots.
  *
- * @author JEDI GroupD
+ * @author Mukul
  */
 public interface FlipFitGymOwnerDAO {
 
@@ -37,8 +37,7 @@ public interface FlipFitGymOwnerDAO {
     /**
      * Removes a specific time slot from a gym's schedule.
      *
-     * @param gymID the ID of the gym from which the slot will be removed
-     * @param starttime the start time of the slot to be removed
+     * @param gymID,starttime
      * @author JEDI GroupD
      */
     public void removeSlot(String gymID, LocalDateTime starttime);
@@ -46,8 +45,7 @@ public interface FlipFitGymOwnerDAO {
     /**
      * Checks if a specified time slot exists for a given gym.
      *
-     * @param gymID the ID of the gym to check
-     * @param slot the FlipFitSlot object representing the slot to check
+     * @param gymID,slot
      * @return true if the slot exists, false otherwise
      * @author JEDI GroupD
      */
@@ -56,8 +54,7 @@ public interface FlipFitGymOwnerDAO {
     /**
      * Adds a new time slot to a gym's schedule.
      *
-     * @param gymID the ID of the gym to which the slot will be added
-     * @param slot the FlipFitSlot object representing the new slot
+     * @param gymID,slot
      * @author JEDI GroupD
      */
     public void addSlots(String gymID, FlipFitSlot slot);

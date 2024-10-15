@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
  * Represents a booking made by a user at a gym center.
  * This class contains information about the user, the booking, and the gym associated with the booking.
  *
- * @Author : JEDI-GroupD
- * @Params : This class does not have any parameters.
- * @Exceptions : Raises no exceptions.
+ * @author Rishabh
+ * @params This class does not have any parameters.
+ * @exceptions Raises no exceptions.
  */
 public class Booking {
     // Unique identifier of the user making the booking.
@@ -35,13 +35,7 @@ public class Booking {
     /**
      * Constructs a Booking object with specified details.
      *
-     * @param userID     the unique identifier of the user making the booking.
-     * @param bookingID  the unique identifier for this booking.
-     * @param gymID      the unique identifier for the gym center.
-     * @param slotID     the unique identifier for the booking slot.
-     * @param gymName    the name of the gym center.
-     * @param slot       the slot details for the booking.
-     * @param bookingDate the date and time of the booking.
+     * @param userID,bookingID,gymID,slotID,gymName,slot,bookingDate
      */
     public Booking(String userID, String bookingID, String gymID, String slotID, String gymName, FlipFitSlot slot, LocalDateTime bookingDate) {
         this.userID = userID;
@@ -56,11 +50,7 @@ public class Booking {
     /**
      * Constructs a Booking object with specified user and booking details.
      *
-     * @param userID      the unique identifier of the user making the booking.
-     * @param bookingID   the unique identifier for this booking.
-     * @param gymID       the unique identifier for the gym center.
-     * @param slotID      the unique identifier for the booking slot.
-     * @param bookingDate  the date and time of the booking.
+     * @param userID,bookingID,gymID,slotID,bookingDate
      */
     public Booking(String userID, String bookingID, String gymID, String slotID, LocalDateTime bookingDate) {
         this.userID = userID;
@@ -82,7 +72,7 @@ public class Booking {
     /**
      * Sets the unique identifier of the user making the booking.
      *
-     * @param userID the unique identifier of the user.
+     * @param userID
      */
     public void setUserID(String userID) {
         this.userID = userID;
@@ -100,7 +90,7 @@ public class Booking {
     /**
      * Sets the unique identifier for this booking.
      *
-     * @param bookingID the unique identifier to set for this booking.
+     * @param bookingID
      */
     public void setBookingID(String bookingID) {
         this.bookingID = bookingID;
@@ -118,7 +108,7 @@ public class Booking {
     /**
      * Sets the unique identifier for the gym center associated with this booking.
      *
-     * @param gymID the unique identifier to set for the gym center.
+     * @param gymID
      */
     public void setGymID(String gymID) {
         this.gymID = gymID;
@@ -136,7 +126,7 @@ public class Booking {
     /**
      * Sets the unique identifier for the booking slot.
      *
-     * @param slotID the unique identifier to set for the booking slot.
+     * @param slotID
      */
     public void setSlotID(String slotID) {
         this.slotID = slotID;
@@ -154,7 +144,7 @@ public class Booking {
     /**
      * Sets the name of the gym center associated with this booking.
      *
-     * @param gymName the name to set for the gym center.
+     * @param gymName
      */
     public void setGymName(String gymName) {
         this.gymName = gymName;
@@ -172,7 +162,7 @@ public class Booking {
     /**
      * Sets the slot details for this booking.
      *
-     * @param slot the slot information to set for this booking.
+     * @param slot
      */
     public void setSlot(FlipFitSlot slot) {
         this.slot = slot;
@@ -190,7 +180,7 @@ public class Booking {
     /**
      * Sets the date and time of the booking.
      *
-     * @param bookingDate the date and time to set for this booking.
+     * @param bookingDate
      */
     public void setBookingDate(LocalDateTime bookingDate) {
         this.bookingDate = bookingDate;

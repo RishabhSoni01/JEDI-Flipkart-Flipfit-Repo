@@ -13,19 +13,17 @@ import com.flipkart.exception.RegistrationFailedException;
  * registration, and updates. Implementing classes will provide the actual
  * functionality for interacting with the database or other data sources.
  *
- * @author JEDI GroupD
+ * @author SreeLakshmi
  */
 public interface FlipFitUserDAO {
 
     /**
      * Validates a user's credentials.
      *
-     * @param username The username of the user.
-     * @param password The password of the user.
+     * @param username,password
      * @return A FlipFitUser object if the credentials are valid; otherwise, returns null.
      * @throws InvalidLogin if the credentials are invalid.
      * @throws UserNotFoundException if the user is not found.
-     * @author JEDI GroupD
      */
     public FlipFitUser validateUser(String username, String password) throws InvalidLogin, UserNotFoundException;
 
@@ -35,7 +33,6 @@ public interface FlipFitUserDAO {
      * @param gymOwner The FlipFitGymOwner object containing details of the gym owner.
      * @return True if the registration is successful; false otherwise.
      * @throws RegistrationFailedException if the registration fails.
-     * @author JEDI GroupD
      */
     public boolean registerGymOwner(FlipFitGymOwner gymOwner) throws RegistrationFailedException;
 
@@ -45,7 +42,6 @@ public interface FlipFitUserDAO {
      * @param customer The FlipFitCustomer object containing details of the customer.
      * @return True if the registration is successful; false otherwise.
      * @throws RegistrationFailedException if the registration fails.
-     * @author JEDI GroupD
      */
     public boolean registerCustomer(FlipFitCustomer customer) throws RegistrationFailedException;
 
@@ -54,7 +50,6 @@ public interface FlipFitUserDAO {
      *
      * @param user The FlipFitUser object containing updated user details.
      * @return True if the update is successful; false otherwise.
-     * @author JEDI GroupD
      */
     public boolean updateUser(FlipFitUser user);
 }

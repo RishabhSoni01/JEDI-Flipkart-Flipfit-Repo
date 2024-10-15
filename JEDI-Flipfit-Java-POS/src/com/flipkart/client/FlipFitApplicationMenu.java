@@ -14,7 +14,7 @@ import com.flipkart.exception.InvalidChoiceException;
 import com.flipkart.exception.InvalidLogin;
 
 /**
-* @author Manali Mahajan
+* @author Rishabh
 * @exceptions InvalidLogin, GymNotFound
 * */
 public class FlipFitApplicationMenu{

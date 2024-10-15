@@ -8,7 +8,7 @@ import java.util.List;
  * Interface for interacting with city-related data in the database.
  * Provides methods to manage and retrieve information about cities and associated gyms.
  *
- * @author JEDI GroupD
+ * @author Komal
  */
 public interface CityDAO {
 

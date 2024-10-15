@@ -5,6 +5,10 @@ import com.flipkart.dao.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * @author Rishabh
+ */
+
 public class BookingService implements BookingInterface{
     // Service for customer-related operations
     private FlipfitCustomerService customerService = new FlipfitCustomerService();
@@ -15,9 +19,7 @@ public class BookingService implements BookingInterface{
     /**
      * Adds a booking for a user if the specified slot is available.
      *
-     * @param userId The ID of the user making the booking.
-     * @param gym The gym object representing the selected gym.
-     * @param slot The time slot object representing the chosen time slot.
+     * @param userId,gym,slot
      * @return true if the booking is successfully added, false otherwise.
      */
     public boolean addBooking(String userId, FlipFitGyms gym, FlipFitSlot slot) {
@@ -59,8 +61,7 @@ public class BookingService implements BookingInterface{
      * Checks if a booking is valid for a given slot and gym.
      * Currently not implemented.
      *
-     * @param slotId The ID of the slot to check.
-     * @param gymId The ID of the gym to check.
+     * @param slotId,gymId
      * @return false as this method is not yet implemented.
      */
     public boolean checkValidBooking(String slotId, String gymId) {
@@ -70,8 +71,7 @@ public class BookingService implements BookingInterface{
     /**
      * Cancels an existing booking based on user ID and slot ID.
      *
-     * @param userID The ID of the user whose booking is to be canceled.
-     * @param slotID The ID of the slot to be canceled.
+     * @param userID,slotID
      * @return true if the booking was successfully canceled, false otherwise.
      */
     public boolean cancelBooking(String userID, String slotID) {

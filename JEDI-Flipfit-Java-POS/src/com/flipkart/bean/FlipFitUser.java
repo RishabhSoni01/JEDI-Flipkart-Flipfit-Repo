@@ -1,13 +1,11 @@
 package com.flipkart.bean;
+
 /**
  * Represents a user in the FlipFit application.
  * This class holds details about a user, including personal information,
  * contact details, authentication credentials, and role within the system.
-
- * @author JEDI-GroupD
- * @params This class does not have any parameters.
- * @throws this class does not throw any exceptions.
-
+ *
+ * @author Kabir
  */
 public class FlipFitUser {
 
@@ -41,15 +39,7 @@ public class FlipFitUser {
     /**
      * Constructor to initialize a FlipFitUser object with necessary details.
      *
-     * @param userID      Unique identifier for the user.
-     * @param name        User's name.
-     * @param email       User's email address.
-     * @param phoneNumber User's phone number.
-     * @param password    User's password.
-     * @param city        User's city.
-     * @param pincode     User's postal code.
-     * @param roleID      User's role identifier.
-     * @param username    User's username for login.
+     * @param userID,name,email,phoneNumber,password,city,pincode,roleID,username
      */
     public FlipFitUser(String userID, String name, String email, String phoneNumber,
                        String password, String city, String pincode, int roleID, String username) {

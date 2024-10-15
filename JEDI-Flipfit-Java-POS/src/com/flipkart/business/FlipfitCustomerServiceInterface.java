@@ -8,7 +8,7 @@ import com.flipkart.bean.Booking;
 import java.util.List;
 
 /**
- * Author: JEDI-Group D - Flipkart Development
+ * @author Manali
  *
  * This interface defines the operations for customer management,
  * including viewing gyms, creating customer profiles, and managing bookings.
@@ -29,20 +29,14 @@ public interface FlipfitCustomerServiceInterface {
     /**
      * Creates a new customer profile with the provided details.
      *
-     * @param name     The name of the customer.
-     * @param email    The email of the customer.
-     * @param phone    The phone number of the customer.
-     * @param password The password for the customer's account.
-     * @param city     The city of the customer.
-     * @param pincode  The pincode for the customer's address.
-     * @param username The username chosen by the customer.
+     * @param name,email,phone,password,city,pincode,username
      */
     public void createCustomer(String name, String email, String phone, String password, String city, String pincode, String username);
 
     /**
      * Retrieves a list of bookings associated with the specified user.
      *
-     * @param userId The ID of the user whose bookings are to be retrieved.
+     * @param userId
      * @return A list of bookings for the specified user.
      */
     public List<Booking> viewBookings(String userId);
@@ -56,7 +50,7 @@ public interface FlipfitCustomerServiceInterface {
     /**
      * Displays the profile information of the specified customer.
      *
-     * @param customer The customer whose profile is to be viewed.
+     * @param customer
      */
     public void viewProfile(FlipFitCustomer customer);
 
@@ -72,7 +66,7 @@ public interface FlipfitCustomerServiceInterface {
     /**
      * Edits the profile information of the specified customer.
      *
-     * @param customer The customer whose profile information is to be updated.
+     * @param customer
      * @return True if the profile was updated successfully; false otherwise.
      */
     public boolean editProfile(FlipFitCustomer customer);

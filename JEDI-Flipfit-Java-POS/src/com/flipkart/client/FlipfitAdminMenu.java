@@ -9,7 +9,7 @@ import com.flipkart.exception.InvalidChoiceException;
 
 import java.util.*;
 /*
-* @author Kushi Srivastava
+* @author Khushi
 * @exceptions InvalidChoice
 * */
 public class FlipfitAdminMenu {

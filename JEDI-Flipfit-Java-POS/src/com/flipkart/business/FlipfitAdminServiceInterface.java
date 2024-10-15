@@ -7,7 +7,7 @@ import com.flipkart.bean.FlipFitGyms;
 import java.util.List;
 
 /**
- * Author: JEDI-Group D - Flipkart Development
+ * @author Mukul
  *
  * This interface defines the operations for admin management,
  * including approval of gym owners and customers, and retrieving
@@ -18,7 +18,7 @@ public interface FlipfitAdminServiceInterface {
     /**
      * Approves a gym owner by their ID.
      *
-     * @param gymOwnerId The ID of the gym owner to be approved.
+     * @param gymOwnerId
      * @return An object indicating the approval status.
      */
     public Object approveGymOwner(String gymOwnerId);
@@ -61,8 +61,7 @@ public interface FlipfitAdminServiceInterface {
     /**
      * Validates the login credentials of an admin.
      *
-     * @param username The username of the admin.
-     * @param password The password of the admin.
+     * @param username,password
      * @return True if the login is successful, false otherwise.
      */
     public Boolean login(String username, String password);
@@ -84,7 +83,7 @@ public interface FlipfitAdminServiceInterface {
     /**
      * Approves a customer by their ID.
      *
-     * @param customerId The ID of the customer to be approved.
+     * @param customerId
      * @return A message indicating the approval status.
      */
     public Object approveCustomers(String customerId);

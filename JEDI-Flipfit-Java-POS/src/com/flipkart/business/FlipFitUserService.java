@@ -21,7 +21,7 @@ public class FlipFitUserService implements FlipFitUserInterface{
     /**
      * Adds a user to the in-memory UsersMap.
      *
-     * @param user The FlipFitUser object to be added.
+     * @param user
      */
     public void addUser(FlipFitUser user) {
         UsersMap.put(user.getUsername(), user);
@@ -30,8 +30,7 @@ public class FlipFitUserService implements FlipFitUserInterface{
     /**
      * Authenticates a user with the given username and password.
      *
-     * @param username The username of the user.
-     * @param password The password of the user.
+     * @param username,password
      * @return The authenticated FlipFitUser object, or null if authentication fails.
 //     */
 //    public FlipFitUser login(String username, String password) throws InvalidLogin{
@@ -56,8 +55,7 @@ public class FlipFitUserService implements FlipFitUserInterface{
     /**
      * Validates the user's old password.
      *
-     * @param user        The FlipFitUser object whose password is to be validated.
-     * @param oldPassword The old password to compare against.
+     * @param user,oldPassword
      * @return True if the old password matches, false otherwise.
      */
     public boolean validatePassword(FlipFitUser user, String oldPassword) {
@@ -67,9 +65,7 @@ public class FlipFitUserService implements FlipFitUserInterface{
     /**
      * Confirms and updates the user's password if the new passwords match.
      *
-     * @param user             The FlipFitUser object whose password is to be updated.
-     * @param newPassword      The new password to set.
-     * @param confirmPassword   The confirmation of the new password.
+     * @param user,newPassword,confirmPassword
      */
     public void confirmPassword(FlipFitUser user, String newPassword, String confirmPassword) {
         if (newPassword.equals(confirmPassword)) {
@@ -85,7 +81,7 @@ public class FlipFitUserService implements FlipFitUserInterface{
     /**
      * Registers a gym owner in the system.
      *
-     * @param gymOwner The FlipFitGymOwner object to be registered.
+     * @param gymOwner
      * @return True if registration is successful, false otherwise.
      */
 
@@ -96,7 +92,7 @@ public class FlipFitUserService implements FlipFitUserInterface{
     /**
      * Registers a customer in the system.
      *
-     * @param customer The FlipFitCustomer object to be registered.
+     * @param customer
      * @return True if registration is successful, false otherwise.
      */
 

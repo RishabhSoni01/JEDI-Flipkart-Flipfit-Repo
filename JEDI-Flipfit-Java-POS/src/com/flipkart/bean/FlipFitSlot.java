@@ -1,18 +1,15 @@
 package com.flipkart.bean;
 
 import java.time.LocalDateTime;
+
 /**
  * Represents a slot in a gym for booking.
  * This class holds details about a specific time slot,
  * including its unique identifier, associated gym, time range,
  * and availability of seats.
-
- * @author JEDI-GroupD
- * @params This class does not have any parameters.
- * @throws this class does not throw any exceptions.
+ *
+ * @author SreeLakshmi
  */
-
-
 public class FlipFitSlot {
 
     // Unique identifier for the slot
@@ -33,11 +30,7 @@ public class FlipFitSlot {
     /**
      * Constructor to initialize a FlipFitSlot object.
      *
-     * @param slotId          Unique identifier for the slot.
-     * @param gymId           Identifier for the gym.
-     * @param startTime       Start time of the slot.
-     * @param endTime         End time of the slot.
-     * @param seatsAvailable   Number of seats available for booking.
+     * @param slotId,gymId,startTime,endTime,seatsAvailable
      */
     public FlipFitSlot(String slotId, String gymId, LocalDateTime startTime, LocalDateTime endTime, int seatsAvailable) {
         this.slotId = slotId;

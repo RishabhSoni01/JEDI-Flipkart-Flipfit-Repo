@@ -27,7 +27,7 @@ public class FlipfitGymOwnerService implements FlipfitGymOwnerServiceInterface {
     /**
      * Edits the profile of the gym owner.
      *
-     * @param gymOwner The gym owner whose profile needs to be edited.
+     * @param gymOwner
      * @return True if the profile was successfully updated, false otherwise.
      */
     public boolean editProfile(FlipFitGymOwner gymOwner) {
@@ -37,16 +37,7 @@ public class FlipfitGymOwnerService implements FlipfitGymOwnerServiceInterface {
     /**
      * Registers a new gym owner.
      *
-     * @param name     The name of the gym owner.
-     * @param email    The email of the gym owner.
-     * @param phone    The phone number of the gym owner.
-     * @param password The password for the gym owner account.
-     * @param city     The city where the gym owner resides.
-     * @param pincode  The pincode for the gym owner's address.
-     * @param username The username for the gym owner account.
-     * @param pancard  The PAN card number of the gym owner.
-     * @param aadhar   The Aadhar number of the gym owner.
-     * @param gst      The GST number of the gym owner.
+     * @param name,email,phone,password,city,pincode,username,pancard,aadhar,gst
      */
     public void createGymOwner(String name, String email, String phone, String password, String city, String pincode, String username, String pancard, String aadhar, String gst) {
         System.out.println("Registering Gym Owner");
@@ -111,8 +102,7 @@ public class FlipfitGymOwnerService implements FlipfitGymOwnerServiceInterface {
     /**
      * Searches for a gym center by name and city.
      *
-     * @param name The name of the gym center.
-     * @param city The city where the gym center is located.
+     * @param name,city
      * @return The gym center if found, null otherwise.
      */
     public FlipFitGyms searchcitygc(String name, String city) {
@@ -134,7 +124,7 @@ public class FlipfitGymOwnerService implements FlipfitGymOwnerServiceInterface {
     /**
      * Displays all gym centers associated with a specific gym owner.
      *
-     * @param gymOwner The gym owner whose gym centers are to be displayed.
+     * @param gymOwner
      */
     public void showGymCenters(FlipFitGymOwner gymOwner) {
         List<FlipFitGyms> gymCenters = gymOwnerDAO.getGymCenters(gymOwner.getUserID());
@@ -149,7 +139,7 @@ public class FlipfitGymOwnerService implements FlipfitGymOwnerServiceInterface {
     /**
      * Allows the gym owner to edit slots for their gym centers.
      *
-     * @param gymOwner The gym owner performing the slot edits.
+     * @param gymOwner
      */
     public void editSlots(FlipFitGymOwner gymOwner) {
         try {

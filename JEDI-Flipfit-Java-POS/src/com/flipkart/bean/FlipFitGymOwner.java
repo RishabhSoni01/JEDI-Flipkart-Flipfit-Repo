@@ -1,16 +1,13 @@
 package com.flipkart.bean;
 
 import java.util.List;
+
 /**
  * Represents a gym owner in the FlipFit system, extending the FlipFitUser class.
  * This class includes additional attributes specific to gym owners, such as
  * identification and approval status.
-
-
- * @author JEDI-GroupD
- * @params This class does not have any parameters.
- * @throws this class does not throw any exceptions.
-/**
+ *
+ * @author Manali
  */
 public class FlipFitGymOwner extends FlipFitUser {
 
@@ -32,18 +29,7 @@ public class FlipFitGymOwner extends FlipFitUser {
     /**
      * Constructor to create a FlipFitGymOwner object with required details.
      *
-     * @param userID      Unique identifier for the gym owner.
-     * @param name        Name of the gym owner.
-     * @param email       Email address of the gym owner.
-     * @param phoneNumber Phone number of the gym owner.
-     * @param password    Password for the gym owner's account.
-     * @param city        City where the gym owner is located.
-     * @param pincode     Postal code for the gym owner's location.
-     * @param role        Role identifier (specifically for gym owners).
-     * @param username    Username for login purposes.
-     * @param panCard     PAN card number of the gym owner.
-     * @param aadhar      Aadhar card number of the gym owner.
-     * @param GST         GST registration number of the gym owner.
+     * @param userID,name,email,phoneNumber,password,city,pincode,role,username,panCard,aadhar,GST
      */
     public FlipFitGymOwner(String userID, String name, String email, String phoneNumber,
                            String password, String city, String pincode, int role,

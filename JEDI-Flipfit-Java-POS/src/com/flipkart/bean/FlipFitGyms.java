@@ -1,16 +1,13 @@
 package com.flipkart.bean;
 
-import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Represents a gym in the FlipFit application.
  * This class contains details about the gym, including its
  * identifier, name, status, owner, location, and available slots.
  *
- * @author JEDI-GroupD
- * @params This class does not have any parameters.
- * @throws this class does not throw any exceptions.
-
+ * @author Kabir
  */
 public class FlipFitGyms {
 
@@ -41,14 +38,7 @@ public class FlipFitGyms {
     /**
      * Constructor to initialize a FlipFitGyms object.
      *
-     * @param gymId        Unique identifier for the gym.
-     * @param gymName      Name of the gym.
-     * @param numberOfSlots Total number of slots in the gym.
-     * @param gymStatus    Status of the gym (open/closed).
-     * @param owner        Identifier for the gym owner.
-     * @param city         City where the gym is located.
-     * @param pincode      Postal code for the gym's location.
-     * @param slot         List of available slots in the gym.
+     * @param gymId,gymName,numberOfSlots,gymStatus,owner,city,pincode,slot
      */
     public FlipFitGyms(String gymId, String gymName, int numberOfSlots, Boolean gymStatus,
                        String owner, String city, String pincode, List<FlipFitSlot> slot) {

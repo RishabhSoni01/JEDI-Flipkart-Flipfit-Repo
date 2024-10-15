@@ -23,13 +23,7 @@ public class FlipfitCustomerService implements FlipfitCustomerServiceInterface {
     /**
      * Creates a new customer account.
      *
-     * @param name     The name of the customer.
-     * @param email    The email of the customer.
-     * @param phone    The phone number of the customer.
-     * @param password The password for the customer account.
-     * @param city     The city where the customer resides.
-     * @param pincode  The pincode for the customer's address.
-     * @param username The username for the customer account.
+     * @param name,email,phone,password,city,pincode,username
      */
     public void createCustomer(String name, String email, String phone, String password, String city, String pincode, String username) {
         // Create a new role for the customer

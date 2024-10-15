@@ -4,10 +4,7 @@ import java.util.List;
 /**
  * Represents an admin user in the FlipFit system, extending FlipFitUser.
  * This class provides a default constructor initializing admin details.
- * @author JEDI-GroupD
- * @params This class does not have any parameters.
- * @throws this class does not throw any exceptions.
-
+ * @author Mukul
  */
 public class FlipFitCustomer extends FlipFitUser {
 
@@ -27,6 +24,12 @@ public class FlipFitCustomer extends FlipFitUser {
     }
 
     private int approval;
+
+    /**
+     * Default constructor for creating a customer.
+     *
+     * @param userID,name,email,phoneNumber,password,city,pincode,role,username,bookings
+     */
 
     public FlipFitCustomer(String userID, String name, String email, String phoneNumber, String password, String city, String pincode, int role,String username,List<Booking> bookings) {
         super(userID, name, email, phoneNumber, password, city, pincode, role,username);
