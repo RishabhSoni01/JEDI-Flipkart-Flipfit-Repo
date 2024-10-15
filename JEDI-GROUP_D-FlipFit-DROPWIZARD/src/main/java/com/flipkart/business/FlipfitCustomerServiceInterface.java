@@ -3,6 +3,7 @@ package com.flipkart.business;
 import com.flipkart.bean.Booking;
 import com.flipkart.bean.FlipFitCustomer;
 import com.flipkart.bean.FlipFitGyms;
+import com.flipkart.bean.FlipFitUser;
 
 import java.util.List;
 
@@ -72,8 +73,9 @@ public interface FlipfitCustomerServiceInterface {
     /**
      * Retrieves a customer by their ID.
      *
-     * @param userId The ID of the customer to retrieve.
+     * @param user The ID of the customer to retrieve.
      * @return The customer object, or null if not found.
      */
+    public FlipFitCustomer getCustomer(FlipFitUser user);
     public FlipFitCustomer getCustomerById(String userId);
 }

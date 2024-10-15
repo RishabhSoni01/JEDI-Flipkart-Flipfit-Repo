@@ -4,6 +4,8 @@ import com.codahale.metrics.annotation.Timed;
 import com.flipkart.bean.FlipFitCustomer;
 import com.flipkart.bean.FlipFitGyms;
 import com.flipkart.bean.FlipFitGymOwner;
+import com.flipkart.bean.FlipFitUser;
+import com.flipkart.business.FlipFitUserService;
 import com.flipkart.business.FlipfitAdminService;
 import com.flipkart.business.FlipfitGymOwnerService;
 
@@ -12,14 +14,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/admin")
+@Path("/")
 @Produces(MediaType.APPLICATION_JSON)
 public class FlipFitAdminController {
     private static FlipfitAdminService adminService = new FlipfitAdminService();
     private static FlipfitGymOwnerService gymOwnerService = new FlipfitGymOwnerService();
+    private static FlipFitUserService userService = new FlipFitUserService();
 
     @GET
-    @Path("/gym-owner/pending-list")
+    @Path("/admin/gym-owner/pending-list")
     @Timed
     public Response viewPendingGymOwners() {
         try {
@@ -31,7 +34,7 @@ public class FlipFitAdminController {
     }
 
     @GET
-    @Path("/gym-owner/all")
+    @Path("/admin/gym-owner/all")
     @Timed
     public Response viewGymOwners() {
         try {
@@ -43,7 +46,7 @@ public class FlipFitAdminController {
     }
 
     @GET
-    @Path("/gym-centre/pending-list")
+    @Path("/admin/gym-centre/pending-list")
     @Timed
     public Response viewPendingGymCentres() {
         try {
@@ -55,7 +58,7 @@ public class FlipFitAdminController {
     }
 
     @POST
-    @Path("/gym-owner/handle")
+    @Path("/admin/gym-owner/approve")
     @Timed
     @Consumes(MediaType.APPLICATION_JSON)
     public Response handleGymOwner(@QueryParam("id") String gymOwnerId) {
@@ -68,7 +71,7 @@ public class FlipFitAdminController {
     }
 
     @POST
-    @Path("/gym-centre/handle")
+    @Path("/admin/gym-centre/approve")
     @Timed
     @Consumes(MediaType.APPLICATION_JSON)
     public Response handleGymCentre(@QueryParam("id") String gymId) {
@@ -81,7 +84,7 @@ public class FlipFitAdminController {
     }
 
     @GET
-    @Path("/gym-centre/all")
+    @Path("/admin/gym-centre/all")
     @Timed
     public Response viewGyms() {
         try {
@@ -93,7 +96,7 @@ public class FlipFitAdminController {
     }
 
     @GET
-    @Path("/customer/all")
+    @Path("/admin/customer/all")
     @Timed
     public Response getAllCustomers() {
         try {
@@ -105,7 +108,7 @@ public class FlipFitAdminController {
     }
 
     @GET
-    @Path("/customer/pending")
+    @Path("/admin/customer/pending")
     @Timed
     public Response getPendingCustomers() {
         try {
@@ -117,7 +120,7 @@ public class FlipFitAdminController {
     }
 
     @POST
-    @Path("/customer/approve")
+    @Path("/admin/customer/approve")
     @Timed
     @Consumes(MediaType.APPLICATION_JSON)
     public Response approveCustomer(@QueryParam("id") String customerId) {
@@ -129,19 +132,45 @@ public class FlipFitAdminController {
         }
     }
 
-    @POST
+
+    @GET
     @Path("/login")
-    @Timed
-    public Response login(@QueryParam("username") String username, @QueryParam("password") String password) {
+    public Response adminLogin(@QueryParam("username") String username, @QueryParam("password") String password) {
         try {
-            Boolean isAuthenticated = adminService.login(username, password);
-            if (isAuthenticated) {
-                return Response.ok("Login Successful").build();
+            // Attempt to login the user
+            FlipFitUser user = userService.login(username, password);
+
+            // Check if the user is not null and is an admin
+            if (user != null) {
+                if (user.getRole() == 1) { // Check if the user is an admin
+                    System.out.println("Login Success for Admin");
+//                    return Response.ok("Login Successful").build();
+                    return Response.ok(user).build();
+
+                }
+                else if (user.getRole() == 2) { // Check if the user is an admin
+                    System.out.println("Login Success for GymOwner");
+//                    return Response.ok("Login Successful").build();
+                    return Response.ok(user).build();
+                }
+                else if (user.getRole() == 3) { // Check if the user is an admin
+                    System.out.println("Login Success for Customer");
+//                    return Response.ok("Login Successful").build();
+                    return Response.ok(user).build();
+                }
+                else {
+                    return Response.status(Response.Status.UNAUTHORIZED)
+                            .entity("Access denied: Not an customer").build();
+                }
             } else {
-                return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid credentials").build();
+                return Response.status(Response.Status.UNAUTHORIZED)
+                        .entity("Invalid credentials").build();
             }
-        } catch (Exception e) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+        } catch (Exception exception) {
+            return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity("Login failed: " + exception.getMessage()).build();
         }
     }
+
 }
+

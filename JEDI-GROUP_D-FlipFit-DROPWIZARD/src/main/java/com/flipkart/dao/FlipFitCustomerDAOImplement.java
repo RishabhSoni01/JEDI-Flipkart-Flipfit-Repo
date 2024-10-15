@@ -155,6 +155,31 @@ public class FlipFitCustomerDAOImplement implements FlipFitCustomerDAO {
         return customer;
     }
 
+
+//    public FlipFitCustomer getCustomer(String username) {
+//        FlipFitCustomer customer = null;
+//        String sql = "SELECT * FROM FlipFitCustomer WHERE username = ?";
+//        List<Booking> bookings = null;
+//        try (Connection connection = dbutils.getConnection();
+//             PreparedStatement statement = connection.prepareStatement(sql)) {
+//
+//            statement.setString(1, username);
+//            try (ResultSet resultSet = statement.executeQuery()) {
+//                if (resultSet.next()) {
+//                    String userid = resultSet.getString("userid");
+//                    String name = resultSet.getString("name");
+//                    String email = resultSet.getString("email");
+//                    String contactNo = resultSet.getString("phoneNumber");
+//                    String city = resultSet.getString("city");
+//                    customer = new FlipFitCustomer(userid, name, email, contactNo, user.getPassword(), city, user.getPincode(), user.getRole(), username, bookings);
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return customer;
+//    }
+
     // Checks if a booking already exists for a specific user and slot.
     // Executes a SQL query to count existing bookings for the given criteria.
     public boolean bookingExists(Booking booking) {
@@ -210,29 +235,37 @@ public class FlipFitCustomerDAOImplement implements FlipFitCustomerDAO {
 
     @Override
     public FlipFitCustomer getCustomerById(String userId) {
+        List<Booking> bookings = null;
         FlipFitCustomer customer = null;
-        String sql = "SELECT * FROM FlipFitCustomer WHERE userid = ?";
+        String sql = "SELECT * FROM FlipFitUser WHERE userid = ?";
         try (Connection connection = dbutils.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, userId);
+            System.out.println("Looking for userId: '" + userId + "'");
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     String username = resultSet.getString("username");
                     String name = resultSet.getString("name");
                     String email = resultSet.getString("email");
                     String phoneNumber = resultSet.getString("phoneNumber");
+                    String password = resultSet.getString("password");
                     String city = resultSet.getString("city");
                     String pincode = resultSet.getString("pincode");
-                    int role = resultSet.getInt("role");
-                    List<Booking> bookings = new ArrayList<>(); // Initialize or retrieve bookings if necessary
+                    // Initialize or retrieve bookings if necessary
 
-                    customer = new FlipFitCustomer(userId, name, email, phoneNumber,
-                            "", city, pincode, role, username, bookings);
+                    customer = new FlipFitCustomer(userId, name,phoneNumber, email, password, city, pincode, 3, username, bookings);
+                    System.out.println("juybukykyykbfyff");
+                    System.out.println(customer);
+                }
+                else {
+                    System.out.println("No customer found with userId: " + userId);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+//        System.out.println("customer35435gefd");
+//        System.out.println(customer);
         return customer;
     }
 }

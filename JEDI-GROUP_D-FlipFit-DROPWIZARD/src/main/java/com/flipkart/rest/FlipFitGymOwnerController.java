@@ -3,6 +3,7 @@ package com.flipkart.rest;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitGyms;
 import com.flipkart.bean.FlipFitUser;
+import com.flipkart.business.FlipFitUserService;
 import com.flipkart.business.FlipfitGymOwnerServiceInterface;
 
 import javax.ws.rs.*;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Path("/gymOwner")
 public class FlipFitGymOwnerController {
-
+    private static FlipFitUserService userService = new FlipFitUserService();
     private FlipfitGymOwnerServiceInterface gymOwnerService;
 
     public FlipFitGymOwnerController(FlipfitGymOwnerServiceInterface gymOwnerService) {

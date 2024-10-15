@@ -91,6 +91,12 @@ public class FlipfitCustomerService implements FlipfitCustomerServiceInterface {
         return customerDAO.updateProfile(customer);
     }
 
+
+    @Override
+    public FlipFitCustomer getCustomer(FlipFitUser user) {
+        return customerDAO.getCustomer(user);
+    }
+
     @Override
     public FlipFitCustomer getCustomerById(String userId) {
         return customerDAO.getCustomerById(userId);

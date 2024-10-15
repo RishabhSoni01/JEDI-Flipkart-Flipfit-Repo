@@ -13,6 +13,7 @@ public class FlipFitCustomer extends FlipFitUser {
      * Initializes with default values for admin user ID, username, email, password,
      * and assigns the role as ADMIN.
      */
+
     private List<pair<Booking, Boolean>> bookings;
 
     public int getApproval() {

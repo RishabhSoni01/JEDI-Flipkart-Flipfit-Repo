@@ -3,6 +3,8 @@ package com.flipkart.rest;
 import com.flipkart.bean.Booking;
 import com.flipkart.bean.FlipFitCustomer;
 import com.flipkart.bean.FlipFitGyms;
+import com.flipkart.bean.FlipFitUser;
+import com.flipkart.business.FlipFitUserService;
 import com.flipkart.business.FlipfitCustomerServiceInterface;
 
 import javax.ws.rs.*;
@@ -10,8 +12,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+
+
 @Path("/customer")
 public class FlipFitCustomerController {
+    private static FlipFitUserService userService = new FlipFitUserService();
 
     private FlipfitCustomerServiceInterface customerService;
 
@@ -93,6 +98,7 @@ public class FlipFitCustomerController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response viewProfile(@QueryParam("userId") String userId) {
         FlipFitCustomer customer = customerService.getCustomerById(userId); // Assuming a method to fetch customer by ID
+        System.out.println(customer);
         if (customer != null) {
             return Response.ok(customer).build();
         } else {
