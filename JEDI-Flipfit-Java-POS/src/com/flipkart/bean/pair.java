@@ -1,42 +1,66 @@
 package com.flipkart.bean;
-/*
- * Represents a [brief description of the class's purpose or functionality].
+
+/**
+ * Represents a generic pair of values.
+ * This class encapsulates two related objects, allowing you to store and manipulate them together.
  *
- * @author Mukul
+ * @author JEDI-GroupD
  * @params This class does not have any parameters.
- * @throws This class does not throw any exceptions.
+ * @throws this class does not throw any exceptions.
+ *
+ * @param <T>  the type of the first element in the pair.
+ * @param <T1> the type of the second element in the pair.
  */
-// Represents a generic pair of values.
 public class pair<T, T1> {
+    // The first element of the pair.
     private T first;
+
+    // The second element of the pair.
     private T1 second;
 
-    /* Constructor to initialize a pair object.
-     Parameters:
-     first: The first element of the pair.
-     second: The second element of the pair.
+    /**
+     * Constructs a pair object with the specified elements.
+     *
+     * @param first  The first element of the pair.
+     * @param second The second element of the pair.
      */
     public pair(T first, T1 second) {
         this.first = first;
         this.second = second;
     }
 
-    // Getter for the first element of the pair.
+    /**
+     * Gets the first element of the pair.
+     *
+     * @return the first element of the pair.
+     */
     public T getFirst() {
         return first;
     }
 
-    // Setter for the first element of the pair.
+    /**
+     * Sets the first element of the pair.
+     *
+     * @param first the first element to set.
+     */
     public void setFirst(T first) {
         this.first = first;
     }
 
-    // Getter for the second element of the pair.
+    /**
+     * Gets the second element of the pair.
+     *
+     * @return the second element of the pair.
+     */
     public T1 getSecond() {
         return second;
     }
 
-    // Setter for the second element of the pair.
+    /**
+     * Sets the second element of the pair.
+     *
+     * @param second the second element to set.
+     */
     public void setSecond(T1 second) {
         this.second = second;
     }
