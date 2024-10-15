@@ -25,7 +25,9 @@ public class FlipFitGymOwner extends FlipFitUser {
 
     // Approval status of the gym owner (1 for approved, 0 for not approved)
     public int isApproved;
-
+    public FlipFitGymOwner() {
+        // Initialize default values if necessary
+    }
     /**
      * Constructor to create a FlipFitGymOwner object with required details.
      *

@@ -8,23 +8,31 @@ import java.util.List;
  */
 public class FlipFitCustomer extends FlipFitUser {
 
+    private List<pair<Booking, Boolean>> bookings;
+    private int approval;
+
+    // Default constructor for deserialization
+    public FlipFitCustomer() {
+        this.bookings = new ArrayList<>();
+    }
     /**
      * Default constructor for creating an admin user.
      * Initializes with default values for admin user ID, username, email, password,
      * and assigns the role as ADMIN.
      */
 
-    private List<pair<Booking, Boolean>> bookings;
+
 
     public int getApproval() {
         return approval;
     }
 
+
     public void setApproval(int approval) {
         this.approval = approval;
     }
 
-    private int approval;
+
 
     /**
      * Default constructor for creating a customer.

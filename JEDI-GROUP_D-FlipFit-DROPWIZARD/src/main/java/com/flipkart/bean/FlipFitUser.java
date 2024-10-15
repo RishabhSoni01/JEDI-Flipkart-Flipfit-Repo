@@ -55,7 +55,9 @@ public class FlipFitUser {
     }
 
     // Getter methods for each attribute
-
+    public FlipFitUser() {
+        // Initialize with default values if necessary
+    }
     public String getUserID() {
         return userID;
     }
