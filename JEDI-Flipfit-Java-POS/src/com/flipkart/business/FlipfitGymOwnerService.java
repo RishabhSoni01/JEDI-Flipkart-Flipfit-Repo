@@ -153,6 +153,7 @@ public class FlipfitGymOwnerService implements FlipfitGymOwnerServiceInterface {
      */
     public void editSlots(FlipFitGymOwner gymOwner) {
         try {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Enter City: ");
             String city = scanner.nextLine();
             int c = 1;
