@@ -1,9 +1,13 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.FlipFitGymOwner;
-/*
-* @author Rishabh Soni
-* */
+
+/**
+ * Author: JEDI-Group D - Flipkart Development
+ *
+ * This interface defines operations related to gym owner management,
+ * including registration, gym center management, and profile editing.
+ */
 public interface FlipfitGymOwnerServiceInterface {
 
     /**
@@ -16,7 +20,7 @@ public interface FlipfitGymOwnerServiceInterface {
      * @param city     The city where the gym owner is located.
      * @param pincode  The pincode for the gym owner's address.
      * @param username The username chosen by the gym owner.
-     * @param pancard The PAN card number of the gym owner.
+     * @param pancard  The PAN card number of the gym owner.
      * @param aadhar   The Aadhar card number of the gym owner.
      * @param gst      The GST number of the gym owner.
      */
@@ -25,11 +29,11 @@ public interface FlipfitGymOwnerServiceInterface {
     /**
      * Adds a gym center associated with the specified gym owner.
      *
-     * @param gymOwner   The gym owner adding the gym center.
-     * @param gym_name   The name of the gym center.
+     * @param gymOwner    The gym owner adding the gym center.
+     * @param gym_name    The name of the gym center.
      * @param no_of_slots The number of slots available in the gym center.
-     * @param city       The city where the gym center is located.
-     * @param pincode    The pincode for the gym center's address.
+     * @param city        The city where the gym center is located.
+     * @param pincode     The pincode for the gym center's address.
      * @return True if the gym center was added successfully; false otherwise.
      */
     public boolean addGymCenter(FlipFitGymOwner gymOwner, String gym_name, int no_of_slots, String city, String pincode);

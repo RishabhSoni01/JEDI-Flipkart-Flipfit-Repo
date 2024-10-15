@@ -5,15 +5,21 @@ import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitGyms;
 
 import java.util.List;
-/*
-* @author Mukul Goyal
-* */
+
+/**
+ * Author: JEDI-Group D - Flipkart Development
+ *
+ * This interface defines the operations for admin management,
+ * including approval of gym owners and customers, and retrieving
+ * information about gyms and users.
+ */
 public interface FlipfitAdminServiceInterface {
 
     /**
      * Approves a gym owner by their ID.
      *
      * @param gymOwnerId The ID of the gym owner to be approved.
+     * @return An object indicating the approval status.
      */
     public Object approveGymOwner(String gymOwnerId);
 

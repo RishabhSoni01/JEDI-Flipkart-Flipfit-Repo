@@ -5,11 +5,10 @@ import com.flipkart.bean.FlipFitCustomer;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitUser;
 import com.flipkart.exception.InvalidLogin;
-/*
-* @author Sreelakshmi A
-* @exception InvalidLogin
-* */
+
 /**
+ * Author: JEDI-Group D - Flipkart Development
+ *
  * This interface defines the operations related to user management.
  * This includes adding users, user login, password validation, password confirmation,
  * and registration of gym owners and customers.
@@ -28,7 +27,8 @@ public interface FlipFitUserInterface {
      *
      * @param username The username of the user trying to log in.
      * @param password The password provided by the user.
-     * @return The authenticated user object, or null if authentication fails.
+     * @return The authenticated user object.
+     * @throws InvalidLogin If authentication fails.
      */
     public FlipFitUser login(String username, String password) throws InvalidLogin;
 
@@ -50,6 +50,20 @@ public interface FlipFitUserInterface {
      * @param confirmPassword The confirmation password to validate.
      */
     void confirmPassword(FlipFitUser user, String newPassword, String confirmPassword);
+
+    /**
+     * Registers a new gym owner in the system.
+     *
+     * @param gymOwner The gym owner object containing the owner's details.
+     * @return True if registration is successful; false otherwise.
+     */
     boolean registerGymOwner(FlipFitGymOwner gymOwner);
+
+    /**
+     * Registers a new customer in the system.
+     *
+     * @param customer The customer object containing the customer's details.
+     * @return True if registration is successful; false otherwise.
+     */
     boolean registerCustomer(FlipFitCustomer customer);
 }

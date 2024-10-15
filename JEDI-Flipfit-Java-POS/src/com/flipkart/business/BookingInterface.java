@@ -3,10 +3,11 @@ package com.flipkart.business;
 import com.flipkart.bean.FlipFitGyms;
 import com.flipkart.bean.FlipFitSlot;
 
-/*
- * @author Mukul Goyal
- * @params This interface does not have any parameters.
- * @throws This interface does not throw any exceptions.
+/**
+ * This interface defines the operations related to booking management,
+ * including adding, validating, and canceling bookings.
+ *
+ * Author: JEDI-Group D - Flipkart Development
  */
 public interface BookingInterface {
 
@@ -32,7 +33,8 @@ public interface BookingInterface {
     /**
      * Cancels an existing booking based on its ID.
      *
-     * @param userID The ID of the user booking to be canceled.
+     * @param userID The ID of the user whose booking is to be canceled.
+     * @param slotID The ID of the slot to be canceled.
      * @return true if the cancellation is successful, false otherwise.
      */
     public boolean cancelBooking(String userID, String slotID);

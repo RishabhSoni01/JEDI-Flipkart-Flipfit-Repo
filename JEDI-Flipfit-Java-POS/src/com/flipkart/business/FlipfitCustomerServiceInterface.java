@@ -5,12 +5,14 @@ import com.flipkart.bean.FlipFitGyms;
 import com.flipkart.bean.FlipFitSlot;
 import com.flipkart.bean.Booking;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
-/*
-* @author Kabir Singh
-* */
+
+/**
+ * Author: JEDI-Group D - Flipkart Development
+ *
+ * This interface defines the operations for customer management,
+ * including viewing gyms, creating customer profiles, and managing bookings.
+ */
 public interface FlipfitCustomerServiceInterface {
 
     /**
