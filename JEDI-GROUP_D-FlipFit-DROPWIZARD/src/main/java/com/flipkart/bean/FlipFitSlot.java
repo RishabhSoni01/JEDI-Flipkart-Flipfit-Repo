@@ -27,6 +27,8 @@ public class FlipFitSlot {
     // Number of available seats in this slot
     private int seatsAvailable;
 
+    public FlipFitSlot() {
+    }
     /**
      * Constructor to initialize a FlipFitSlot object.
      *

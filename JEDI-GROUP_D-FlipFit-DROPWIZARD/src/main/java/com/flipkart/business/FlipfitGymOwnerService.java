@@ -130,14 +130,14 @@ public class FlipfitGymOwnerService implements FlipfitGymOwnerServiceInterface {
      *
      * @param gymOwner
      */
-    public void showGymCenters(FlipFitGymOwner gymOwner) {
+    public List<FlipFitGyms> showGymCenters(FlipFitGymOwner gymOwner) {
         List<FlipFitGyms> gymCenters = gymOwnerDAO.getGymCenters(gymOwner.getUserID());
 
         // Print all gym centers
         gymCenters.forEach(gymCenter ->
                 System.out.println("Gym Name: " + gymCenter.getGymName())
         );
-
+    return gymCenters;
     }
 
     /**

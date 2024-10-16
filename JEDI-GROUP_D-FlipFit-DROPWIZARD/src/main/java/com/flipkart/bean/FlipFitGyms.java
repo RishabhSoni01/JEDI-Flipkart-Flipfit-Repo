@@ -35,6 +35,9 @@ public class FlipFitGyms {
     // Postal code for the gym's location
     private String pincode;
 
+    public FlipFitGyms() {
+        // Default constructor
+    }
     /**
      * Constructor to initialize a FlipFitGyms object.
      *

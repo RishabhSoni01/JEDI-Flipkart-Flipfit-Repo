@@ -1,16 +1,12 @@
 package com.flipkart.app;
 
-import com.flipkart.business.FlipfitCustomerService;
-import com.flipkart.business.FlipfitGymOwnerService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.flipkart.business.*;
+import com.flipkart.rest.FlipFitBookingController;
 import com.flipkart.rest.FlipFitAdminController;
 import com.flipkart.rest.FlipFitCustomerController;
 import com.flipkart.rest.FlipFitGymOwnerController;
-import com.flipkart.business.FlipfitCustomerServiceInterface;
-import com.flipkart.business.FlipfitGymOwnerServiceInterface;
-
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Bootstrap;
@@ -28,17 +24,20 @@ public class App extends Application<Configuration> {
     }
 
     @Override
-    public void run(Configuration configuration, Environment environment) throws Exception {
+    public void run(Configuration configuration, Environment environment) {
         LOGGER.info("Registering REST resources");
 
         // Initialize services
-        FlipfitGymOwnerServiceInterface gymOwnerService = new FlipfitGymOwnerService(); // Replace with actual constructor
-        FlipfitCustomerServiceInterface customerService = new FlipfitCustomerService(); // Replace with actual constructor
+        FlipfitGymOwnerServiceInterface gymOwnerService = new FlipfitGymOwnerService();
+        FlipfitCustomerServiceInterface customerService = new FlipfitCustomerService();
+        BookingInterface bookingService = new BookingService();
 
         // Registering REST controllers
         environment.jersey().register(new FlipFitAdminController());
         environment.jersey().register(new FlipFitCustomerController(customerService));
         environment.jersey().register(new FlipFitGymOwnerController(gymOwnerService));
+        environment.jersey().register(new FlipFitBookingController(bookingService, customerService));
+
         // Add other controllers as needed
     }
 

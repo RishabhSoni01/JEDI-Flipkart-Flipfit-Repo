@@ -71,24 +71,24 @@ public class FlipFitGymOwnerController {
         }
     }
 
-//    @GET
-//    @Path("/{userId}/gyms")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response showGymCenters(@PathParam("userId") String userId) {
-//        // Create a FlipFitGymOwner object using the userId
-//        FlipFitGymOwner gymOwner = new FlipFitGymOwner(userId, "", "", "", "", "", "", 0, "", "", "", "");
-//
-//        // Call the service to get gym centers
-//        List<FlipFitGyms> gymCenters = gymOwnerService.showGymCenters(FlipFitUser.userID);
-//
-//        if (gymCenters != null && !gymCenters.isEmpty()) {
-//            return Response.ok(gymCenters).build();
-//        } else {
-//            return Response.status(Response.Status.NOT_FOUND)
-//                    .entity("No gym centers found for the specified gym owner.")
-//                    .build();
-//        }
-//    }
+    @GET
+    @Path("/{userId}/gyms")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response showGymCenters(@PathParam("userId") String userId) {
+        // Create a FlipFitGymOwner object using the userId
+        FlipFitGymOwner gymOwner = new FlipFitGymOwner(userId, "", "", "", "", "", "", 0, "", "", "", "");
+
+        // Call the service to get gym centers
+        List<FlipFitGyms> gymCenters = gymOwnerService.showGymCenters(gymOwner);
+
+        if (gymCenters != null && !gymCenters.isEmpty()) {
+            return Response.ok(gymCenters).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("No gym centers found for the specified gym owner.")
+                    .build();
+        }
+    }
 
 
     /**

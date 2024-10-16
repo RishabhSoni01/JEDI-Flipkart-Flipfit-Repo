@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 public class FlipFitGymOwnerDAOImplement implements FlipFitGymOwnerDAO {
     public boolean addGymCenter(FlipFitGyms gymCenter) {
@@ -38,6 +39,7 @@ public class FlipFitGymOwnerDAOImplement implements FlipFitGymOwnerDAO {
     public List<FlipFitGyms> getGymCenters(String userid) {
         List<FlipFitGyms> gymCenters = new ArrayList<>();
         String sql = "SELECT * FROM FlipFitGyms WHERE owner_id = ?";
+        System.out.println("Executing query: " + sql);
 
         try (Connection connection = dbutils.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -52,7 +54,6 @@ public class FlipFitGymOwnerDAOImplement implements FlipFitGymOwnerDAO {
                 int availableSlots = resultSet.getInt("no_of_slots");
                 Boolean status = resultSet.getBoolean("gym_status");
                 String owner = resultSet.getString("owner_id");
-
                 String city = resultSet.getString("city");
                 String pincode = resultSet.getString("pincode");
                 if(status) {
@@ -172,7 +173,19 @@ public class FlipFitGymOwnerDAOImplement implements FlipFitGymOwnerDAO {
     }
     public boolean updateProfile(FlipFitGymOwner gymOwner){
         String sql = "UPDATE FlipFitGymOwner SET username = ?, name = ?, email = ?, phoneNumber = ?, city = ?, pincode=?, aadhar=?,pan=?,gst_no=? WHERE userid = ?";
-
+        System.out.println("Executing query: " + sql);
+        System.out.println("Parameters: " + Arrays.toString(new Object[] {
+                gymOwner.getUsername(),
+                gymOwner.getName(),
+                gymOwner.getEmail(),
+                gymOwner.getPhoneNumber(),
+                gymOwner.getCity(),
+                gymOwner.getPincode(),
+                gymOwner.getAadhar(),
+                gymOwner.getPanCard(),
+                gymOwner.getGST(),
+                gymOwner.getUserID()
+        }));
         try (Connection connection = dbutils.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, gymOwner.getUsername());

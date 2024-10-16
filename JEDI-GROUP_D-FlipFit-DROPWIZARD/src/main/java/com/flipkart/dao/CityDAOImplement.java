@@ -27,8 +27,8 @@ public class CityDAOImplement implements CityDAO{
         return false;
     }
 
-    @Override
-    public List<City> getAllCities() {
+
+    public static List<City> getAllCities() {
         List<City> cities = new ArrayList<>();
         String sql = "SELECT * FROM city";
 

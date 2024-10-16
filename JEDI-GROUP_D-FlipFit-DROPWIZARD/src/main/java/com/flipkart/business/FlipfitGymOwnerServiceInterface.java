@@ -1,8 +1,10 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.FlipFitGymOwner;
+import com.flipkart.bean.FlipFitGyms;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author SreeLakshmi
@@ -32,7 +34,7 @@ public interface FlipfitGymOwnerServiceInterface {
      *
      * @param gymOwner
      */
-    public void showGymCenters(FlipFitGymOwner gymOwner);
+    public List<FlipFitGyms> showGymCenters(FlipFitGymOwner gymOwner);
 
     /**
      * Edits the slots for the gym centers associated with the specified gym owner.

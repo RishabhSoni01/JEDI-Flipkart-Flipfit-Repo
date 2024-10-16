@@ -29,7 +29,9 @@ public interface CityDAO {
      * @return a list of City objects representing all cities.
      * @author JEDI GroupD
      */
-    public List<City> getAllCities();
+    public static List<City> getAllCities() {
+        return null;
+    }
 
     /**
      * Adds a new city to the database.
