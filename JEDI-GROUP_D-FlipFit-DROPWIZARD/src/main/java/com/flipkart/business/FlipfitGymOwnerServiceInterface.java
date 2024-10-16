@@ -2,6 +2,8 @@ package com.flipkart.business;
 
 import com.flipkart.bean.FlipFitGymOwner;
 
+import java.sql.SQLException;
+
 /**
  * @author SreeLakshmi
  *
@@ -15,7 +17,7 @@ public interface FlipfitGymOwnerServiceInterface {
      *
      * @param name,email,phone,password,city,pincode,username,pancard,aadhar,gst
      */
-    public void createGymOwner(String name, String email, String phone, String password, String city, String pincode, String username, String pancard, String aadhar, String gst);
+    public void createGymOwner(String name, String email, String phone, String password, String city, String pincode, String username, String pancard, String aadhar, String gst)  throws SQLException;
 
     /**
      * Adds a gym center associated with the specified gym owner.

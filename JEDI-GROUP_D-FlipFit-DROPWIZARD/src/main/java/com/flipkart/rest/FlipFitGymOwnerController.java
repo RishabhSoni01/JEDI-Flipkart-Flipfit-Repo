@@ -30,18 +30,24 @@ public class FlipFitGymOwnerController {
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createGymOwner(FlipFitGymOwner gymOwner) {
+        System.out.println(gymOwner.getPanCard());
         try {
             gymOwnerService.createGymOwner(gymOwner.getName(), gymOwner.getEmail(),
                     gymOwner.getPhoneNumber(), gymOwner.getPassword(),
                     gymOwner.getCity(), gymOwner.getPincode(), gymOwner.getUsername(),
                     gymOwner.getPanCard(), gymOwner.getAadhar(), gymOwner.getGST());
             return Response.status(Response.Status.CREATED).entity("Gym Owner created successfully.").build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Input error: " + e.getMessage()).build();
         } catch (Exception e) {
+            // Log the exception
+            e.printStackTrace(); // For debugging
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity("Gym Owner creation failed: " + e.getMessage())
-                    .build();
+                    .entity("Gym Owner creation failed: " + e.getMessage()).build();
         }
     }
+
 
     /**
      * Endpoint to add a new gym center associated with a gym owner.

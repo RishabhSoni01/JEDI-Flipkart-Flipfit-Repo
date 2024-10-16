@@ -17,6 +17,9 @@ public class FlipfitCustomerService implements FlipfitCustomerServiceInterface {
     private CityDAOImplement cityDAO = new CityDAOImplement();
     Scanner scanner = new Scanner(System.in);
 
+    public FlipfitCustomerService() {
+        customers = new HashMap<>(); // Initialize the map here
+    }
     /**
      * Creates a new customer account.
      *

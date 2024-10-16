@@ -5,6 +5,7 @@ import com.flipkart.dao.CityDAOImplement;
 import com.flipkart.dao.FlipFitGymOwnerDAOImplement;
 import com.flipkart.dao.FlipFitUserDAOImplement;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -42,7 +43,7 @@ public class FlipfitGymOwnerService implements FlipfitGymOwnerServiceInterface {
      *
      * @param name,email,phone,password,city,pincode,username,pancard,aadhar,gst
      */
-    public void createGymOwner(String name, String email, String phone, String password, String city, String pincode, String username, String pancard, String aadhar, String gst) {
+    public void createGymOwner(String name, String email, String phone, String password, String city, String pincode, String username, String pancard, String aadhar, String gst) throws SQLException {
         System.out.println("Registering Gym Owner");
 
         // Create a new role for the gym owner
